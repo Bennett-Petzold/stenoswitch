@@ -1,0 +1,17 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "efcccfe8-5e20-4b1b-8d3b-61fce771481e")
+	(paper "A4")
+	(title_block
+		(title "Port Plover")
+		(date "2025-07-28")
+		(rev "0.1")
+		(company "https://github.com/Bennett-Petzold/port_plover")
+		(comment 1 "NO WARRANTY. See license.")
+		(comment 2 "https://creativecommons.org/licenses/by-sa/4.0/")
+		(comment 3 "© 2025. This work is openly licensed via CC BY-SA 4.0.")
+	)
+	(lib_symbols)
+)

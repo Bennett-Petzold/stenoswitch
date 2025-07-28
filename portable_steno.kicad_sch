@@ -2,9 +2,171 @@
 	(version 20250114)
 	(generator "eeschema")
 	(generator_version "9.0")
-	(uuid 06a6eca0-edda-4cc0-a23f-017602e67f07)
-	(paper "A4")
+	(uuid "06a6eca0-edda-4cc0-a23f-017602e67f07")
+	(paper "A5")
+	(title_block
+		(title "Port Plover")
+		(rev "0.1")
+		(company "https://github.com/Bennett-Petzold/port_plover")
+		(comment 1 "NO WARRANTY. See license.")
+		(comment 2 "https://creativecommons.org/licenses/by-sa/4.0/")
+		(comment 3 "© 2025. This work is openly licensed via CC BY-SA 4.0.")
+	)
 	(lib_symbols)
+	(text "Connection via 8P8C."
+		(exclude_from_sim no)
+		(at 98.552 65.278 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "1306eb94-704a-4179-bdec-1b1435b329cc")
+	)
+	(bus
+		(pts
+			(xy 83.82 58.42) (xy 114.3 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1446b761-ace9-4038-a91d-20c219864a46")
+	)
+	(bus
+		(pts
+			(xy 83.82 71.12) (xy 114.3 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "caf725f8-b2c1-441b-b58c-0bbab17c98f1")
+	)
+	(sheet
+		(at 58.42 50.8)
+		(size 25.4 27.94)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "2477db2d-d681-4372-a745-e817369fb274")
+		(property "Sheetname" "Left Hand"
+			(at 58.42 50.0884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "left_hand.kicad_sch"
+			(at 58.42 79.3246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "Columns[0..4]" input
+			(at 83.82 58.42 0)
+			(uuid "bd7594d4-82e2-479e-8378-3a151f9d9eea")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Rows[0..2]" input
+			(at 83.82 71.12 0)
+			(uuid "58282db0-2784-4b3f-b646-da00ee197bf8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "portable_steno"
+				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 114.3 50.8)
+		(size 25.4 27.94)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "99f3b279-b2b0-4dd5-ab05-9b518546ce95")
+		(property "Sheetname" "Right Hand"
+			(at 114.3 50.0884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "right_hand.kicad_sch"
+			(at 114.3 79.3246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "Left_Columns[0..4]" input
+			(at 114.3 58.42 180)
+			(uuid "59e1a18f-d322-4a1b-9ab5-a738581ff80d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Rows[0..2]" input
+			(at 114.3 71.12 180)
+			(uuid "48755121-060c-4f54-8f04-467dc861bf26")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "portable_steno"
+				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07"
+					(page "4")
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")
