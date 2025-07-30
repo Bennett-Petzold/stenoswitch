@@ -2323,7 +2323,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "060dffca-f245-4224-b727-889304a86cca")
-		(property "Reference" "Number_Bar9"
+		(property "Reference" "Number_Bar8"
 			(at 140.97 50.8 0)
 			(effects
 				(font
@@ -2411,7 +2411,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Number_Bar9")
+					(reference "Number_Bar8")
 					(unit 1)
 				)
 			)
@@ -2513,7 +2513,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "122bdee1-2242-468a-827d-0473477f1de4")
-		(property "Reference" "Key15"
+		(property "Reference" "D"
 			(at 262.89 72.39 0)
 			(effects
 				(font
@@ -2601,7 +2601,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key15")
+					(reference "D")
 					(unit 1)
 				)
 			)
@@ -2789,7 +2789,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "352e8193-0919-4f88-9a67-c32e9fd7c553")
-		(property "Reference" "Key21"
+		(property "Reference" "P"
 			(at 140.97 72.39 0)
 			(effects
 				(font
@@ -2877,7 +2877,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key21")
+					(reference "P")
 					(unit 1)
 				)
 			)
@@ -2893,7 +2893,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "371f9278-3ccf-4bcd-bb66-b31b8ce87901")
-		(property "Reference" "Key20"
+		(property "Reference" "G"
 			(at 181.61 93.98 0)
 			(effects
 				(font
@@ -2981,7 +2981,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key20")
+					(reference "G")
 					(unit 1)
 				)
 			)
@@ -3084,7 +3084,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "387c9e40-a015-4de1-b1e3-7cd4c7f5348f")
-		(property "Reference" "Number_Bar8"
+		(property "Reference" "Number_Bar9"
 			(at 182.88 50.8 0)
 			(effects
 				(font
@@ -3172,7 +3172,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Number_Bar8")
+					(reference "Number_Bar9")
 					(unit 1)
 				)
 			)
@@ -3274,7 +3274,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4e0898fc-5b3a-47f6-acc2-68b242be24ef")
-		(property "Reference" "Key16"
+		(property "Reference" "Z"
 			(at 262.89 93.98 0)
 			(effects
 				(font
@@ -3362,7 +3362,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key16")
+					(reference "Z")
 					(unit 1)
 				)
 			)
@@ -3378,7 +3378,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5b547a51-ba1d-44ad-a92d-30eb2d8ef970")
-		(property "Reference" "Key18"
+		(property "Reference" "S"
 			(at 222.25 93.98 0)
 			(effects
 				(font
@@ -3466,7 +3466,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key18")
+					(reference "S")
 					(unit 1)
 				)
 			)
@@ -3568,7 +3568,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "60dabcc0-e2de-4570-af96-77eaff80e2c0")
-		(property "Reference" "Key25"
+		(property "Reference" "U"
 			(at 100.33 115.57 0)
 			(effects
 				(font
@@ -3656,7 +3656,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key25")
+					(reference "U")
 					(unit 1)
 				)
 			)
@@ -3844,7 +3844,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "748a3ed2-02bf-451c-a1ba-84feec8afe56")
-		(property "Reference" "Key24"
+		(property "Reference" "R"
 			(at 100.33 93.98 0)
 			(effects
 				(font
@@ -3932,7 +3932,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key24")
+					(reference "R")
 					(unit 1)
 				)
 			)
@@ -3948,7 +3948,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7d166fe4-8d70-4496-8bc7-c76e7bca7bb7")
-		(property "Reference" "Key22"
+		(property "Reference" "B"
 			(at 140.97 93.98 0)
 			(effects
 				(font
@@ -4036,7 +4036,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key22")
+					(reference "B")
 					(unit 1)
 				)
 			)
@@ -4138,7 +4138,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "832fd287-209d-4c80-8aa1-0adb44beb52b")
-		(property "Reference" "Key26"
+		(property "Reference" "Asterisk2"
 			(at 60.96 72.39 0)
 			(effects
 				(font
@@ -4226,7 +4226,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key26")
+					(reference "Asterisk2")
 					(unit 1)
 				)
 			)
@@ -4415,7 +4415,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9429857d-800b-4e5d-95d2-9fb55e6bc2d6")
-		(property "Reference" "Number_Bar7"
+		(property "Reference" "Number_Bar10"
 			(at 220.98 50.8 0)
 			(effects
 				(font
@@ -4503,7 +4503,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Number_Bar7")
+					(reference "Number_Bar10")
 					(unit 1)
 				)
 			)
@@ -4519,7 +4519,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "94b369fa-3291-42a3-8b12-b3acf96946da")
-		(property "Reference" "Key27"
+		(property "Reference" "Asterisk3"
 			(at 60.96 93.98 0)
 			(effects
 				(font
@@ -4607,7 +4607,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key27")
+					(reference "Asterisk3")
 					(unit 1)
 				)
 			)
@@ -4709,7 +4709,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "98482b9f-ae30-460f-8a59-4658db65a6a9")
-		(property "Reference" "Key19"
+		(property "Reference" "L"
 			(at 181.61 72.39 0)
 			(effects
 				(font
@@ -4797,7 +4797,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key19")
+					(reference "L")
 					(unit 1)
 				)
 			)
@@ -5243,7 +5243,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c1f48095-130d-4f45-ab01-a89f4b67bae3")
-		(property "Reference" "Key17"
+		(property "Reference" "T"
 			(at 222.25 72.39 0)
 			(effects
 				(font
@@ -5331,7 +5331,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key17")
+					(reference "T")
 					(unit 1)
 				)
 			)
@@ -5347,7 +5347,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c2718953-fbd7-4777-b120-b31b82ee0869")
-		(property "Reference" "Key23"
+		(property "Reference" "F"
 			(at 100.33 72.39 0)
 			(effects
 				(font
@@ -5435,7 +5435,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key23")
+					(reference "F")
 					(unit 1)
 				)
 			)
@@ -5451,7 +5451,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cc184a26-e6ef-4443-ab37-2e19ae15d335")
-		(property "Reference" "Key28"
+		(property "Reference" "E"
 			(at 60.96 115.57 0)
 			(effects
 				(font
@@ -5539,7 +5539,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Key28")
+					(reference "E")
 					(unit 1)
 				)
 			)
@@ -5556,7 +5556,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ce107900-b2db-4225-8039-86c0165d7929")
-		(property "Reference" "Number_Bar6"
+		(property "Reference" "Number_Bar11"
 			(at 262.89 50.8 0)
 			(effects
 				(font
@@ -5644,7 +5644,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Number_Bar6")
+					(reference "Number_Bar11")
 					(unit 1)
 				)
 			)
@@ -5833,7 +5833,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ef0f0bc7-e54f-4174-ac51-0f060f83e0d6")
-		(property "Reference" "Number_Bar11"
+		(property "Reference" "Number_Bar6"
 			(at 60.96 50.8 0)
 			(effects
 				(font
@@ -5921,7 +5921,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Number_Bar11")
+					(reference "Number_Bar6")
 					(unit 1)
 				)
 			)
@@ -5938,7 +5938,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f02fc5d6-b285-4764-aefd-b366041b0113")
-		(property "Reference" "Number_Bar10"
+		(property "Reference" "Number_Bar7"
 			(at 101.6 50.8 0)
 			(effects
 				(font
@@ -6026,7 +6026,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "Number_Bar10")
+					(reference "Number_Bar7")
 					(unit 1)
 				)
 			)
