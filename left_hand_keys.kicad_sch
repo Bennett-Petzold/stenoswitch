@@ -5,8 +5,7 @@
 	(uuid "efcccfe8-5e20-4b1b-8d3b-61fce771481e")
 	(paper "A4")
 	(title_block
-		(title "Port Plover")
-		(date "2025-07-28")
+		(title "Stenoswitch")
 		(rev "0.1")
 		(company "https://github.com/Bennett-Petzold/port_plover")
 		(comment 1 "NO WARRANTY. See license.")
@@ -40,7 +39,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Diode_SMD:D_SOD-123"
+			(property "Footprint" "Diode_SMD:D_SOD-323"
 				(at 0 -4.445 0)
 				(effects
 					(font
@@ -2251,7 +2250,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 166.37 97.155 0)
 			(effects
 				(font
@@ -2440,7 +2439,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 166.37 75.565 0)
 			(effects
 				(font
@@ -2628,7 +2627,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 86.36 53.975 0)
 			(effects
 				(font
@@ -2713,7 +2712,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 207.01 75.565 0)
 			(effects
 				(font
@@ -3004,7 +3003,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 246.38 97.155 0)
 			(effects
 				(font
@@ -3193,7 +3192,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 44.45 75.565 0)
 			(effects
 				(font
@@ -3484,7 +3483,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 85.09 75.565 0)
 			(effects
 				(font
@@ -3672,7 +3671,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 166.37 53.975 0)
 			(effects
 				(font
@@ -3757,7 +3756,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 246.38 75.565 0)
 			(effects
 				(font
@@ -4048,7 +4047,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 125.73 97.155 0)
 			(effects
 				(font
@@ -4236,7 +4235,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 85.09 97.155 0)
 			(effects
 				(font
@@ -4321,7 +4320,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 125.73 75.565 0)
 			(effects
 				(font
@@ -4613,7 +4612,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 44.45 53.975 0)
 			(effects
 				(font
@@ -4801,7 +4800,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 246.38 53.975 0)
 			(effects
 				(font
@@ -4886,7 +4885,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 207.01 118.745 0)
 			(effects
 				(font
@@ -4971,7 +4970,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 124.46 53.975 0)
 			(effects
 				(font
@@ -5056,7 +5055,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 246.38 118.745 0)
 			(effects
 				(font
@@ -5141,7 +5140,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 207.01 97.155 0)
 			(effects
 				(font
@@ -5639,7 +5638,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 44.45 97.155 0)
 			(effects
 				(font
@@ -5724,7 +5723,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_SMD:D_SOD-123"
+		(property "Footprint" "Diode_SMD:D_SOD-323"
 			(at 205.74 53.975 0)
 			(effects
 				(font

@@ -5,7 +5,7 @@
 	(uuid "06a6eca0-edda-4cc0-a23f-017602e67f07")
 	(paper "A5")
 	(title_block
-		(title "Port Plover")
+		(title "Stenoswitch")
 		(rev "0.1")
 		(company "https://github.com/Bennett-Petzold/port_plover")
 		(comment 1 "NO WARRANTY. See license.")

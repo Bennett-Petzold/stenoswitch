@@ -1,0 +1,1 @@
+Range 625 ohms (charging at almost full, 1.6 amps which is slightly below 1/2 C) to 3.3k ohms (charging at min, 300 milliamps which fits in USB 2.0 provided current).

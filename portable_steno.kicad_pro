@@ -644,6 +644,10 @@
     [
       "cd3314d0-f605-42f0-be2b-644cabc7637c",
       "Power"
+    ],
+    [
+      "acaa3521-7032-4a8a-adbb-019f51b56731",
+      "Battery"
     ]
   ],
   "text_variables": {}
