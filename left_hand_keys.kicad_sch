@@ -374,22 +374,16 @@
 		(uuid "45287e76-1ba3-46f3-8a51-044f0189a82c")
 	)
 	(junction
-		(at 133.35 48.26)
+		(at 120.65 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "4a2ce04d-c2bb-46d9-a881-7bfa60d27a53")
+		(uuid "469dc41e-0bb1-4699-afe3-83f357331e26")
 	)
 	(junction
 		(at 95.25 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4b345afc-24b1-426c-903d-245309bd2ef2")
-	)
-	(junction
-		(at 176.53 58.42)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "52bf24b6-5985-49ae-9058-6623077a8360")
 	)
 	(junction
 		(at 223.52 107.95)
@@ -402,6 +396,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "582a42e2-5630-4e36-8a23-c32e01fc41a1")
+	)
+	(junction
+		(at 201.93 40.64)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "595851f9-17c8-421e-9ffd-c193ad6ae2db")
 	)
 	(junction
 		(at 101.6 64.77)
@@ -464,16 +464,22 @@
 		(uuid "94c8aff9-9630-4270-8547-c308f09824f2")
 	)
 	(junction
+		(at 158.75 40.64)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "963a3495-9361-4748-a160-f19823eb2518")
+	)
+	(junction
 		(at 21.59 64.77)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9f1d888c-972e-42b2-86d0-3cf0774b2881")
 	)
 	(junction
-		(at 214.63 44.45)
+		(at 162.56 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "b5e4f46a-0e65-4360-ad75-a0835bb710c5")
+		(uuid "b87b108f-fa6c-41a4-9a9c-7fe2832b077a")
 	)
 	(junction
 		(at 102.87 86.36)
@@ -488,16 +494,16 @@
 		(uuid "bd3d60a1-b558-4015-b7c4-d57ff2bc12c8")
 	)
 	(junction
-		(at 176.53 40.64)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c0a232e8-2f77-4351-adc1-e2e255114200")
-	)
-	(junction
 		(at 143.51 64.77)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c337ee4e-443b-4240-ab21-dae21ffdad33")
+	)
+	(junction
+		(at 158.75 48.26)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d5ba60e8-ec62-4cec-9f29-319136cac8dc")
 	)
 	(junction
 		(at 182.88 64.77)
@@ -528,12 +534,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e94e8b28-786d-47c8-8125-2f38c002f173")
-	)
-	(junction
-		(at 176.53 44.45)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ee83fd9b-9c16-4152-9f23-15881da21caa")
 	)
 	(junction
 		(at 256.54 80.01)
@@ -635,16 +635,6 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 44.45) (xy 176.53 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0658ef71-efa5-487e-9cb7-7ccb03de037b")
-	)
-	(wire
-		(pts
 			(xy 102.87 86.36) (xy 143.51 86.36)
 		)
 		(stroke
@@ -652,16 +642,6 @@
 			(type default)
 		)
 		(uuid "06800ecd-c3b8-40a1-803f-cf865d81916e")
-	)
-	(wire
-		(pts
-			(xy 176.53 40.64) (xy 176.53 44.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "091d9c3a-1842-492a-ac7b-166bccdf3054")
 	)
 	(wire
 		(pts
@@ -695,7 +675,7 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 48.26) (xy 133.35 48.26)
+			(xy 99.06 48.26) (xy 120.65 48.26)
 		)
 		(stroke
 			(width 0)
@@ -712,16 +692,6 @@
 			(type default)
 		)
 		(uuid "12a3e94b-3f72-49e5-852a-fc16d2f36030")
-	)
-	(wire
-		(pts
-			(xy 53.34 58.42) (xy 48.26 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "12ffb034-1166-43bc-b4ee-c4e0be1411a5")
 	)
 	(wire
 		(pts
@@ -765,16 +735,6 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 44.45) (xy 214.63 44.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1a8337e5-3321-4b0d-9377-3f1a43095580")
-	)
-	(wire
-		(pts
 			(xy 147.32 58.42) (xy 143.51 58.42)
 		)
 		(stroke
@@ -815,7 +775,7 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 40.64) (xy 176.53 40.64)
+			(xy 53.34 40.64) (xy 158.75 40.64)
 		)
 		(stroke
 			(width 0)
@@ -925,6 +885,16 @@
 	)
 	(wire
 		(pts
+			(xy 162.56 48.26) (xy 163.83 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36c3b738-385a-4891-9d2c-0f24a08cb87b")
+	)
+	(wire
+		(pts
 			(xy 101.6 58.42) (xy 101.6 64.77)
 		)
 		(stroke
@@ -995,6 +965,26 @@
 	)
 	(wire
 		(pts
+			(xy 242.57 40.64) (xy 242.57 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "49cb67e0-e8c7-4c33-9487-d709674162a4")
+	)
+	(wire
+		(pts
+			(xy 157.48 58.42) (xy 162.56 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ab6bf85-829e-4927-a82d-a17bd40bc989")
+	)
+	(wire
+		(pts
 			(xy 262.89 83.82) (xy 262.89 86.36)
 		)
 		(stroke
@@ -1025,26 +1015,6 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 58.42) (xy 133.35 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "54b514f9-5ebe-4d15-bd87-5640d9dbc17a")
-	)
-	(wire
-		(pts
-			(xy 209.55 58.42) (xy 214.63 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "580321b4-2243-4fe5-a644-6b131775b44a")
-	)
-	(wire
-		(pts
 			(xy 184.15 101.6) (xy 184.15 107.95)
 		)
 		(stroke
@@ -1062,6 +1032,16 @@
 			(type default)
 		)
 		(uuid "5ed9ee0a-83fe-4b8a-a7fb-b4eb40e0d062")
+	)
+	(wire
+		(pts
+			(xy 120.65 48.26) (xy 120.65 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5fe2a185-ee58-48fb-ad4d-289f1e50f5bf")
 	)
 	(wire
 		(pts
@@ -1125,6 +1105,26 @@
 	)
 	(wire
 		(pts
+			(xy 162.56 58.42) (xy 162.56 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62e3111e-7594-4d63-ad62-2e9f7832c222")
+	)
+	(wire
+		(pts
+			(xy 158.75 40.64) (xy 158.75 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "632a48f7-8aaf-46b0-923d-18b51eb58f21")
+	)
+	(wire
+		(pts
 			(xy 182.88 64.77) (xy 223.52 64.77)
 		)
 		(stroke
@@ -1132,16 +1132,6 @@
 			(type default)
 		)
 		(uuid "66e3288d-de81-458a-865b-41aa264b1a14")
-	)
-	(wire
-		(pts
-			(xy 176.53 58.42) (xy 176.53 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6bd4897d-7ab2-4e93-a7c1-ef596022c59a")
 	)
 	(wire
 		(pts
@@ -1162,16 +1152,6 @@
 			(type default)
 		)
 		(uuid "6fdf333d-0eaa-444c-af96-0699651c1363")
-	)
-	(wire
-		(pts
-			(xy 90.17 58.42) (xy 99.06 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "71de71c0-9edd-4073-bfca-f0fb259846bb")
 	)
 	(bus
 		(pts
@@ -1285,7 +1265,7 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 24.13) (xy 176.53 40.64)
+			(xy 176.53 24.13) (xy 176.53 48.26)
 		)
 		(stroke
 			(width 0)
@@ -1375,7 +1355,7 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 58.42) (xy 35.56 58.42)
+			(xy 35.56 58.42) (xy 53.34 58.42)
 		)
 		(stroke
 			(width 0)
@@ -1395,23 +1375,13 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 58.42) (xy 133.35 48.26)
+			(xy 201.93 40.64) (xy 242.57 40.64)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "8ddd78e8-c9b7-4708-bd89-e765b679c3de")
-	)
-	(wire
-		(pts
-			(xy 254 44.45) (xy 254 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "90bb149c-b589-4078-9e2c-41dc6bdcbd7a")
+		(uuid "8dbda4fc-b2b4-4e65-8229-b542963d81c5")
 	)
 	(wire
 		(pts
@@ -1475,7 +1445,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 48.26) (xy 176.53 48.26)
+			(xy 120.65 48.26) (xy 158.75 48.26)
 		)
 		(stroke
 			(width 0)
@@ -1492,16 +1462,6 @@
 			(type default)
 		)
 		(uuid "96132204-7afe-4748-8abf-e6d8f20ef6bf")
-	)
-	(wire
-		(pts
-			(xy 162.56 58.42) (xy 157.48 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9a8613d5-58f1-4029-8ee4-55fb45bcfa68")
 	)
 	(wire
 		(pts
@@ -1522,6 +1482,16 @@
 			(type default)
 		)
 		(uuid "9c87c10a-4961-48ad-96c6-1bfd730b1641")
+	)
+	(wire
+		(pts
+			(xy 158.75 40.64) (xy 201.93 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9c9ce9ec-cfda-4902-a68b-d2b72211d0bd")
 	)
 	(wire
 		(pts
@@ -1655,6 +1625,16 @@
 	)
 	(wire
 		(pts
+			(xy 171.45 48.26) (xy 176.53 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b623407e-26bf-41b7-89a8-47eaf195fa25")
+	)
+	(wire
+		(pts
 			(xy 121.92 80.01) (xy 116.84 80.01)
 		)
 		(stroke
@@ -1672,6 +1652,16 @@
 			(type default)
 		)
 		(uuid "b723f19f-cf4f-457b-85aa-a5d03283a4ac")
+	)
+	(wire
+		(pts
+			(xy 201.93 40.64) (xy 201.93 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b84eb1c8-2047-48fd-b5bb-ef3597d8ad5f")
 	)
 	(bus
 		(pts
@@ -1765,16 +1755,6 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 44.45) (xy 214.63 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c34bc654-89db-4326-b909-4dcd5a91a930")
-	)
-	(wire
-		(pts
 			(xy 176.53 101.6) (xy 170.18 101.6)
 		)
 		(stroke
@@ -1865,6 +1845,16 @@
 	)
 	(wire
 		(pts
+			(xy 158.75 48.26) (xy 162.56 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7f7e7fe-a3b8-4df4-9995-9145aa22bf27")
+	)
+	(wire
+		(pts
 			(xy 143.51 64.77) (xy 182.88 64.77)
 		)
 		(stroke
@@ -1875,16 +1865,6 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 44.45) (xy 254 44.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e045ea8c-328f-489d-8989-e6eda0c41d01")
-	)
-	(wire
-		(pts
 			(xy 203.2 123.19) (xy 198.12 123.19)
 		)
 		(stroke
@@ -1892,16 +1872,6 @@
 			(type default)
 		)
 		(uuid "e249edbb-e741-4de5-a61d-d40a53dcf2a0")
-	)
-	(wire
-		(pts
-			(xy 254 58.42) (xy 250.19 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e30d626e-04e3-4214-823c-b85ed09ea008")
 	)
 	(bus
 		(pts
@@ -1915,17 +1885,7 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 58.42) (xy 176.53 58.42)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e5e1e2a2-b70e-4b69-9097-51464c477211")
-	)
-	(wire
-		(pts
-			(xy 176.53 48.26) (xy 176.53 58.42)
+			(xy 176.53 48.26) (xy 176.53 80.01)
 		)
 		(stroke
 			(width 0)
@@ -1965,7 +1925,7 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 58.42) (xy 77.47 58.42)
+			(xy 77.47 58.42) (xy 99.06 58.42)
 		)
 		(stroke
 			(width 0)
@@ -2234,7 +2194,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0478828f-3ab7-42f6-b304-a27e46c5b1fb")
-		(property "Reference" "D27"
+		(property "Reference" "D_{L}7"
 			(at 166.37 95.25 0)
 			(effects
 				(font
@@ -2304,7 +2264,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D27")
+					(reference "D_{L}7")
 					(unit 1)
 				)
 			)
@@ -2423,7 +2383,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0fefd120-5b53-4f90-91aa-28c855d5bb10")
-		(property "Reference" "D26"
+		(property "Reference" "D_{L}6"
 			(at 166.37 73.66 0)
 			(effects
 				(font
@@ -2493,7 +2453,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D26")
+					(reference "D_{L}6")
 					(unit 1)
 				)
 			)
@@ -2604,91 +2564,6 @@
 	)
 	(symbol
 		(lib_id "Diode:1N4148W")
-		(at 86.36 58.42 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "1d60ea2b-9fae-4555-a633-52f84b4b31ab")
-		(property "Reference" "D21"
-			(at 86.36 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1N4148WX-TP"
-			(at 86.36 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SOD-323"
-			(at 86.36 53.975 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
-			(at 86.36 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
-			(at 86.36 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 86.36 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 86.36 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "9a6bda12-d31e-4163-8181-1ef73d31efab")
-		)
-		(pin "1"
-			(uuid "ef3fbf94-376d-4da8-b1ad-ec73f0bc685a")
-		)
-		(instances
-			(project "portable_steno"
-				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D21")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Diode:1N4148W")
 		(at 207.01 80.01 180)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2696,7 +2571,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2adcf035-25f4-4a26-bbcf-dfdcc526c36c")
-		(property "Reference" "D29"
+		(property "Reference" "D_{L}9"
 			(at 207.01 73.66 0)
 			(effects
 				(font
@@ -2766,7 +2641,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D29")
+					(reference "D_{L}9")
 					(unit 1)
 				)
 			)
@@ -2781,7 +2656,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "352e8193-0919-4f88-9a67-c32e9fd7c553")
-		(property "Reference" "P"
+		(property "Reference" "P_{L}0"
 			(at 152.4 72.39 0)
 			(effects
 				(font
@@ -2869,7 +2744,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "P")
+					(reference "P_{L}0")
 					(unit 1)
 				)
 			)
@@ -2884,7 +2759,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "371f9278-3ccf-4bcd-bb66-b31b8ce87901")
-		(property "Reference" "K"
+		(property "Reference" "K0"
 			(at 111.76 93.98 0)
 			(effects
 				(font
@@ -2972,7 +2847,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "K")
+					(reference "K0")
 					(unit 1)
 				)
 			)
@@ -2987,7 +2862,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "373979c5-2e7c-40ef-8be6-b308df2174d8")
-		(property "Reference" "D38"
+		(property "Reference" "D_{L}13"
 			(at 246.38 95.25 0)
 			(effects
 				(font
@@ -3057,7 +2932,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D38")
+					(reference "D_{L}13")
 					(unit 1)
 				)
 			)
@@ -3176,7 +3051,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3dd2b1e7-d3a4-4bd9-ab60-39c7440c70a6")
-		(property "Reference" "D17"
+		(property "Reference" "D_{L}0"
 			(at 44.45 73.66 0)
 			(effects
 				(font
@@ -3246,7 +3121,92 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D17")
+					(reference "D_{L}0")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:1N4148W")
+		(at 167.64 48.26 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "466e7a0c-5c2a-434b-8a40-2727f199626b")
+		(property "Reference" "D_{L}8"
+			(at 167.64 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1N4148WX-TP"
+			(at 167.64 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-323"
+			(at 167.64 43.815 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
+			(at 167.64 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
+			(at 167.64 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 167.64 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 167.64 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "de250422-34e6-4245-933a-913701d8e6d4")
+		)
+		(pin "1"
+			(uuid "196bbe13-483b-4721-ab21-dd34d29dc05a")
+		)
+		(instances
+			(project "portable_steno"
+				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
+					(reference "D_{L}8")
 					(unit 1)
 				)
 			)
@@ -3467,7 +3427,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5d9c2d94-939e-4344-a52e-6347a8571ac0")
-		(property "Reference" "D19"
+		(property "Reference" "D_{L}2"
 			(at 85.09 73.66 0)
 			(effects
 				(font
@@ -3537,7 +3497,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D19")
+					(reference "D_{L}2")
 					(unit 1)
 				)
 			)
@@ -3552,7 +3512,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "60dabcc0-e2de-4570-af96-77eaff80e2c0")
-		(property "Reference" "A"
+		(property "Reference" "A0"
 			(at 193.04 115.57 0)
 			(effects
 				(font
@@ -3640,92 +3600,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "A")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Diode:1N4148W")
-		(at 166.37 58.42 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "6c5d86b4-38c7-4579-a473-9510d1a377ae")
-		(property "Reference" "D25"
-			(at 166.37 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1N4148WX-TP"
-			(at 166.37 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SOD-323"
-			(at 166.37 53.975 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
-			(at 166.37 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
-			(at 166.37 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 166.37 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 166.37 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "60882dc6-254c-408b-aa2c-d7cf9e5c739d")
-		)
-		(pin "1"
-			(uuid "84af4c59-268e-40ce-a959-2eb9a43b2eb5")
-		)
-		(instances
-			(project "portable_steno"
-				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D25")
+					(reference "A0")
 					(unit 1)
 				)
 			)
@@ -3740,7 +3615,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6e6dce8b-263f-4343-88f8-e9c88f4870f7")
-		(property "Reference" "D36"
+		(property "Reference" "D_{L}12"
 			(at 246.38 73.66 0)
 			(effects
 				(font
@@ -3810,7 +3685,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D36")
+					(reference "D_{L}12")
 					(unit 1)
 				)
 			)
@@ -3825,7 +3700,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "748a3ed2-02bf-451c-a1ba-84feec8afe56")
-		(property "Reference" "R"
+		(property "Reference" "R_{L}0"
 			(at 193.04 93.98 0)
 			(effects
 				(font
@@ -3913,7 +3788,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "R")
+					(reference "R_{L}0")
 					(unit 1)
 				)
 			)
@@ -3928,7 +3803,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7d166fe4-8d70-4496-8bc7-c76e7bca7bb7")
-		(property "Reference" "W"
+		(property "Reference" "W0"
 			(at 152.4 93.98 0)
 			(effects
 				(font
@@ -4016,7 +3891,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "W")
+					(reference "W0")
 					(unit 1)
 				)
 			)
@@ -4031,7 +3906,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7f40f7d6-53c0-455d-a2af-9a786f02448f")
-		(property "Reference" "D24"
+		(property "Reference" "D_{L}5"
 			(at 125.73 95.25 0)
 			(effects
 				(font
@@ -4101,7 +3976,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D24")
+					(reference "D_{L}5")
 					(unit 1)
 				)
 			)
@@ -4219,7 +4094,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8b712825-3b01-4457-82d5-6b273e233dba")
-		(property "Reference" "D20"
+		(property "Reference" "D_{L}3"
 			(at 85.09 95.25 0)
 			(effects
 				(font
@@ -4289,7 +4164,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D20")
+					(reference "D_{L}3")
 					(unit 1)
 				)
 			)
@@ -4304,7 +4179,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "903aa7b8-fcb0-4d9d-934b-8e63e5c6a32d")
-		(property "Reference" "D23"
+		(property "Reference" "D_{L}4"
 			(at 125.73 73.66 0)
 			(effects
 				(font
@@ -4374,7 +4249,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D23")
+					(reference "D_{L}4")
 					(unit 1)
 				)
 			)
@@ -4588,91 +4463,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Diode:1N4148W")
-		(at 44.45 58.42 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "976b89ff-c45c-463f-a6e5-0f8156e5cab7")
-		(property "Reference" "D16"
-			(at 44.45 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1N4148WX-TP"
-			(at 44.45 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SOD-323"
-			(at 44.45 53.975 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
-			(at 44.45 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
-			(at 44.45 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 44.45 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 44.45 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "51443f53-8a23-4e09-84b9-4cca61a9e15f")
-		)
-		(pin "1"
-			(uuid "f0d77b94-8f2f-465c-af24-47016cf02991")
-		)
-		(instances
-			(project "portable_steno"
-				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D16")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Switch:SW_Push")
 		(at 111.76 80.01 0)
 		(unit 1)
@@ -4681,7 +4471,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "98482b9f-ae30-460f-8a59-4658db65a6a9")
-		(property "Reference" "T"
+		(property "Reference" "T_{L}0"
 			(at 111.76 72.39 0)
 			(effects
 				(font
@@ -4769,92 +4559,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "T")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Diode:1N4148W")
-		(at 246.38 58.42 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "9f17e79f-8e96-4ee3-8c66-bf9217f7f986")
-		(property "Reference" "D34"
-			(at 246.38 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1N4148WX-TP"
-			(at 246.38 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SOD-323"
-			(at 246.38 53.975 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
-			(at 246.38 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
-			(at 246.38 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 246.38 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 246.38 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "5496288e-8086-415d-be81-855021ce83eb")
-		)
-		(pin "1"
-			(uuid "3e0e6fd4-c688-4856-8515-165f80a5a7d8")
-		)
-		(instances
-			(project "portable_steno"
-				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D34")
+					(reference "T_{L}0")
 					(unit 1)
 				)
 			)
@@ -4869,7 +4574,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9f18ae4c-a4d3-47ae-b302-c987f3ceb777")
-		(property "Reference" "D32"
+		(property "Reference" "D_{L}11"
 			(at 207.01 116.84 0)
 			(effects
 				(font
@@ -4939,92 +4644,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D32")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Diode:1N4148W")
-		(at 124.46 58.42 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "af33982a-ef0c-4734-b372-471a7e548c8a")
-		(property "Reference" "D22"
-			(at 124.46 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1N4148WX-TP"
-			(at 124.46 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SOD-323"
-			(at 124.46 53.975 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
-			(at 124.46 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
-			(at 124.46 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 124.46 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 124.46 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "e3faaa16-595b-4e4d-b617-1705ad6ffe61")
-		)
-		(pin "1"
-			(uuid "2727a20e-996e-4e58-9e66-dfe1f98dbef2")
-		)
-		(instances
-			(project "portable_steno"
-				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D22")
+					(reference "D_{L}11")
 					(unit 1)
 				)
 			)
@@ -5039,7 +4659,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b511105d-00d4-432f-b9c9-1d61a4dc6d9e")
-		(property "Reference" "D40"
+		(property "Reference" "D_{L}14"
 			(at 246.38 116.84 0)
 			(effects
 				(font
@@ -5109,7 +4729,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D40")
+					(reference "D_{L}14")
 					(unit 1)
 				)
 			)
@@ -5124,7 +4744,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "baf2e03f-201b-4445-ac68-0aaa4060668b")
-		(property "Reference" "D30"
+		(property "Reference" "D_{L}10"
 			(at 207.01 95.25 0)
 			(effects
 				(font
@@ -5194,7 +4814,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D30")
+					(reference "D_{L}10")
 					(unit 1)
 				)
 			)
@@ -5312,7 +4932,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c2718953-fbd7-4777-b120-b31b82ee0869")
-		(property "Reference" "H"
+		(property "Reference" "H0"
 			(at 193.04 72.39 0)
 			(effects
 				(font
@@ -5400,7 +5020,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "H")
+					(reference "H0")
 					(unit 1)
 				)
 			)
@@ -5415,7 +5035,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cc184a26-e6ef-4443-ab37-2e19ae15d335")
-		(property "Reference" "O"
+		(property "Reference" "O0"
 			(at 232.41 115.57 0)
 			(effects
 				(font
@@ -5503,7 +5123,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "O")
+					(reference "O0")
 					(unit 1)
 				)
 			)
@@ -5622,7 +5242,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "dcae94db-047e-4045-98cd-cf55835e59f5")
-		(property "Reference" "D18"
+		(property "Reference" "D_{L}1"
 			(at 44.45 95.25 0)
 			(effects
 				(font
@@ -5692,92 +5312,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D18")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Diode:1N4148W")
-		(at 205.74 58.42 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e9f54e4c-ba4b-40df-a22f-0dba9a4fcf0d")
-		(property "Reference" "D28"
-			(at 205.74 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1N4148WX-TP"
-			(at 205.74 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_SOD-323"
-			(at 205.74 53.975 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
-			(at 205.74 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
-			(at 205.74 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 205.74 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 205.74 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "8a84e04a-82a0-4504-b69d-7082b1717cc3")
-		)
-		(pin "1"
-			(uuid "d478130a-2731-45d4-8794-4cdc04ab5f8e")
-		)
-		(instances
-			(project "portable_steno"
-				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274/f651b724-284b-4a82-a638-8f4a85d8d53c"
-					(reference "D28")
+					(reference "D_{L}1")
 					(unit 1)
 				)
 			)
