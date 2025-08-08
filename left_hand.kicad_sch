@@ -751,7 +751,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e1c190b6-d043-4859-85f9-52bae64f20da")
-		(property "Reference" "Left_Plug?"
+		(property "Reference" "Left_Plug0"
 			(at 157.48 64.7699 0)
 			(effects
 				(font
@@ -769,7 +769,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "custom:942"
 			(at 148.59 65.405 90)
 			(effects
 				(font
@@ -823,7 +823,7 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274"
-					(reference "Left_Plug?")
+					(reference "Left_Plug0")
 					(unit 1)
 				)
 			)

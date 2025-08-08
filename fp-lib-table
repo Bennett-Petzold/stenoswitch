@@ -2,5 +2,5 @@
   (version 7)
   (lib (name "random-keyboard-parts")(type "KiCad")(uri "${KIPRJMOD}/random-keyboard-parts.pretty")(options "")(descr ""))
   (lib (name "Raspberry_Pi_Zero_v.1.3_Hat")(type "KiCad")(uri "${KIPRJMOD}/PiZeroHat/lib/Raspberry_Pi_Zero_v.1.3_Hat.pretty")(options "")(descr ""))
-  (lib (name "942")(type "KiCad")(uri "${KIPRJMOD}/942.pretty")(options "")(descr ""))
+  (lib (name "custom")(type "KiCad")(uri "${KIPRJMOD}/custom.pretty")(options "")(descr "")(disabled))
 )

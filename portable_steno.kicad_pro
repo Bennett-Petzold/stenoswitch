@@ -226,7 +226,12 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [],
+    "erc_exclusions": [
+      [
+        "unannotated|1930400|1231900|60dabcc0-e2de-4570-af96-77eaff80e2c0|00000000-0000-0000-0000-000000000000|||",
+        ""
+      ]
+    ],
     "meta": {
       "version": 0
     },
@@ -496,7 +501,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 0,
+    "annotate_start_num": -1,
     "bom_export_filename": "${PROJECTNAME}.csv",
     "bom_fmt_presets": [],
     "bom_fmt_settings": {
@@ -634,7 +639,7 @@
       "Right Hand"
     ],
     [
-      "f651b724-284b-4a82-a638-8f4a85d8d53c",
+      "22f08d35-a7f0-450c-9927-0cfd4883de85",
       "Right Hand Keys"
     ],
     [
@@ -643,7 +648,7 @@
     ],
     [
       "cd3314d0-f605-42f0-be2b-644cabc7637c",
-      "Power"
+      "Interface"
     ],
     [
       "acaa3521-7032-4a8a-adbb-019f51b56731",

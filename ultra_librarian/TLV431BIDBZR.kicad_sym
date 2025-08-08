@@ -129,7 +129,9 @@
 					(type none)
 				)
 			)
-			(pin unspecified line
+		)
+		(symbol "TLV431BIDBZR_1_1"
+			(pin input line
 				(at 13.97 0 0)
 				(length 7.62)
 				(name "REF"
@@ -147,7 +149,7 @@
 					)
 				)
 			)
-			(pin unspecified line
+			(pin output line
 				(at 52.07 0 180)
 				(length 7.62)
 				(name "CATHODE"
@@ -165,7 +167,7 @@
 					)
 				)
 			)
-			(pin unspecified line
+			(pin power_in line
 				(at 52.07 -3.81 180)
 				(length 7.62)
 				(name "ANODE"

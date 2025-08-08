@@ -13,4 +13,8 @@
   (lib (name "RA1H1C112R")(type "KiCad")(uri "${KIPRJMOD}/ultra_librarian/RA1H1C112R.kicad_sym")(options "")(descr ""))
   (lib (name "SLW-864587-2A-RA-N-D")(type "KiCad")(uri "${KIPRJMOD}/snap_magic/SLW-864587-2A-RA-N-D.kicad_sym")(options "")(descr ""))
   (lib (name "EG2208")(type "KiCad")(uri "${KIPRJMOD}/snap_magic/EG2208.kicad_sym")(options "")(descr ""))
+  (lib (name "BQ27427YZFR")(type "KiCad")(uri "${KIPRJMOD}/snap_magic/BQ27427YZFR.kicad_sym")(options "")(descr ""))
+  (lib (name "BQ25302RTER")(type "KiCad")(uri "${KIPRJMOD}/ultra_librarian/BQ25302RTER.kicad_sym")(options "")(descr ""))
+  (lib (name "MP2637GR-P")(type "KiCad")(uri "${KIPRJMOD}/ultra_librarian/MP2637GR-P.kicad_sym")(options "")(descr ""))
+  (lib (name "MCP40D19T-104E_LT")(type "KiCad")(uri "${KIPRJMOD}/snap_magic/MCP40D19T-104E_LT.kicad_sym")(options "")(descr ""))
 )

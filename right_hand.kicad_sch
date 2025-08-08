@@ -357,19 +357,13 @@
 	)
 	(text "Rows carry the 3.3V probe signals."
 		(exclude_from_sim no)
-		(at 138.43 81.534 0)
+		(at 138.938 85.852 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 		)
 		(uuid "ac6022ba-2b80-4fc3-957f-702e8ae9bb6d")
-	)
-	(junction
-		(at 138.43 83.82)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "05942f61-62a1-4fff-a323-d4d282338b45")
 	)
 	(junction
 		(at 68.58 101.6)
@@ -382,6 +376,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "69f8e617-1928-4bf4-a957-cda90521d503")
+	)
+	(junction
+		(at 138.43 87.63)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "75acb504-617a-40d7-8d19-4f3d25cec68b")
 	)
 	(bus_entry
 		(at 63.5 101.6)
@@ -467,7 +467,7 @@
 	)
 	(bus
 		(pts
-			(xy 118.11 83.82) (xy 138.43 83.82)
+			(xy 118.11 87.63) (xy 138.43 87.63)
 		)
 		(stroke
 			(width 0)
@@ -484,6 +484,36 @@
 			(type default)
 		)
 		(uuid "0c29c6b7-7ba4-492f-8df4-6da769fbed59")
+	)
+	(wire
+		(pts
+			(xy 73.66 48.26) (xy 92.71 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d65d912-ed9e-4815-af8e-219dee650579")
+	)
+	(wire
+		(pts
+			(xy 73.66 40.64) (xy 92.71 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "16d3329a-f390-4f4b-8c48-ca22405cab9d")
+	)
+	(wire
+		(pts
+			(xy 73.66 38.1) (xy 92.71 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2427929e-480d-4783-8fb6-b1e6503d782a")
 	)
 	(wire
 		(pts
@@ -517,7 +547,7 @@
 	)
 	(bus
 		(pts
-			(xy 138.43 101.6) (xy 138.43 83.82)
+			(xy 138.43 101.6) (xy 138.43 87.63)
 		)
 		(stroke
 			(width 0)
@@ -545,9 +575,19 @@
 		)
 		(uuid "3f7ed1cd-f97c-4c55-b8d4-04f256a4ca8e")
 	)
+	(wire
+		(pts
+			(xy 73.66 62.23) (xy 92.71 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "41507bef-7a25-4258-bc04-a1adc8778422")
+	)
 	(bus
 		(pts
-			(xy 160.02 74.93) (xy 118.11 74.93)
+			(xy 160.02 80.01) (xy 118.11 80.01)
 		)
 		(stroke
 			(width 0)
@@ -575,15 +615,15 @@
 		)
 		(uuid "56f06dc9-e6e2-445c-b116-1615f7f10fd7")
 	)
-	(bus
+	(wire
 		(pts
-			(xy 138.43 83.82) (xy 160.02 83.82)
+			(xy 73.66 72.39) (xy 92.71 72.39)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "5bcd5125-c647-496d-9f08-7d40fbe3d12a")
+		(uuid "5cb70d6b-c0e5-4015-85c5-5e0a7267f4e8")
 	)
 	(bus
 		(pts
@@ -615,6 +655,16 @@
 		)
 		(uuid "6a2859ff-a3b9-46e2-ba11-4ecd7e0bfe87")
 	)
+	(wire
+		(pts
+			(xy 73.66 69.85) (xy 92.71 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e8b8432-7ecd-4c88-a70c-abdf4d22d950")
+	)
 	(bus
 		(pts
 			(xy 68.58 101.6) (xy 138.43 101.6)
@@ -625,6 +675,16 @@
 		)
 		(uuid "707e903c-d917-4025-b657-722313c7fab6")
 	)
+	(wire
+		(pts
+			(xy 73.66 30.48) (xy 92.71 30.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "710e2ceb-24ba-433c-a58a-ac5b65764f2f")
+	)
 	(bus
 		(pts
 			(xy 63.5 91.44) (xy 63.5 93.98)
@@ -634,6 +694,16 @@
 			(type default)
 		)
 		(uuid "78524171-0582-49c5-b8c5-4bac4632b8eb")
+	)
+	(bus
+		(pts
+			(xy 138.43 87.63) (xy 160.02 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e6cecc9-85e1-4d7e-bfd9-c2f9c9312425")
 	)
 	(wire
 		(pts
@@ -667,6 +737,56 @@
 	)
 	(wire
 		(pts
+			(xy 73.66 57.15) (xy 92.71 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9b998036-584d-46bf-a20a-147075ad332e")
+	)
+	(wire
+		(pts
+			(xy 73.66 45.72) (xy 92.71 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9c4309f6-2c5e-4e80-847c-e498af2c2ad9")
+	)
+	(wire
+		(pts
+			(xy 73.66 50.8) (xy 92.71 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f46b7b6-5017-44c7-a10e-8278ad2d69cc")
+	)
+	(wire
+		(pts
+			(xy 73.66 59.69) (xy 92.71 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa0b1199-ecbe-4daf-a87e-fee98118feac")
+	)
+	(wire
+		(pts
+			(xy 73.66 35.56) (xy 92.71 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae6ef503-edd1-42fe-a9f0-05ccc775858c")
+	)
+	(wire
+		(pts
 			(xy 60.96 104.14) (xy 46.99 104.14)
 		)
 		(stroke
@@ -674,6 +794,16 @@
 			(type default)
 		)
 		(uuid "b2907a1e-9a3e-407f-80fb-d27b05b5a291")
+	)
+	(wire
+		(pts
+			(xy 73.66 64.77) (xy 92.71 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b6cec4a2-3d46-4eb9-b017-b71e9ddf100a")
 	)
 	(bus
 		(pts
@@ -695,55 +825,25 @@
 		)
 		(uuid "de7347ad-b22e-47ae-a6b9-e2169f2a8e8f")
 	)
-	(label "Left_Columns0"
-		(at 60.96 86.36 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
+	(wire
+		(pts
+			(xy 73.66 25.4) (xy 92.71 25.4)
 		)
-		(uuid "0cea1d56-5374-414d-91f6-6ae5cc70e389")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f060a4e8-fcd7-44c5-97fe-ae1036064138")
 	)
-	(label "Rows2"
-		(at 60.96 104.14 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
+	(wire
+		(pts
+			(xy 73.66 53.34) (xy 92.71 53.34)
 		)
-		(uuid "1a066378-e345-4d09-8892-c904545e4ad1")
-	)
-	(label "Left_Columns1"
-		(at 60.96 88.9 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
+		(stroke
+			(width 0)
+			(type default)
 		)
-		(uuid "4dc2ca08-de7b-4413-8ba1-95bd2c33c0b1")
-	)
-	(label "Left_Columns3"
-		(at 60.96 93.98 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "7258db8a-051b-4343-b660-7d90718ac089")
-	)
-	(label "Left_Columns4"
-		(at 60.96 96.52 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "739c5a33-52b5-4459-8612-b826371caecc")
+		(uuid "f6afd32b-67e9-4c12-a0d7-68c55c4c6c10")
 	)
 	(label "Left_Columns2"
 		(at 60.96 91.44 180)
@@ -753,7 +853,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "89975db4-0600-48f8-b688-1ecdd5f02562")
+		(uuid "07aa7dec-f26b-49b4-aa96-8249b857446d")
 	)
 	(label "Rows0"
 		(at 60.96 99.06 180)
@@ -763,7 +863,47 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "9694f965-04a8-451a-9d25-e20efec7bac7")
+		(uuid "22b3565e-9e5e-4f48-afa1-988b8ec28966")
+	)
+	(label "Left_Columns1"
+		(at 60.96 88.9 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "5a5dbf02-b5f5-42d2-860f-8b921b358d96")
+	)
+	(label "Left_Columns3"
+		(at 60.96 93.98 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "76bdf8b6-0afe-4055-9a05-64038210974e")
+	)
+	(label "Left_Columns4"
+		(at 60.96 96.52 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "7d8be7df-a993-4fd4-9c4b-7576d23979cf")
+	)
+	(label "Left_Columns0"
+		(at 60.96 86.36 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "8ccb57c8-9980-4f54-9e2a-14f05f13316c")
 	)
 	(label "Rows1"
 		(at 60.96 101.6 180)
@@ -773,7 +913,17 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "c55e549f-e970-48eb-b3a0-2436b9d7a18b")
+		(uuid "d028b625-6e84-4966-98e3-dae9f8a694f9")
+	)
+	(label "Rows2"
+		(at 60.96 104.14 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ebbdfce3-53db-4eeb-927c-ee92fd8f7a4d")
 	)
 	(hierarchical_label "Rows[0..2]"
 		(shape input)
@@ -807,8 +957,8 @@
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "e1c190b6-d043-4859-85f9-52bae64f20da")
-		(property "Reference" "Right_Plug"
+		(uuid "414e1efb-099c-435b-88d1-98b8bdfcb4ed")
+		(property "Reference" "Right_Plug0"
 			(at 27.94 93.9799 0)
 			(effects
 				(font
@@ -826,7 +976,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "custom:942"
 			(at 36.83 94.615 90)
 			(effects
 				(font
@@ -880,8 +1030,70 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95"
-					(reference "Right_Plug")
+					(reference "Right_Plug0")
 					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet
+		(at 160.02 76.2)
+		(size 25.4 13.97)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "22f08d35-a7f0-450c-9927-0cfd4883de85")
+		(property "Sheetname" "Right Hand Keys"
+			(at 160.02 75.4884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "right_hand_keys.kicad_sch"
+			(at 160.02 90.7546 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "Columns[0..4]" input
+			(at 160.02 80.01 180)
+			(uuid "b8fe8cbb-e010-4324-9e7f-151e031549b2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Rows[0..2]" input
+			(at 160.02 87.63 180)
+			(uuid "b2a9eeb5-2e71-433c-90a6-48b4dde67bb3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "portable_steno"
+				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95"
+					(page "5")
 				)
 			)
 		)
@@ -920,6 +1132,186 @@
 				(justify left top)
 			)
 		)
+		(pin "ALERT_{BATMON}" input
+			(at 92.71 40.64 180)
+			(uuid "9565bd67-29d6-4f09-b9cb-3f786ecb4d73")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SCL" input
+			(at 92.71 38.1 180)
+			(uuid "0c9c1576-070f-4a58-be6c-8bf535027200")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SDA" input
+			(at 92.71 35.56 180)
+			(uuid "5cf685df-b0ea-4741-94d4-cfa988200be4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CHG_{EN}" input
+			(at 92.71 30.48 180)
+			(uuid "df0c4753-ca9f-486c-adf1-2592f45cf8a5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Left_Columns[0..4]" input
+			(at 92.71 83.82 180)
+			(uuid "f4a3fd5d-0a4c-4132-97e3-422012a9c881")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Data_Negative" input
+			(at 92.71 72.39 180)
+			(uuid "bc48192b-3f52-4657-b1de-34c6be402239")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Data_Positive" input
+			(at 92.71 69.85 180)
+			(uuid "6ceafcbd-bc4b-4d20-8bb8-85f6d78b243e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Rows[0..2]" input
+			(at 118.11 87.63 0)
+			(uuid "304320e7-706f-4a13-8b44-ae0a54fb7c20")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "STORE_{ON}" input
+			(at 92.71 53.34 180)
+			(uuid "ec13e0f1-4af6-4551-94bb-0bcf23f1f825")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Right_Columns[0..4]" input
+			(at 118.11 80.01 0)
+			(uuid "19a57d87-8a95-4b78-b0df-b7a0927889f0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "V_{SYS}" input
+			(at 92.71 25.4 180)
+			(uuid "7d7f098c-98c1-46e1-bd2d-8b500edb5f3e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "BAT_{ON}" input
+			(at 92.71 50.8 180)
+			(uuid "331f2577-fec2-4922-b6be-22b016a1d6ab")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CHG_{ON}" input
+			(at 92.71 48.26 180)
+			(uuid "db47ea49-2886-4738-b319-3f58222b1b26")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "USB_{ON}" input
+			(at 92.71 45.72 180)
+			(uuid "3d6850f3-5ca2-434a-8614-774cea0b57f8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CLK_{CURRENT}" input
+			(at 92.71 64.77 180)
+			(uuid "be92faad-8628-4d90-a99c-24d3e578c0ea")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CS_{CURRENT}" input
+			(at 92.71 57.15 180)
+			(uuid "24dd78cc-a79c-48f1-b2d4-7287bc7d62eb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DIN_{CURRENT}" input
+			(at 92.71 59.69 180)
+			(uuid "d18dd285-aa9a-4041-a587-25984954debf")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DOUT_{CURRENT}" input
+			(at 92.71 62.23 180)
+			(uuid "227e886c-ed5f-4a60-a844-a17bde9e153e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95"
@@ -944,7 +1336,7 @@
 			(color 0 0 0 0.0000)
 		)
 		(uuid "cd3314d0-f605-42f0-be2b-644cabc7637c")
-		(property "Sheetname" "Power"
+		(property "Sheetname" "Interface"
 			(at 48.26 22.1484 0)
 			(effects
 				(font
@@ -953,7 +1345,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "power.kicad_sch"
+		(property "Sheetfile" "interface.kicad_sch"
 			(at 48.26 75.5146 0)
 			(effects
 				(font
@@ -982,96 +1374,6 @@
 				(justify right)
 			)
 		)
-		(pin "DOUT_{Current}" input
-			(at 73.66 62.23 0)
-			(uuid "e57825f9-df07-47fb-901e-6eb7486d8665")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "BATMON_SCL" input
-			(at 73.66 44.45 0)
-			(uuid "06e1a9fe-adc8-4e6b-89cd-cd962ef38c39")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "RPOG_ADJ" input
-			(at 73.66 53.34 0)
-			(uuid "73d55195-8ee3-4de6-84be-89aa910d62aa")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "RPROG_SEL" input
-			(at 73.66 50.8 0)
-			(uuid "b7804aeb-5171-46e1-96c9-4ecd43c52696")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "CS_{Current}" input
-			(at 73.66 57.15 0)
-			(uuid "4abf940e-2565-47aa-aa97-f137d6ecc89c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "DIN_{Current}" input
-			(at 73.66 59.69 0)
-			(uuid "0b74dc0b-c427-4557-9ece-9c230ce54a96")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "BATMON_SDA" input
-			(at 73.66 41.91 0)
-			(uuid "9606893d-103a-409f-8e08-e7784d75e8fe")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "STORE_EN" input
-			(at 73.66 35.56 0)
-			(uuid "77e1a2cc-e4bd-4329-b6a2-bb8728be8db7")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "CHGEN" input
-			(at 73.66 33.02 0)
-			(uuid "a4c173af-c47c-4f8c-a339-ff0f057946f7")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "V_{SYS}" input
 			(at 73.66 25.4 0)
 			(uuid "8c9513a8-22e4-45d8-9172-4f92c7a0382c")
@@ -1082,9 +1384,19 @@
 				(justify right)
 			)
 		)
-		(pin "LODEN" input
+		(pin "ALERT_{BATMON}" input
+			(at 73.66 40.64 0)
+			(uuid "176a9fb6-ee41-4ba3-87f3-b03bd0301aa9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CHG_{EN}" input
 			(at 73.66 30.48 0)
-			(uuid "a110d1ac-fc68-4b7d-9ac7-f2e521631363")
+			(uuid "a47abdec-d609-4f66-9912-218e80b11b81")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1092,9 +1404,9 @@
 				(justify right)
 			)
 		)
-		(pin "BATMON_ALERT" input
-			(at 73.66 46.99 0)
-			(uuid "cecfda43-3b55-4d20-a549-aef174e0d58b")
+		(pin "BAT_{ON}" input
+			(at 73.66 50.8 0)
+			(uuid "92eee8b4-01c2-4e86-8656-157f78bd2863")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1102,9 +1414,89 @@
 				(justify right)
 			)
 		)
-		(pin "CLK_{Current}" input
+		(pin "CHG_{ON}" input
+			(at 73.66 48.26 0)
+			(uuid "6f3cff43-6f4c-49f1-b5f0-641c68cd031a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SCL" input
+			(at 73.66 38.1 0)
+			(uuid "4a006c7b-a5d3-45c4-8b48-b3b35b30d934")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SDA" input
+			(at 73.66 35.56 0)
+			(uuid "7a904b4c-e466-46ad-abf0-15af1a966c93")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "STORE_{ON}" input
+			(at 73.66 53.34 0)
+			(uuid "25ef1702-98e3-430e-ab1f-4fe863f9cb64")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "USB_{ON}" input
+			(at 73.66 45.72 0)
+			(uuid "19048fb7-2728-4d8b-9a31-b1cbfd695d75")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CLK_{CURRENT}" input
 			(at 73.66 64.77 0)
-			(uuid "1f1a8bbc-81d7-4e77-843a-910740deb59e")
+			(uuid "153aadb1-8ac5-492f-a4ce-be87dd9926b5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CS_{CURRENT}" input
+			(at 73.66 57.15 0)
+			(uuid "10f70431-9a4d-494f-a8d8-c94981aa2fe8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "DIN_{CURRENT}" input
+			(at 73.66 59.69 0)
+			(uuid "3892f88f-cc1c-4f7a-9d67-e080043a0f45")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "DOUT_{CURRENT}" input
+			(at 73.66 62.23 0)
+			(uuid "1303a410-bc88-4189-924e-0f8b234f03b2")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1116,68 +1508,6 @@
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95"
 					(page "7")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 160.02 64.77)
-		(size 25.4 25.4)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "f651b724-284b-4a82-a638-8f4a85d8d53c")
-		(property "Sheetname" "Right Hand Keys"
-			(at 160.02 64.0584 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "right_hand_keys.kicad_sch"
-			(at 160.02 90.7546 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(pin "Columns[0..4]" input
-			(at 160.02 74.93 180)
-			(uuid "b8fe8cbb-e010-4324-9e7f-151e031549b2")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "Rows[0..2]" input
-			(at 160.02 83.82 180)
-			(uuid "b2a9eeb5-2e71-433c-90a6-48b4dde67bb3")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(instances
-			(project "portable_steno"
-				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95"
-					(page "5")
 				)
 			)
 		)
