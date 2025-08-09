@@ -751,7 +751,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e1c190b6-d043-4859-85f9-52bae64f20da")
-		(property "Reference" "Left_Plug1"
+		(property "Reference" "Left_Plug0"
 			(at 157.48 64.7699 0)
 			(effects
 				(font

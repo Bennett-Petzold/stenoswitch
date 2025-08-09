@@ -845,7 +845,7 @@
 		)
 		(uuid "f6afd32b-67e9-4c12-a0d7-68c55c4c6c10")
 	)
-	(label "Left_Columns2"
+	(label "Left_Columns1"
 		(at 60.96 91.44 180)
 		(effects
 			(font
@@ -855,7 +855,7 @@
 		)
 		(uuid "07aa7dec-f26b-49b4-aa96-8249b857446d")
 	)
-	(label "Rows0"
+	(label "Rows1"
 		(at 60.96 99.06 180)
 		(effects
 			(font
@@ -865,7 +865,7 @@
 		)
 		(uuid "22b3565e-9e5e-4f48-afa1-988b8ec28966")
 	)
-	(label "Left_Columns1"
+	(label "Left_Columns0"
 		(at 60.96 88.9 180)
 		(effects
 			(font
@@ -875,7 +875,7 @@
 		)
 		(uuid "5a5dbf02-b5f5-42d2-860f-8b921b358d96")
 	)
-	(label "Left_Columns3"
+	(label "Left_Columns2"
 		(at 60.96 93.98 180)
 		(effects
 			(font
@@ -895,7 +895,7 @@
 		)
 		(uuid "7d8be7df-a993-4fd4-9c4b-7576d23979cf")
 	)
-	(label "Left_Columns0"
+	(label "Left_Columns3"
 		(at 60.96 86.36 180)
 		(effects
 			(font
@@ -905,7 +905,7 @@
 		)
 		(uuid "8ccb57c8-9980-4f54-9e2a-14f05f13316c")
 	)
-	(label "Rows1"
+	(label "Rows0"
 		(at 60.96 101.6 180)
 		(effects
 			(font
