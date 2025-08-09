@@ -16,5 +16,5 @@
   (lib (name "EG2208")(type "KiCad")(uri "${KIPRJMOD}/resources/snap_magic/EG2208.kicad_sym")(options "")(descr ""))
   (lib (name "DMG2305UX-7")(type "KiCad")(uri "${KIPRJMOD}/resources/snap_magic/DMG2305UX-7.kicad_sym")(options "")(descr ""))
   (lib (name "BQ27427YZFR")(type "KiCad")(uri "${KIPRJMOD}/resources/snap_magic/BQ27427YZFR.kicad_sym")(options "")(descr ""))
-  (lib (name "1042")(type "KiCad")(uri "${KIPRJMOD}/resources/snap_magic/1042.kicad_sym")(options "")(descr ""))
+  (lib (name "1043")(type "KiCad")(uri "${KIPRJMOD}/resources/resources/snap_magic/1043.kicad_sym")(options "")(descr ""))
 )

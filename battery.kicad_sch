@@ -9369,7 +9369,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1042"
+		(property "Value" "1043"
 			(at 46.736 55.88 90)
 			(effects
 				(font
@@ -9378,7 +9378,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "BAT_1042"
+		(property "Footprint" "BAT_1043"
 			(at 55.88 54.61 0)
 			(effects
 				(font
