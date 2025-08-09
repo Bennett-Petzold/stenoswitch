@@ -958,7 +958,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "414e1efb-099c-435b-88d1-98b8bdfcb4ed")
-		(property "Reference" "Right_Plug1"
+		(property "Reference" "Right_Plug0"
 			(at 27.94 93.9799 0)
 			(effects
 				(font
