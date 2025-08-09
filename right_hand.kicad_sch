@@ -1036,7 +1036,7 @@
 			)
 			(project "right_hand"
 				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e"
-					(reference "Right_Plug1")
+					(reference "Right_Plug0")
 					(unit 1)
 				)
 			)

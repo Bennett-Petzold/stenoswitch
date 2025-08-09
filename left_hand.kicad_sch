@@ -829,7 +829,7 @@
 			)
 			(project "left_hand"
 				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e"
-					(reference "Left_Plug1")
+					(reference "Left_Plug0")
 					(unit 1)
 				)
 			)
