@@ -2,3 +2,5 @@
 *.lck
 \#auto_saved_files\#
 _autosave*
+gerbers*
+*.zip

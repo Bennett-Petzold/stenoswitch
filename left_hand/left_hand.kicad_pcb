@@ -81,9 +81,9 @@
 			(subtractmaskfromsilk no)
 			(outputformat 1)
 			(mirror no)
-			(drillshape 1)
+			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "")
+			(outputdirectory "../gerbers/")
 		)
 	)
 	(net 0 "")
@@ -11734,7 +11734,7 @@
 		(uuid "e484e888-baf3-4430-abce-c11d37b8606b")
 	)
 	(gr_text "Stenoswitch Left Hand v0.1"
-		(at 75 157 0)
+		(at 70 150 0)
 		(layer "F.SilkS")
 		(uuid "cf76344c-4692-4823-aa17-0ccb5905ea5a")
 		(effects
