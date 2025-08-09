@@ -1573,7 +1573,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SLW-864587-2A-RA-N-D:SW_SLW-864587-2A-RA-N-D"
+		(property "Footprint" "SW_SLW-864587-2A-RA-N-D"
 			(at 208.28 148.59 0)
 			(effects
 				(font
@@ -1675,7 +1675,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SLW-864587-2A-RA-N-D:SW_SLW-864587-2A-RA-N-D"
+		(property "Footprint" "SW_SLW-864587-2A-RA-N-D"
 			(at 208.28 128.27 0)
 			(effects
 				(font
@@ -1843,7 +1843,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SLW-864587-2A-RA-N-D:SW_SLW-864587-2A-RA-N-D"
+		(property "Footprint" "SW_SLW-864587-2A-RA-N-D"
 			(at 208.28 106.68 0)
 			(effects
 				(font

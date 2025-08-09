@@ -976,7 +976,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "custom:942"
+		(property "Footprint" "custom:8P8C_942"
 			(at 36.83 94.615 90)
 			(effects
 				(font
