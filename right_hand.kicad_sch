@@ -958,7 +958,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "414e1efb-099c-435b-88d1-98b8bdfcb4ed")
-		(property "Reference" "Right_Plug0"
+		(property "Reference" "Right_Plug1"
 			(at 27.94 93.9799 0)
 			(effects
 				(font
@@ -1034,6 +1034,12 @@
 					(unit 1)
 				)
 			)
+			(project "right_hand"
+				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e"
+					(reference "Right_Plug1")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(sheet
@@ -1093,6 +1099,11 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95"
+					(page "5")
+				)
+			)
+			(project "right_hand"
+				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e"
 					(page "5")
 				)
 			)
@@ -1318,6 +1329,11 @@
 					(page "6")
 				)
 			)
+			(project "right_hand"
+				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e"
+					(page "4")
+				)
+			)
 		)
 	)
 	(sheet
@@ -1510,6 +1526,17 @@
 					(page "7")
 				)
 			)
+			(project "right_hand"
+				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e"
+					(page "2")
+				)
+			)
 		)
 	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
 )
