@@ -5221,7 +5221,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 112.776 186.944 90)
 			(effects
 				(font
@@ -5230,7 +5230,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0603FT4K02/1761048"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RNCP0805FTD4K02/2240247"
 			(at 111.76 186.69 0)
 			(effects
 				(font
@@ -5632,7 +5632,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 67.056 98.044 90)
 			(effects
 				(font
@@ -5641,7 +5641,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0402FT10K0/1761433"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT10K0/1760676"
 			(at 66.04 97.79 0)
 			(effects
 				(font
@@ -5708,7 +5708,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 233.426 87.884 90)
 			(effects
 				(font
@@ -5717,7 +5717,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0603FT5K10/1760908"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805JT5K10/1757930"
 			(at 232.41 87.63 0)
 			(effects
 				(font
@@ -5859,7 +5859,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 115.2652 54.61 0)
 			(effects
 				(font
@@ -5868,7 +5868,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/murata-electronics/GRM155C80J225KE95D/4905080"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/tdk-corporation/C2012X7R1C225K125AB/569046"
 			(at 114.3 50.8 0)
 			(effects
 				(font
@@ -6384,7 +6384,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 233.426 80.264 90)
 			(effects
 				(font
@@ -6393,7 +6393,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0603FT21K5/1760768"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT21K5/1760114"
 			(at 232.41 80.01 0)
 			(effects
 				(font
@@ -6532,7 +6532,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 191.4652 96.52 0)
 			(effects
 				(font
@@ -6541,7 +6541,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71E473KA88D/702519"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/walsin-technology-corporation/0805B473J500CT/9355080"
 			(at 190.5 92.71 0)
 			(effects
 				(font
@@ -6964,7 +6964,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 67.056 90.424 90)
 			(effects
 				(font
@@ -6973,7 +6973,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0402FT10K0/1761433"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT10K0/1760676"
 			(at 66.04 90.17 0)
 			(effects
 				(font
@@ -7111,7 +7111,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 143.256 117.094 90)
 			(effects
 				(font
@@ -7120,7 +7120,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0402FT31K6/1714647"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT31K6/1713019"
 			(at 142.24 116.84 0)
 			(effects
 				(font
@@ -7549,7 +7549,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 94.996 179.324 90)
 			(effects
 				(font
@@ -7558,7 +7558,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0603FT7K15/1760937"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT7K15/1713329"
 			(at 93.98 179.07 0)
 			(effects
 				(font
@@ -7751,7 +7751,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 145.796 153.924 90)
 			(effects
 				(font
@@ -7760,7 +7760,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0402FT10K0/1761433"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT10K0/1760676"
 			(at 144.78 153.67 0)
 			(effects
 				(font
@@ -8344,7 +8344,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 84.074 112.014 90)
 			(effects
 				(font
@@ -8353,7 +8353,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0402FT73K2/1714872"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RNCF0805DTE73K2/6241979"
 			(at 85.09 111.76 0)
 			(effects
 				(font
@@ -8495,7 +8495,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 172.466 101.854 90)
 			(effects
 				(font
@@ -8504,7 +8504,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0402FT10K0/1761433"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT10K0/1760676"
 			(at 171.45 101.6 0)
 			(effects
 				(font
@@ -8571,7 +8571,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 115.316 61.214 90)
 			(effects
 				(font
@@ -8580,7 +8580,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0402FT10K0/1761433"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT10K0/1760676"
 			(at 114.3 60.96 0)
 			(effects
 				(font
@@ -8646,7 +8646,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 106.426 179.324 90)
 			(effects
 				(font
@@ -8655,7 +8655,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0402FT8K06/1714887"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RNCP0805FTD8K06/2240259"
 			(at 105.41 179.07 0)
 			(effects
 				(font
@@ -8721,7 +8721,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 149.606 106.426 90)
 			(effects
 				(font
@@ -8730,7 +8730,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0402FT10K0/1761433"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT10K0/1760676"
 			(at 149.86 105.41 0)
 			(effects
 				(font
@@ -8797,7 +8797,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 157.48 102.87 0)
 			(effects
 				(font
@@ -8806,7 +8806,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0603FT590K/1714141"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT590K/1760428"
 			(at 157.48 102.87 0)
 			(effects
 				(font
@@ -8873,7 +8873,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 138.1252 54.61 0)
 			(effects
 				(font
@@ -8882,7 +8882,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL05A105KP5NNNC/3886734"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL21B105KAFNNNE/3886724"
 			(at 137.16 50.8 0)
 			(effects
 				(font
@@ -9576,7 +9576,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 215.646 90.424 90)
 			(effects
 				(font
@@ -9585,7 +9585,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0603FT5K10/1760908"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT5K10/1760394"
 			(at 214.63 90.17 0)
 			(effects
 				(font

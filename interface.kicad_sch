@@ -1859,7 +1859,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 105.156 42.926 90)
 			(effects
 				(font
@@ -1868,7 +1868,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0603FT5K10/1760908"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RNCF0805DTE5K10/6241868"
 			(at 105.41 41.91 0)
 			(effects
 				(font
@@ -2634,7 +2634,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 183.134 42.926 90)
 			(effects
 				(font
@@ -2643,7 +2643,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0603FT5K10/1760908"
+		(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RNCF0805DTE5K10/6241868"
 			(at 182.88 41.91 0)
 			(effects
 				(font
