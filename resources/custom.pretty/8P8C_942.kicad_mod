@@ -156,4 +156,15 @@
 		(uuid "9f99faac-eb25-450e-a617-1a692590db33")
 	)
 	(embedded_fonts no)
+	(model "${KIPRJMOD}/resources/manufacturer_provided/942.STEP"
+		(offset
+			(xyz 0 -6.5 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
 )
