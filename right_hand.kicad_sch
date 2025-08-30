@@ -865,7 +865,7 @@
 		)
 		(uuid "22b3565e-9e5e-4f48-afa1-988b8ec28966")
 	)
-	(label "Left_Columns0"
+	(label "Left_Columns2"
 		(at 60.96 88.9 180)
 		(effects
 			(font
@@ -875,7 +875,7 @@
 		)
 		(uuid "5a5dbf02-b5f5-42d2-860f-8b921b358d96")
 	)
-	(label "Left_Columns2"
+	(label "Left_Columns0"
 		(at 60.96 93.98 180)
 		(effects
 			(font

@@ -1,4 +1,4 @@
-27458820575897764
+27476389446610545
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -97703,8 +97703,8 @@ RASPI_ZERO_FULL
 Raspberry Pi board model B+, full outline with position of big connectors &amp; drill holes
 
 0
-44
-44
+42
+42
 Relay_SMD
 Relay_2P2T_10x6mm_TE_IMxxG
 Signal Relay, 10x6mm, 2 Form C, Gull Wings, https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7F108-98001%7FZ.1%7Fpdf%7FEnglish%7FENG_DS_108-98001_Z.1.pdf
@@ -109515,6 +109515,13 @@ IC_BQ27427YZFR
 9
 9
 snap_magic_footprints
+MM_0926-1-15-20-75-14-11-0
+
+
+0
+1
+1
+snap_magic_footprints
 SOT65P210X110-5N
 
 
@@ -109697,9 +109704,72 @@ MCP3204T-CI/SL
 14
 14
 ultra_librarian_footprints
+SOT5x3_DYA_TEX
+
+ESD321DYAR 
+0
+2
+2
+ultra_librarian_footprints
+SOT5x3_DYA_TEX-L
+
+ESD321DYAR 
+0
+2
+2
+ultra_librarian_footprints
+SOT5x3_DYA_TEX-M
+
+ESD321DYAR 
+0
+2
+2
+ultra_librarian_footprints
 SW_RA1H1C112R_EWI
 
 RA1H1C112R 
+0
+2
+2
+ultra_librarian_footprints
+TVS_SOD2_DYF_TEX
+
+TSD05DYFR 
+0
+2
+2
+ultra_librarian_footprints
+TVS_SOD2_DYF_TEX-L
+
+TSD05DYFR 
+0
+2
+2
+ultra_librarian_footprints
+TVS_SOD2_DYF_TEX-M
+
+TSD05DYFR 
+0
+2
+2
+ultra_librarian_footprints
+X2SON2_DPL_TEX
+
+ESD441DPLR 
+0
+2
+2
+ultra_librarian_footprints
+X2SON2_DPL_TEX-L
+
+ESD441DPLR 
+0
+2
+2
+ultra_librarian_footprints
+X2SON2_DPL_TEX-M
+
+ESD441DPLR 
 0
 2
 2

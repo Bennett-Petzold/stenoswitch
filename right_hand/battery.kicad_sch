@@ -3804,6 +3804,12 @@
 		(uuid "06c291b1-53f9-4559-9e4e-1e6c9865bb33")
 	)
 	(junction
+		(at 91.44 149.86)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0d511e8c-aa7c-4173-b88a-3f86ce55b968")
+	)
+	(junction
 		(at 214.63 81.28)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3982,12 +3988,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d01248d2-8fe9-4fa5-8fdd-67d7a70f2030")
-	)
-	(junction
-		(at 91.44 149.86)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "dd7db24d-5757-4f02-a636-aa21c3c48c66")
 	)
 	(junction
 		(at 83.82 76.2)
@@ -4443,16 +4443,6 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 149.86) (xy 68.58 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4e5112a1-e040-4bf5-832a-81885220495d")
-	)
-	(wire
-		(pts
 			(xy 66.04 83.82) (xy 66.04 86.36)
 		)
 		(stroke
@@ -4523,16 +4513,6 @@
 	)
 	(wire
 		(pts
-			(xy 83.82 149.86) (xy 91.44 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6d3ef4d8-be3f-4aa0-b158-6ea6764249ba")
-	)
-	(wire
-		(pts
 			(xy 142.24 120.65) (xy 137.16 120.65)
 		)
 		(stroke
@@ -4590,6 +4570,16 @@
 			(type default)
 		)
 		(uuid "799a7795-125f-4d58-994a-c643f58a982a")
+	)
+	(wire
+		(pts
+			(xy 63.5 149.86) (xy 68.58 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7c900837-d478-450d-a9c9-43c58dc7f54b")
 	)
 	(wire
 		(pts
@@ -4770,6 +4760,16 @@
 			(type default)
 		)
 		(uuid "ae09b3eb-3910-4425-892a-7d474e5294a9")
+	)
+	(wire
+		(pts
+			(xy 83.82 149.86) (xy 91.44 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b58191d5-b4a4-4777-b354-6accbd58c0c2")
 	)
 	(wire
 		(pts
@@ -6183,13 +6183,13 @@
 	)
 	(symbol
 		(lib_id "RA1H1C112R:RA1H1C112R")
-		(at 68.58 149.86 0)
+		(at 83.82 149.86 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "38e3cda8-23da-47cf-b125-c3915ad8c9f7")
 		(property "Reference" "BAT_EN0"
 			(at 76.2 143.51 0)
@@ -6208,7 +6208,7 @@
 			)
 		)
 		(property "Footprint" "SW_RA1H1C112R_EWI"
-			(at 68.58 149.86 0)
+			(at 83.82 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6218,7 +6218,7 @@
 			)
 		)
 		(property "Datasheet" "RA1H1C112R"
-			(at 68.58 149.86 0)
+			(at 83.82 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6228,7 +6228,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 68.58 149.86 0)
+			(at 83.82 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)

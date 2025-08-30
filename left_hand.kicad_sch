@@ -659,7 +659,7 @@
 		)
 		(uuid "1a066378-e345-4d09-8892-c904545e4ad1")
 	)
-	(label "Columns0"
+	(label "Columns2"
 		(at 124.46 59.69 0)
 		(effects
 			(font
@@ -669,7 +669,7 @@
 		)
 		(uuid "4dc2ca08-de7b-4413-8ba1-95bd2c33c0b1")
 	)
-	(label "Columns2"
+	(label "Columns0"
 		(at 124.46 64.77 0)
 		(effects
 			(font
