@@ -1,4 +1,4 @@
-27476389446610545
+27478146016206313
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -109521,6 +109521,13 @@ MM_0926-1-15-20-75-14-11-0
 0
 1
 1
+snap_magic_footprints
+SAMESKY_UJ20-C-H-G-SMT-P16-TR
+
+
+0
+16
+16
 snap_magic_footprints
 SOT65P210X110-5N
 
