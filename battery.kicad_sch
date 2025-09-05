@@ -13,7 +13,7 @@
 		(comment 3 "© 2025. This work is openly licensed via CC BY-SA 4.0.")
 	)
 	(lib_symbols
-		(symbol "1042:1042"
+		(symbol "1043:1043"
 			(pin_names
 				(offset 1.016)
 			)
@@ -29,7 +29,7 @@
 					(justify left bottom)
 				)
 			)
-			(property "Value" "1042"
+			(property "Value" "1043"
 				(at -3.81 -5.08 0)
 				(effects
 					(font
@@ -38,7 +38,7 @@
 					(justify left bottom)
 				)
 			)
-			(property "Footprint" "1042:BAT_1042"
+			(property "Footprint" "1043:BAT_1043"
 				(at 0 0 0)
 				(effects
 					(font
@@ -66,7 +66,17 @@
 					(hide yes)
 				)
 			)
-			(property "PARTREV" "E"
+			(property "PARTREV" "J"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SNAPEDA_PN" "1043"
 				(at 0 0 0)
 				(effects
 					(font
@@ -86,17 +96,7 @@
 					(hide yes)
 				)
 			)
-			(property "SNAPEDA_PN" "1042"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MAXIMUM_PACKAGE_HEIGHT" "15.11mm"
+			(property "MAXIMUM_PACKAGE_HEIGHT" "14.86mm"
 				(at 0 0 0)
 				(effects
 					(font
@@ -116,7 +116,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "1042_0_0"
+			(symbol "1043_0_0"
 				(polyline
 					(pts
 						(xy -3.81 1.905) (xy -2.54 1.905)
@@ -189,7 +189,9 @@
 						(type none)
 					)
 				)
-				(pin passive line
+			)
+			(symbol "1043_1_0"
+				(pin power_out line
 					(at -7.62 0 0)
 					(length 5.08)
 					(name "~"
@@ -207,7 +209,7 @@
 						)
 					)
 				)
-				(pin passive line
+				(pin power_out line
 					(at 7.62 0 180)
 					(length 5.08)
 					(name "~"
@@ -229,29 +231,28 @@
 			(embedded_fonts no)
 		)
 		(symbol "BQ27427YZFR:BQ27427YZFR"
-			(pin_numbers
-				(hide yes)
-			)
 			(pin_names
 				(offset 1.016)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "Battery_Monitor0"
-				(at 0 17.78 0)
+			(property "Reference" "U"
+				(at -10.16 13.462 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left bottom)
 				)
 			)
 			(property "Value" "BQ27427YZFR"
-				(at 0 15.24 0)
+				(at -10.16 -17.78 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left bottom)
 				)
 			)
 			(property "Footprint" "BQ27427YZFR:IC_BQ27427YZFR"
@@ -334,8 +335,8 @@
 			)
 			(symbol "BQ27427YZFR_0_0"
 				(rectangle
-					(start -10.16 12.7)
-					(end 10.16 -15.24)
+					(start -10.16 -15.24)
+					(end 10.16 12.7)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -345,34 +346,16 @@
 					)
 				)
 				(pin input line
-					(at -15.24 7.62 0)
-					(length 5.08)
-					(name "BAT"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "C3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
 					(at -15.24 2.54 0)
 					(length 5.08)
-					(name "SRX"
+					(name "BIN"
 						(effects
 							(font
 								(size 1.016 1.016)
 							)
 						)
 					)
-					(number "C2"
+					(number "B1"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -383,14 +366,14 @@
 				(pin input line
 					(at -15.24 0 0)
 					(length 5.08)
-					(name "BIN"
+					(name "SRX"
 						(effects
 							(font
 								(size 1.016 1.016)
 							)
 						)
 					)
-					(number "B1"
+					(number "C2"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -502,6 +485,165 @@
 						(effects
 							(font
 								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(symbol "BQ27427YZFR_1_0"
+				(pin power_in line
+					(at -15.24 7.62 0)
+					(length 5.08)
+					(name "BAT"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "C3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "C_1"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "CHRG_Decouple0"
+				(at 3.81 1.2701 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "47nF"
+				(at 3.81 -1.2699 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+				(at 0.9652 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.digikey.com/en/products/detail/walsin-technology-corporation/0805B473J500CT/9355080"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "C_1_0_1"
+				(polyline
+					(pts
+						(xy -2.032 0.762) (xy 2.032 0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_1_1_1"
+				(pin power_out line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -3.81 90)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
 							)
 						)
 					)
@@ -2034,23 +2176,25 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "F"
-				(at 5.08 3.175 0)
+			(property "Reference" "BAT_Fuse0"
+				(at 3.302 -19.558 90)
 				(effects
 					(font
 						(size 1.524 1.524)
 					)
+					(justify left)
 				)
 			)
 			(property "Value" "ERB-RE1R00V"
-				(at 5.08 -3.175 0)
+				(at 5.842 -19.558 90)
 				(effects
 					(font
 						(size 1.524 1.524)
 					)
+					(justify left)
 				)
 			)
-			(property "Footprint" "FUSE_ERBRE_PAN"
+			(property "Footprint" "ultra_librarian_footprints:FUSE_ERBRE_PAN"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2130,7 +2274,7 @@
 						(type none)
 					)
 				)
-				(pin unspecified line
+				(pin power_out line
 					(at 0 0 0)
 					(length 2.54)
 					(name "1"
@@ -2148,7 +2292,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 10.16 0 180)
 					(length 2.54)
 					(name "2"
@@ -2238,25 +2382,23 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "U"
-				(at -5.1096 7.423 0)
+			(property "Reference" "RLIM_{L}0"
+				(at 1.5621 10.16 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left bottom)
 				)
 			)
 			(property "Value" "MCP40D19T-104E_LT"
-				(at -5.1654 -14.7583 0)
+				(at 1.5621 7.62 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left bottom)
 				)
 			)
-			(property "Footprint" "MCP40D19T-104E_LT:SOT65P210X110-5N"
+			(property "Footprint" "SOT65P210X110-5N"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2508,24 +2650,6 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at -17.78 -5.08 0)
-					(length 5.08)
-					(name "VSS"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
 				(pin bidirectional line
 					(at 17.78 0 180)
 					(length 5.08)
@@ -2562,7 +2686,27 @@
 						)
 					)
 				)
-				(pin bidirectional line
+			)
+			(symbol "MCP40D19T-104E_LT_1_0"
+				(pin power_in line
+					(at -17.78 -5.08 0)
+					(length 5.08)
+					(name "VSS"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_out line
 					(at 17.78 -5.08 180)
 					(length 5.08)
 					(name "W"
@@ -2713,222 +2857,6 @@
 						(type none)
 					)
 				)
-				(pin unspecified line
-					(at 0 2.54 0)
-					(length 7.62)
-					(name "SW"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "22"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 0 0)
-					(length 7.62)
-					(name "CSP"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 -2.54 0)
-					(length 7.62)
-					(name "BATT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 -7.62 0)
-					(length 7.62)
-					(name "NTC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "9"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 -10.16 0)
-					(length 7.62)
-					(name "VB"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "17"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 -13.97 0)
-					(length 7.62)
-					(name "*CHG"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 -16.51 0)
-					(length 7.62)
-					(name "*ACOK"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "11"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 -19.05 0)
-					(length 7.62)
-					(name "*BOOST"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 -21.59 0)
-					(length 7.62)
-					(name "MODE"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "19"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 -24.13 0)
-					(length 7.62)
-					(name "EN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "18"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 -29.21 0)
-					(length 7.62)
-					(name "ISET"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 -31.75 0)
-					(length 7.62)
-					(name "TMR"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "13"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin power_in line
 					(at 20.32 -40.64 90)
 					(length 7.62)
@@ -3019,42 +2947,6 @@
 						)
 					)
 				)
-				(pin unspecified line
-					(at 45.72 -2.54 180)
-					(length 7.62)
-					(name "REG"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "12"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 45.72 -5.08 180)
-					(length 7.62)
-					(name "PWIN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "14"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin power_in line
 					(at 45.72 -10.16 180)
 					(length 7.62)
@@ -3073,7 +2965,261 @@
 						)
 					)
 				)
-				(pin unspecified line
+			)
+			(symbol "MP2637GR-P_1_1"
+				(pin input line
+					(at 0 2.54 0)
+					(length 7.62)
+					(name "SW"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "22"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 0 0 0)
+					(length 7.62)
+					(name "CSP"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 0 -2.54 0)
+					(length 7.62)
+					(name "BATT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 0 -7.62 0)
+					(length 7.62)
+					(name "NTC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 0 -10.16 0)
+					(length 7.62)
+					(name "VB"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "17"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 0 -13.97 0)
+					(length 7.62)
+					(name "*CHG"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 0 -16.51 0)
+					(length 7.62)
+					(name "*ACOK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 0 -19.05 0)
+					(length 7.62)
+					(name "*BOOST"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 0 -21.59 0)
+					(length 7.62)
+					(name "MODE"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "19"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 0 -24.13 0)
+					(length 7.62)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "18"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -29.21 0)
+					(length 7.62)
+					(name "ISET"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -31.75 0)
+					(length 7.62)
+					(name "TMR"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 45.72 -2.54 180)
+					(length 7.62)
+					(name "REG"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 45.72 -5.08 180)
+					(length 7.62)
+					(name "PWIN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
 					(at 45.72 -15.24 180)
 					(length 7.62)
 					(name "ILIM"
@@ -3091,7 +3237,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 45.72 -21.59 180)
 					(length 7.62)
 					(name "OLIM"
@@ -3109,7 +3255,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 45.72 -26.67 180)
 					(length 7.62)
 					(name "FB"
@@ -3127,7 +3273,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_out line
 					(at 45.72 -30.48 180)
 					(length 7.62)
 					(name "SYS"
@@ -3313,6 +3459,669 @@
 					(at 15.24 0 180)
 					(length 2.54)
 					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "R_Small_US_1"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R_{OLIM}0"
+				(at 2.54 1.2701 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "590k"
+				(at 2.54 -1.2699 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT590K/1760428"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor, small US symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "r resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_Small_US_1_1_1"
+				(polyline
+					(pts
+						(xy 0 1.524) (xy 1.016 1.143) (xy 0 0.762) (xy -1.016 0.381) (xy 0 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 1.016 -0.381) (xy 0 -0.762) (xy -1.016 -1.143) (xy 0 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin power_out line
+					(at 0 2.54 270)
+					(length 1.016)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -2.54 90)
+					(length 1.016)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "R_US_1"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R_{ISET}0"
+				(at 2.54 1.2701 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "73.2k"
+				(at 2.54 -1.2699 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+				(at 1.016 -0.254 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RNCF0805DTE73K2/6241979"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor, US symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_US_1_0_1"
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -2.286) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_US_1_1_1"
+				(pin power_out line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "R_US_2"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "RLIM_{H}0"
+				(at 2.54 1.2701 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "10k"
+				(at 2.54 -1.27 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+				(at 1.016 -0.254 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT10K0/1760676"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor, US symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_US_2_0_1"
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -2.286) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_US_2_1_1"
+				(pin power_out line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "R_US_3"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "RFB_{L}0"
+				(at 3.048 -2.286 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "10k"
+				(at 5.588 -2.286 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+				(at 1.016 -0.254 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805FT10K0/1760676"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor, US symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_US_3_0_1"
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.286) (xy 1.016 1.905) (xy 0 1.524) (xy -1.016 1.143) (xy 0 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.762) (xy 1.016 0.381) (xy 0 0) (xy -1.016 -0.381) (xy 0 -0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -0.762) (xy 1.016 -1.143) (xy 0 -1.524) (xy -1.016 -1.905) (xy 0 -2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -2.286) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_US_3_1_1"
+				(pin power_in line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3708,12 +4517,6 @@
 		(uuid "2a2ecbed-e6c7-455c-b984-331c4c7e330d")
 	)
 	(junction
-		(at 114.3 119.38)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2ed76087-24bc-41cc-ba45-6dccf8856a2b")
-	)
-	(junction
 		(at 111.76 182.88)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3756,6 +4559,12 @@
 		(uuid "4eff3ec5-60ed-453f-badc-bb38cfa858ee")
 	)
 	(junction
+		(at 115.57 119.38)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "59679f20-5551-4846-99ed-36078361a03b")
+	)
+	(junction
 		(at 165.1 149.86)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3766,12 +4575,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5c2ecb4c-d9be-4c22-83b4-7e942d4eb0f0")
-	)
-	(junction
-		(at 115.57 119.38)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "6323b0bb-83d8-4478-9689-c984b93a0435")
 	)
 	(junction
 		(at 142.24 105.41)
@@ -3798,16 +4601,16 @@
 		(uuid "80bdb50a-92ea-4810-9eea-c43f9643fcb5")
 	)
 	(junction
+		(at 116.84 119.38)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "99143a00-a1e5-4267-8213-71b57dcbc835")
+	)
+	(junction
 		(at 144.78 149.86)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9a40a02f-ed55-49e5-bb80-6f36ab5b3a3e")
-	)
-	(junction
-		(at 116.84 119.38)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9a42b50c-0c34-4739-9610-6aa4cf24fc10")
 	)
 	(junction
 		(at 105.41 182.88)
@@ -3820,6 +4623,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a4b58bc5-84f2-47f4-ad9f-fe66889dd906")
+	)
+	(junction
+		(at 114.3 119.38)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a4b60e78-45a5-46f3-9a03-b975aea88fd8")
 	)
 	(junction
 		(at 250.19 76.2)
@@ -3988,26 +4797,6 @@
 			(type default)
 		)
 		(uuid "1e236fbd-88c6-451b-ba03-f0293f9f37f0")
-	)
-	(wire
-		(pts
-			(xy 85.09 107.95) (xy 91.44 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1edabb81-3783-4db0-a59b-092b56bfeca5")
-	)
-	(wire
-		(pts
-			(xy 111.76 119.38) (xy 114.3 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1eef4767-fe3b-4b18-9891-3be992c64f96")
 	)
 	(wire
 		(pts
@@ -4201,6 +4990,16 @@
 	)
 	(wire
 		(pts
+			(xy 85.09 107.95) (xy 91.44 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3fe03d2d-5542-4552-9741-1ae4d962895a")
+	)
+	(wire
+		(pts
 			(xy 165.1 149.86) (xy 165.1 160.02)
 		)
 		(stroke
@@ -4281,16 +5080,6 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 119.38) (xy 115.57 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5372ce7d-fd6c-49b8-97d4-03b6298f1ca6")
-	)
-	(wire
-		(pts
 			(xy 68.58 44.45) (xy 83.82 44.45)
 		)
 		(stroke
@@ -4318,6 +5107,16 @@
 			(type default)
 		)
 		(uuid "5db5c49c-3c06-4237-ac61-befdabffb4b7")
+	)
+	(wire
+		(pts
+			(xy 115.57 119.38) (xy 116.84 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6041d890-22ba-4a88-899a-98694712b8c3")
 	)
 	(wire
 		(pts
@@ -4378,16 +5177,6 @@
 			(type default)
 		)
 		(uuid "70115cd9-0ec9-4d70-8bce-72ff8909e402")
-	)
-	(wire
-		(pts
-			(xy 116.84 119.38) (xy 119.38 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "78fbe900-b8b2-4c72-8734-bb6f6112c4be")
 	)
 	(wire
 		(pts
@@ -4501,6 +5290,16 @@
 	)
 	(wire
 		(pts
+			(xy 114.3 119.38) (xy 115.57 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ca20669-6c7d-462d-951d-73d562bde2bb")
+	)
+	(wire
+		(pts
 			(xy 63.5 41.91) (xy 83.82 41.91)
 		)
 		(stroke
@@ -4521,13 +5320,13 @@
 	)
 	(wire
 		(pts
-			(xy 115.57 119.38) (xy 116.84 119.38)
+			(xy 111.76 119.38) (xy 114.3 119.38)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "9ee2b387-910a-4af7-a261-b2ab28f43c15")
+		(uuid "9fcdbd6b-60dc-4aff-ae3f-bb0eddf986f8")
 	)
 	(wire
 		(pts
@@ -4588,6 +5387,16 @@
 			(type default)
 		)
 		(uuid "ae09b3eb-3910-4425-892a-7d474e5294a9")
+	)
+	(wire
+		(pts
+			(xy 116.84 119.38) (xy 119.38 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3d6d70e-0ff2-45c5-9e97-cb6e388b74e6")
 	)
 	(wire
 		(pts
@@ -5485,7 +6294,7 @@
 				)
 			)
 		)
-		(property "Footprint" "IC_BQ27427YZFR"
+		(property "Footprint" "BQ27427YZFR:IC_BQ27427YZFR"
 			(at 99.06 44.45 0)
 			(effects
 				(font
@@ -6505,6 +7314,7 @@
 		)
 	)
 	(symbol
+		(lib_name "C_1")
 		(lib_id "Device:C")
 		(at 190.5 92.71 0)
 		(unit 1)
@@ -6568,12 +7378,6 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
-					(reference "CHRG_Decouple0")
-					(unit 1)
-				)
-			)
-			(project "right_hand"
-				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
 					(reference "CHRG_Decouple0")
 					(unit 1)
 				)
@@ -7241,7 +8045,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6d9e2174-5685-432c-890a-dd811a38cd24")
-		(property "Reference" "#PWR016"
+		(property "Reference" "#PWR01"
 			(at 55.88 68.58 0)
 			(effects
 				(font
@@ -7291,12 +8095,6 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
-					(reference "#PWR016")
-					(unit 1)
-				)
-			)
-			(project "right_hand"
-				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
 					(reference "#PWR01")
 					(unit 1)
 				)
@@ -8317,6 +9115,7 @@
 		)
 	)
 	(symbol
+		(lib_name "R_US_1")
 		(lib_id "Device:R_US")
 		(at 85.09 111.76 0)
 		(mirror y)
@@ -8380,12 +9179,6 @@
 		(instances
 			(project "portable_steno"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
-					(reference "R_{ISET}0")
-					(unit 1)
-				)
-			)
-			(project "right_hand"
-				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
 					(reference "R_{ISET}0")
 					(unit 1)
 				)
@@ -8469,6 +9262,7 @@
 		)
 	)
 	(symbol
+		(lib_name "R_US_2")
 		(lib_id "Device:R_US")
 		(at 171.45 101.6 0)
 		(unit 1)
@@ -8695,6 +9489,7 @@
 		)
 	)
 	(symbol
+		(lib_name "R_US_3")
 		(lib_id "Device:R_US")
 		(at 149.86 105.41 270)
 		(unit 1)
@@ -8770,6 +9565,7 @@
 		)
 	)
 	(symbol
+		(lib_name "R_Small_US_1")
 		(lib_id "Device:R_Small_US")
 		(at 157.48 102.87 0)
 		(unit 1)
@@ -9134,12 +9930,6 @@
 					(unit 1)
 				)
 			)
-			(project "right_hand"
-				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
-					(reference "BAT_Fuse0")
-					(unit 1)
-				)
-			)
 		)
 	)
 	(symbol
@@ -9352,7 +10142,7 @@
 		)
 	)
 	(symbol
-		(lib_id "1042:1042")
+		(lib_id "1043:1043")
 		(at 55.88 54.61 270)
 		(unit 1)
 		(exclude_from_sim no)
@@ -9378,7 +10168,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "BAT_1043"
+		(property "Footprint" "1043:BAT_1043"
 			(at 55.88 54.61 0)
 			(effects
 				(font
@@ -9406,7 +10196,7 @@
 				(hide yes)
 			)
 		)
-		(property "PARTREV" "E"
+		(property "PARTREV" "J"
 			(at 55.88 54.61 0)
 			(effects
 				(font
@@ -9426,7 +10216,7 @@
 				(hide yes)
 			)
 		)
-		(property "SNAPEDA_PN" "1042"
+		(property "SNAPEDA_PN" "1043"
 			(at 55.88 54.61 0)
 			(effects
 				(font
@@ -9436,7 +10226,7 @@
 				(hide yes)
 			)
 		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" "15.11mm"
+		(property "MAXIMUM_PACKAGE_HEIGHT" "14.86mm"
 			(at 55.88 54.61 0)
 			(effects
 				(font

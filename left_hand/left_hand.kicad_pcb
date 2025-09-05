@@ -1458,6 +1458,65 @@
 			)
 		)
 	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "26609b93-4d46-4a4a-a4f3-b988425f9382")
+		(at 99.89 70.16)
+		(property "Reference" ""
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "11401ad4-7c7c-4d75-aed2-1b9ed5547054")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "ce3ff81c-bb35-4495-bde7-5940af77c0e6")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "56212080-4591-4190-aff7-05c21dfded5f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "71b5b3b0-0745-4828-88bc-9a1b59bc2f74")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(pad "" np_thru_hole circle
+			(at 0 0 180)
+			(size 2.75 2.75)
+			(drill 2.75)
+			(layers "*.Cu" "*.Mask")
+			(uuid "5147ad48-6153-44d2-a990-acfff5ca9b47")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "PCM_Switch_Keyboard_Cherry_MX:SW_Cherry_MX_PCB"
 		(layer "F.Cu")
 		(uuid "2f5a0b7a-1189-45b0-b152-60199f628f82")
@@ -2468,6 +2527,65 @@
 				(xyz 0 0 0)
 			)
 		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "4cd67b15-5ac9-4bf0-96df-66f3a9e0d4e4")
+		(at 144.16 119.98)
+		(property "Reference" ""
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "e043d8b0-0786-494b-97f8-5f2e6bc030a0")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "763de2b5-707d-4782-b586-1dc7395f577b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "03bdabeb-124f-440b-8398-5b8884843f1e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f02acb2a-10ba-40d6-baf8-8a022a026edb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(pad "" np_thru_hole circle
+			(at 0 0 180)
+			(size 2.75 2.75)
+			(drill 2.75)
+			(layers "*.Cu" "*.Mask")
+			(uuid "7b9f7220-fbfe-4131-a13a-5af0b1541699")
+		)
+		(embedded_fonts no)
 	)
 	(footprint "PCM_Switch_Keyboard_Cherry_MX:SW_Cherry_MX_PCB"
 		(layer "F.Cu")
@@ -3721,7 +3839,7 @@
 	(footprint ""
 		(layer "F.Cu")
 		(uuid "a27d3313-8867-4b33-86af-220393a72164")
-		(at 208.1 128.3)
+		(at 212.68 128.27)
 		(property "Reference" ""
 			(at 0 0 0)
 			(layer "F.SilkS")
@@ -4113,6 +4231,65 @@
 				(xyz 0 0 0)
 			)
 		)
+	)
+	(footprint ""
+		(layer "F.Cu")
+		(uuid "a6eaf0ac-9b98-4bb8-9b7f-f482bea9087f")
+		(at 169.77 60.12)
+		(property "Reference" ""
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(uuid "aeb784c7-92c9-4f62-9c7d-7766409c6d2a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "38f6ba2d-8594-4d5d-8de8-b8437ff0faf0")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "64d66a3b-fe9b-4b32-b9cf-28aecfd883a3")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c2a2d373-591c-4cd4-9f78-c99ec03d5b0f")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(pad "" np_thru_hole circle
+			(at 0 0 180)
+			(size 2.75 2.75)
+			(drill 2.75)
+			(layers "*.Cu" "*.Mask")
+			(uuid "f2a3a6f8-34cc-4ae0-b13a-9955dd47deb8")
+		)
+		(embedded_fonts no)
 	)
 	(footprint "PCM_Switch_Keyboard_Cherry_MX:SW_Cherry_MX_PCB"
 		(layer "F.Cu")
@@ -5469,7 +5646,7 @@
 		(property "Reference" ""
 			(at 0 0 0)
 			(layer "F.SilkS")
-			(uuid "5a6606ba-67c6-4b54-b80b-73d282f4b825")
+			(uuid "531f8f69-7b3a-441f-a53e-93ab6ff68c96")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5480,7 +5657,7 @@
 		(property "Value" ""
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "ee3efc9c-dcc0-416d-91a1-fa42910d4b71")
+			(uuid "c34b87fc-60ba-45b1-a679-116ff7f020ad")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5492,7 +5669,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0082b083-dbb2-467a-86be-888ab47c0158")
+			(uuid "2379dc24-f77f-4d5b-9d88-81c7a849e15c")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5504,7 +5681,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "52a02456-cb12-447e-97c0-a40925e292ef")
+			(uuid "9b779f3b-9b4c-4060-a3c9-8fe3169d2935")
 			(effects
 				(font
 					(size 1.27 1.27)
