@@ -1,7 +1,7 @@
 # Build Scripts
 * `source yocto/build_env.bash` to enter the build environment interactively.
 * `scripts/run_build.bash` to build the distribution and partition.
-* `yocto/make_image.bash` to create the disk image.
+* `scripts/make_image.bash` to create the disk image.
 
 # Installing the Disk Image
 To flash the disk image to media, write _ONLY_ the length of the disk image.
