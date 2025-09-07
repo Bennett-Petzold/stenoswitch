@@ -1,0 +1,8 @@
+[package]
+name = "i2c_battery_control"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+gpio-cdev = "0.6"
+i2cdev = "0.6"

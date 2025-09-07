@@ -7,3 +7,14 @@
 [submodule "PiZeroHat"]
 	path = PiZeroHat
 	url = https://github.com/vasya-zh/PiZeroHat
+[submodule "yocto/poky"]
+	path = yocto/poky
+	url = git://git.yoctoproject.org/poky
+	branch = scarthgap
+[submodule "yocto/meta-rust-bin"]
+	path = yocto/meta-rust-bin
+	url = https://github.com/rust-embedded/meta-rust-bin.git
+[submodule "yocto/meta-raspberrypi"]
+	path = yocto/meta-raspberrypi
+	url = https://github.com/agherzan/meta-raspberrypi.git
+	branch = scarthgap
