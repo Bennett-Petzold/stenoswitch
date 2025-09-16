@@ -13,7 +13,7 @@
 	branch = scarthgap
 [submodule "yocto/meta-rust-bin"]
 	path = yocto/meta-rust-bin
-	url = https://github.com/rust-embedded/meta-rust-bin.git
+	url = https://github.com/Bennett-Petzold/meta-rust-bin.git
 [submodule "yocto/meta-raspberrypi"]
 	path = yocto/meta-raspberrypi
 	url = https://github.com/agherzan/meta-raspberrypi.git

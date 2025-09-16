@@ -2,10 +2,6 @@
 # long-description: Creates a partitioned SD card image. Boot files
 # are located in the first vfat partition.
 
-part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4 --fixed-size 400M
+part --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4 --fixed-size 400M
 # Deliberately oversized for future updates
-part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root --align 4 --fixed-size 1G
-# Deliberately oversized for future upstream updates
-part /ventoy --source ventoy --ondisk mmcblk0 --fstype=vfat --label ventoy --fixed-size 64M
-# Empty trailing data partition. Expanded on boot.
-part /home/root/ --source empty --ondisk mmcblk0 --fstype=vfat --label data --size 1K
+part / --source rootfs --ondisk mmcblk0 --fstype=squashfs --fsoptions ro --align 4 --mkfs-extraopts="-comp zstd" --fixed-size 1G

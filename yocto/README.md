@@ -7,6 +7,10 @@
 To flash the disk image to media, write _ONLY_ the length of the disk image.
 Any remaining space on the device is user scratch and retained between updates.
 
+# Debug SSH over WiFi
+## Configuring Connection
+Set a static unique local IPv6 address. fd12:3456:789a:1::1 works.
+
 # Build/Release Process
 Builds use the upstream hash server to save time.
 Yocto images are not currently built in Actions due to the memory requirement.
