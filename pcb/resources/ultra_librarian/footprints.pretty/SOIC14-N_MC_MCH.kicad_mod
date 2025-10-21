@@ -52,6 +52,7 @@
 			)
 		)
 	)
+	(solder_paste_margin_ratio -0.1)
 	(attr smd)
 	(fp_line
 		(start -2.0828 4.4577)
