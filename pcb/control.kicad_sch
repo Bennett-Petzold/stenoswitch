@@ -1438,10 +1438,6 @@
 		(uuid "332e86bf-02e8-4239-9b0d-1cbfd9d0ad35")
 	)
 	(no_connect
-		(at 93.98 58.42)
-		(uuid "79abbcaf-c1fb-4d55-92e9-5d03e3d127a6")
-	)
-	(no_connect
 		(at 123.19 35.56)
 		(uuid "9126d548-a13a-4434-88fe-37a3c1cd29ea")
 	)
@@ -2084,6 +2080,16 @@
 		)
 		(uuid "0ce7cdad-317c-4c96-85d4-707147825d9a")
 	)
+	(label "Right_Columns2"
+		(at 93.98 53.34 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "1195cf78-24d2-42ed-8958-260536076aea")
+	)
 	(label "Left_Columns3"
 		(at 93.98 38.1 180)
 		(effects
@@ -2305,6 +2311,17 @@
 		)
 		(uuid "0128c990-5549-4084-9014-cae2fac22c00")
 	)
+	(hierarchical_label "STORE_{ON}"
+		(shape input)
+		(at 93.98 55.88 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1c28f12b-cd4c-4ad6-ac30-e390de6e7423")
+	)
 	(hierarchical_label "SDA"
 		(shape input)
 		(at 123.19 81.28 0)
@@ -2329,7 +2346,7 @@
 	)
 	(hierarchical_label "CS_{CURRENT}"
 		(shape input)
-		(at 93.98 55.88 180)
+		(at 93.98 58.42 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2381,17 +2398,6 @@
 			(justify left)
 		)
 		(uuid "63c377d9-52b8-498a-8964-2df50eac8f47")
-	)
-	(hierarchical_label "STORE_{ON}"
-		(shape input)
-		(at 93.98 53.34 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "6d4bebaf-6753-43d4-9020-cde44527235a")
 	)
 	(hierarchical_label "ALERT_{BATMON}"
 		(shape input)
@@ -2574,7 +2580,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "28e55d68-b476-4d96-bcfd-0b7a510844ff")
-		(property "Reference" "TRANSLATION"
+		(property "Reference" "TRANSLATION0"
 			(at 168.91 38.1 0)
 			(effects
 				(font
@@ -2666,7 +2672,7 @@
 			)
 			(project "right_hand"
 				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/93dd658d-093b-457b-aa9d-06e2289958ef"
-					(reference "TRANSLATION")
+					(reference "TRANSLATION0")
 					(unit 1)
 				)
 			)
@@ -2754,7 +2760,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "63ba4bc2-e349-4cd7-ab75-aa1b3e358268")
-		(property "Reference" "STORAGE"
+		(property "Reference" "STORAGE0"
 			(at 167.64 59.69 0)
 			(effects
 				(font
@@ -2846,7 +2852,7 @@
 			)
 			(project "right_hand"
 				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/93dd658d-093b-457b-aa9d-06e2289958ef"
-					(reference "STORAGE")
+					(reference "STORAGE0")
 					(unit 1)
 				)
 			)
@@ -3076,7 +3082,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "91d93fc2-5266-4d8e-85b8-efa3ef88e5e3")
-		(property "Reference" "BLUETOOTH"
+		(property "Reference" "BLUETOOTH0"
 			(at 167.64 80.01 0)
 			(effects
 				(font
@@ -3168,7 +3174,7 @@
 			)
 			(project "right_hand"
 				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/93dd658d-093b-457b-aa9d-06e2289958ef"
-					(reference "BLUETOOTH")
+					(reference "BLUETOOTH0")
 					(unit 1)
 				)
 			)
