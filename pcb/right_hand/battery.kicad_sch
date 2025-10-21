@@ -6,7 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "Stenoswitch")
-		(rev "0.1")
+		(date "2025-10-21")
+		(rev "0.3")
 		(company "https://github.com/Bennett-Petzold/port_plover")
 		(comment 1 "NO WARRANTY. See license.")
 		(comment 2 "https://creativecommons.org/licenses/by-sa/4.0/")
@@ -3645,6 +3646,174 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "TSD05DYFR:TSD05DYFR"
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "CR"
+				(at 20.32 10.16 0)
+				(effects
+					(font
+						(size 1.524 1.524)
+					)
+				)
+			)
+			(property "Value" "TSD05DYFR"
+				(at 20.32 7.62 0)
+				(effects
+					(font
+						(size 1.524 1.524)
+					)
+				)
+			)
+			(property "Footprint" "TVS_SOD2_DYF_TEX"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.ti.com/lit/gpn/tsd05"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "TSD05DYFR"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "TVS_SOD2_DYF_TEX TVS_SOD2_DYF_TEX-M TVS_SOD2_DYF_TEX-L"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "TSD05DYFR_0_1"
+				(polyline
+					(pts
+						(xy 7.62 5.08) (xy 7.62 -5.08)
+					)
+					(stroke
+						(width 0.127)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 -5.08) (xy 33.02 -5.08)
+					)
+					(stroke
+						(width 0.127)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 33.02 5.08) (xy 7.62 5.08)
+					)
+					(stroke
+						(width 0.127)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 33.02 -5.08) (xy 33.02 5.08)
+					)
+					(stroke
+						(width 0.127)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin power_in line
+					(at 0 0 0)
+					(length 7.62)
+					(name "I/O"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "TSD05DYFR_1_1"
+				(pin power_in line
+					(at 40.64 0 180)
+					(length 7.62)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:GND"
 			(power)
 			(pin_numbers
@@ -3888,6 +4057,12 @@
 		(uuid "4dd656ed-150b-4237-b8b6-43402c9dc35f")
 	)
 	(junction
+		(at 68.58 154.94)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5659c91e-40dc-47c7-9a12-c608311dcc93")
+	)
+	(junction
 		(at 165.1 149.86)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3934,6 +4109,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "80bdb50a-92ea-4810-9eea-c43f9643fcb5")
+	)
+	(junction
+		(at 63.5 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8a8ba3bf-ce4f-4253-ba65-b2635c4ec3d3")
 	)
 	(junction
 		(at 144.78 149.86)
@@ -4012,10 +4193,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f926f764-0642-4f40-87df-447b5288d13c")
-	)
-	(no_connect
-		(at 68.58 170.18)
-		(uuid "60fa5b57-a670-4156-a6e0-9c408402924c")
 	)
 	(no_connect
 		(at 91.44 88.9)
@@ -4333,7 +4510,7 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 81.28) (xy 63.5 149.86)
+			(xy 63.5 81.28) (xy 63.5 127)
 		)
 		(stroke
 			(width 0)
@@ -4393,7 +4570,7 @@
 	)
 	(wire
 		(pts
-			(xy 208.28 133.35) (xy 234.95 133.35)
+			(xy 208.28 133.35) (xy 236.22 133.35)
 		)
 		(stroke
 			(width 0)
@@ -4593,7 +4770,7 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 120.65) (xy 217.17 120.65)
+			(xy 236.22 120.65) (xy 217.17 120.65)
 		)
 		(stroke
 			(width 0)
@@ -4623,6 +4800,16 @@
 	)
 	(wire
 		(pts
+			(xy 63.5 127) (xy 63.5 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87598ba8-2fdc-429f-adfa-b524e348c64d")
+	)
+	(wire
+		(pts
 			(xy 55.88 78.74) (xy 63.5 78.74)
 		)
 		(stroke
@@ -4643,7 +4830,7 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 133.35) (xy 234.95 120.65)
+			(xy 236.22 133.35) (xy 236.22 120.65)
 		)
 		(stroke
 			(width 0)
@@ -4720,6 +4907,26 @@
 			(type default)
 		)
 		(uuid "a3a12c5d-3851-4ce4-a8df-52f818f85c84")
+	)
+	(wire
+		(pts
+			(xy 27.94 156.21) (xy 27.94 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a4163ef3-e40d-4c87-87f1-19352dd4107a")
+	)
+	(wire
+		(pts
+			(xy 22.86 128.27) (xy 22.86 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a76387f6-09de-447f-8546-009881460d7f")
 	)
 	(wire
 		(pts
@@ -5662,6 +5869,76 @@
 		)
 	)
 	(symbol
+		(lib_id "TSD05DYFR:TSD05DYFR")
+		(at 63.5 127 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "13fce257-be33-416f-bdf3-cbcd5fb852c7")
+		(property "Reference" "CR6"
+			(at 43.18 137.16 0)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+			)
+		)
+		(property "Value" "TSD05DYFR"
+			(at 43.18 134.62 0)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+			)
+		)
+		(property "Footprint" "TVS_SOD2_DYF_TEX"
+			(at 63.5 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/gpn/tsd05"
+			(at 63.5 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 63.5 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "e3474ad3-3948-4d8a-9962-c9e4716f8744")
+		)
+		(pin "1"
+			(uuid "789ce017-664c-4b54-9fe1-5dcec5fc6098")
+		)
+		(instances
+			(project "right_hand"
+				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
+					(reference "CR6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "BQ27427YZFR:BQ27427YZFR")
 		(at 99.06 44.45 0)
 		(unit 1)
@@ -5802,6 +6079,73 @@
 			(project "right_hand"
 				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
 					(reference "Battery_Monitor0")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 22.86 128.27 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1afbe1ac-99e6-47b4-89ca-40641a1dffa3")
+		(property "Reference" "#PWR031"
+			(at 22.86 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 22.86 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 22.86 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 22.86 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 22.86 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "096dbd56-5515-4e8b-80b3-ac8a9ca38536")
+		)
+		(instances
+			(project "right_hand"
+				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
+					(reference "#PWR031")
 					(unit 1)
 				)
 			)
@@ -5953,6 +6297,76 @@
 			(project "right_hand"
 				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
 					(reference "RWIN_{L}0")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "TSD05DYFR:TSD05DYFR")
+		(at 68.58 154.94 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "26cf0bf4-058a-4c73-9e6b-98def432689b")
+		(property "Reference" "CR7"
+			(at 48.26 165.1 0)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+			)
+		)
+		(property "Value" "TSD05DYFR"
+			(at 48.26 162.56 0)
+			(effects
+				(font
+					(size 1.524 1.524)
+				)
+			)
+		)
+		(property "Footprint" "TVS_SOD2_DYF_TEX"
+			(at 68.58 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/gpn/tsd05"
+			(at 68.58 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 68.58 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7b2c87b3-aaba-44b1-a077-fa12a037bdbe")
+		)
+		(pin "1"
+			(uuid "dd8de5c3-8b1e-4510-8fb8-34e0899a3bf8")
+		)
+		(instances
+			(project "right_hand"
+				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
+					(reference "CR7")
 					(unit 1)
 				)
 			)
@@ -9324,6 +9738,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 68.58 170.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "cf87e402-9287-44c1-9e9a-96facffe0b14")
+		(property "Reference" "#PWR029"
+			(at 68.58 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 68.58 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 68.58 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 68.58 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 68.58 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1d05befe-add1-475e-9fd1-e121d9af5f67")
+		)
+		(instances
+			(project ""
+				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
+					(reference "#PWR029")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 154.94 50.8 0)
 		(unit 1)
@@ -9466,6 +9946,73 @@
 			(project "right_hand"
 				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
 					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 27.94 156.21 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d81483de-4d57-42d0-9da3-189dde3ae8f3")
+		(property "Reference" "#PWR032"
+			(at 27.94 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 27.94 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 27.94 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.94 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 27.94 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8985aac0-dabc-4817-9cd6-61c02093236f")
+		)
+		(instances
+			(project "right_hand"
+				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731"
+					(reference "#PWR032")
 					(unit 1)
 				)
 			)
