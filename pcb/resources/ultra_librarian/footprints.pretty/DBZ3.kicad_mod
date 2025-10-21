@@ -52,6 +52,7 @@
 			)
 		)
 	)
+	(solder_paste_margin_ratio -0.1)
 	(attr smd)
 	(fp_line
 		(start -1.524 -0.6985)
@@ -317,19 +318,19 @@
 	)
 	(pad "1" smd rect
 		(at -0.950001 1.016)
-		(size 0.5588 1.3208)
+		(size 0.6 1.3208)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "a78bc5cc-af4e-4edf-a436-c534d8e01a01")
 	)
 	(pad "2" smd rect
 		(at 0.950001 1.016)
-		(size 0.5588 1.3208)
+		(size 0.6 1.3208)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "0be0f8f0-480d-4730-b6c4-f4187ae8f631")
 	)
 	(pad "3" smd rect
 		(at 0 -0.88265)
-		(size 0.5588 1.5875)
+		(size 0.6 1.5875)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "e5e6dafa-4176-4f5b-bd35-0d151794d2eb")
 	)

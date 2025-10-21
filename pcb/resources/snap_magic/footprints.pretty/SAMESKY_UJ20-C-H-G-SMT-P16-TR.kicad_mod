@@ -184,16 +184,6 @@
 		(layer "F.Fab")
 		(uuid "b82b89e1-0b46-484d-a827-1dd0d836eb45")
 	)
-	(fp_line
-		(start 4.47 2.1)
-		(end 7.5 2.1)
-		(stroke
-			(width 0.127)
-			(type solid)
-		)
-		(layer "F.Fab")
-		(uuid "abb74a5d-8724-46e0-9a99-c6a22ed73508")
-	)
 	(fp_circle
 		(center -3.2 -5.7)
 		(end -3.1 -5.7)
@@ -204,17 +194,6 @@
 		(fill no)
 		(layer "F.Fab")
 		(uuid "e19504d7-b81d-4eef-852a-38ad028c7378")
-	)
-	(fp_text user "PCB EDGE"
-		(at 5.2 1.9 0)
-		(layer "F.Fab")
-		(uuid "ab09694b-33c2-481d-9437-c15ff0378d9a")
-		(effects
-			(font
-				(size 0.787402 0.787402)
-				(thickness 0.15)
-			)
-		)
 	)
 	(pad "A1_B12" smd rect
 		(at -3.2 -4.575)
