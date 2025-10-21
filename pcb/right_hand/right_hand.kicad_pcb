@@ -9,8 +9,8 @@
 	(paper "A4")
 	(title_block
 		(title "Stenoswitch Right Hand")
-		(date "2025-09-05")
-		(rev "v0.2")
+		(date "2025-10-20")
+		(rev "v0.3")
 		(company "https://github.com/Bennett-Petzold/stenoswitch")
 		(comment 1 "NO WARRANTY. See license.")
 		(comment 2 "https://creativecommons.org/licenses/by-sa/4.0/")
@@ -29914,7 +29914,7 @@
 		(layer "Edge.Cuts")
 		(uuid "ff1ef6f4-33ae-4669-8416-a9700a1ac17b")
 	)
-	(gr_text "Stenoswitch Right Hand v0.2"
+	(gr_text "Stenoswitch Right Hand v0.3"
 		(at 184.2 57.6 0)
 		(layer "F.SilkS")
 		(uuid "00e29402-a6cd-420a-ad01-cf47e9a406dc")
@@ -29952,7 +29952,7 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "Stenoswitch Right Hand v0.2"
+	(gr_text "Stenoswitch Right Hand v0.3"
 		(at 83.8 143.2 0)
 		(layer "F.SilkS")
 		(uuid "7bb80913-f768-4fdc-9abc-c30fcf134f50")
@@ -30039,7 +30039,7 @@
 			(justify mirror)
 		)
 	)
-	(gr_text "Stenoswitch Right Hand v0.2"
+	(gr_text "Stenoswitch Right Hand v0.3"
 		(at 111.35 145.32 0)
 		(layer "B.SilkS")
 		(uuid "375b8077-b2b9-4bbd-ba77-5a66af6806ba")
@@ -30210,7 +30210,7 @@
 			(justify mirror)
 		)
 	)
-	(gr_text "Stenoswitch Right Hand v0.2"
+	(gr_text "Stenoswitch Right Hand v0.3"
 		(at 228.2 60.8 0)
 		(layer "B.SilkS")
 		(uuid "90159e15-be05-4e0b-89f1-564229a0163f")
