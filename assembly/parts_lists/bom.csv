@@ -14,8 +14,8 @@ Qty,Value,Purchase URL
 1,2.2uH,https://www.digikey.com/en/products/detail/taiyo-yuden/BRL3225T2R2M/2002780
 1,47nF,https://www.digikey.com/en/products/detail/walsin-technology-corporation/0805B473J500CT/9355080
 1,20m,https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CSS0805FT20L0/6271917
-4,ESD321DYAR,https://www.digikey.com/en/products/detail/texas-instruments/ESD321DYAR/17394968
-1,TSD05DYFR,https://www.digikey.com/en/products/detail/texas-instruments/TSD05DYFR/21298352
+5,ESD321DYAR,https://www.digikey.com/en/products/detail/texas-instruments/ESD321DYAR/17394968
+3,TSD05DYFR,https://www.digikey.com/en/products/detail/texas-instruments/TSD05DYFR/21298352
 1,MCP3204T-CI/SL,https://www.digikey.com/en/products/detail/microchip-technology/MCP3204T-CI-SL/319441
 6,22uF,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL31A226KAHNNNE/3888705
 30,1N4148WX-TP,https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf
@@ -36,6 +36,6 @@ Qty,Value,Purchase URL
 1,EG2208,https://www.digikey.com/en/products/detail/e-switch/EG2208/301963
 1,TLV431BIDBZR,https://www.digikey.com/en/products/detail/texas-instruments/TLV431BIDBZR/705335
 1,2.2uF,https://www.digikey.com/en/products/detail/tdk-corporation/C2012X7R1C225K125AB/569046
-1,Ferrite Ring,https://www.digikey.com/en/products/detail/laird-signal-integrity-products/46T0119-40P/6823392
+1,Ferrite Ring,https://www.digikey.com/en/products/detail/epcos-tdk-electronics/B64290P0037X087/3913645
 2,Test Points,https://www.digikey.com/en/products/detail/mill-max-manufacturing-corp/0926-1-15-20-75-14-11-0/2784012
 1,40Pos Header,https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/61304021121/4846886
