@@ -1,8 +1,12 @@
 [package]
-name = "spi_current_monitor"
+name = "battery_control"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+ctrlc = "3"
 gpio-cdev = "0.6"
+i2cdev = "0.6"
+log = "0.4"
 spidev = "0.7"
+systemd-journal-logger = "2"
