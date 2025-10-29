@@ -5,8 +5,8 @@ tmpfs /run tmpfs rw,nodev,nosuid,noatime,size=40% 0 0
 
 /dev/mmcblk0p2 / squashfs ro 0 0
 # Empty trailing data partition. Expanded on boot.
-# Expansion is handled by a dedicated systemd service this Requires and is After.
-/dev/mmcblk0p3 /user/data vfat noauto,flush,user,ro
+# Creating the partition is handled by a systemd service that reboots to apply.
+/dev/mmcblk0p3 /user/data vfat nofail,flush,user,ro,x-systemd.makefs
 # Combines custom plover extensions with user config.
 # If underlying .config doesn't have this folder on first boot, default plover items will be installed.
 # That is also done by a service this Requires and is After.
