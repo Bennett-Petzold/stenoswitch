@@ -110,7 +110,7 @@ impl CurrentMonitor {
                     // Standard bits per word
                     .bits_per_word(8)
                     // System runs at 2 MHz max
-                    .max_speed_hz(2_000)
+                    .max_speed_hz(2_000_000)
                     .mode(SpiModeFlags::SPI_MODE_0)
                     .build(),
             )
