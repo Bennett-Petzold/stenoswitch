@@ -11,3 +11,14 @@ inherit cargo_bin
 
 do_compile[network] = "1"
 
+do_compile:prepend() {
+    export CURRENT_MONITOR_SPI=""
+    export GPIO_CHIP=""
+    export CURRENT_MONITOR_SEL=""
+    export BATTERY_I2C=""
+    export CHG_EN=""
+    export ALERT_BATMON=""
+    export CHG_ON=""
+    export USB_ON=""
+    export BAT_ON=""
+}
