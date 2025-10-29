@@ -11,7 +11,7 @@ SRC_URI:x86_64 = "https://downloads.python.org/pypy/pypy3.11-v7.3.20-linux64.tar
 SRC_URI[x86.sha256sum] = "1410db3a7ae47603e2b7cbfd7ff6390b891b2e041c9eb4f1599f333677bccb3e"
 
 DEPENDS = "bash libxft expat"
-RPROVIDES:${PN} += "python python3 python3-core python3-misc pypy pypy3"
+RPROVIDES:${PN} += "pypy pypy3"
 
 COMPATIBLE_HOST = "^(armv|aarch64|x86_64).*$"
 

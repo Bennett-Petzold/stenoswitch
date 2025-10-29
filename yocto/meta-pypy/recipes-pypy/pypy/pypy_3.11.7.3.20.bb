@@ -8,7 +8,7 @@ SRC_URI = "https://downloads.python.org/pypy/pypy3.11-v7.3.20-src.tar.bz2"
 SRC_URI[sha256sum] = "7786dda760003e2ea7409c1037e50200c578ec427ce0245ac4cd758710b206fb"
 
 DEPENDS = "bash libxft expat pypy-2-bin-native"
-RPROVIDES:${PN} += "python python3 python3-core python3-misc pypy3"
+RPROVIDES:${PN} += "pypy3"
 
 inherit allarch
 

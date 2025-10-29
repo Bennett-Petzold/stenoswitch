@@ -11,7 +11,7 @@ SRC_URI:x86_64 = "https://downloads.python.org/pypy/pypy2.7-v7.3.20-linux64.tar.
 SRC_URI[x86.sha256sum] = "aa3bb92dbb529fa2d4920895b16d67a810b0c709207857d56cfe4a6e3b41e02a"
 
 DEPENDS = "bash libxft expat"
-RPROVIDES:${PN} += "python python3 python3-core python3-misc pypy pypy2"
+RPROVIDES:${PN} += "pypy2"
 
 COMPATIBLE_HOST = "^(armv|aarch64|x86_64).*$"
 
