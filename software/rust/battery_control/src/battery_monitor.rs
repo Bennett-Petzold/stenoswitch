@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use std::{
     fs::{self, read_to_string},
     process::Command,
@@ -108,12 +110,10 @@ impl CommandSpacing {
 
         let command_spacing = if self.last_command_write && !is_write {
             WRITE_READ_COMMAND_SPACING
+        } else if time_passed < Duration::from_secs(1) {
+            ALL_COMMAND_SPACING
         } else {
-            if time_passed < Duration::from_secs(1) {
-                ALL_COMMAND_SPACING
-            } else {
-                TWO_COMMAND_SPACING
-            }
+            TWO_COMMAND_SPACING
         };
 
         // Update the new write/read status.
@@ -402,7 +402,7 @@ impl BatteryMonitor {
 
         // Usual case
         if charge > self.soc_offset {
-            let num = (charge - self.soc_offset);
+            let num = charge - self.soc_offset;
             // Going to do integer division by 100, want percent * 100.
             let adjusted_num = num * 100;
             adjusted_num / (100 - self.soc_offset)

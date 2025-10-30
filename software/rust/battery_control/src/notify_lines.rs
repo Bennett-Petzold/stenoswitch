@@ -1,12 +1,4 @@
-use std::{
-    sync::{
-        Arc, Condvar, Mutex,
-        atomic::{AtomicBool, Ordering},
-        mpsc,
-    },
-    thread::{JoinHandle, sleep},
-    time::Duration,
-};
+use std::sync::mpsc;
 
 use gpio_cdev::{Chip, EventRequestFlags, EventType, LineRequestFlags};
 use log::debug;
@@ -121,7 +113,7 @@ impl NotifyLines {
                 // Small race possibility if the line flips between sending the
                 // initial read and notification monitoring.
 
-                for event in line
+                for _event in line
                     .events(
                         LineRequestFlags::INPUT,
                         EventRequestFlags::RISING_EDGE,

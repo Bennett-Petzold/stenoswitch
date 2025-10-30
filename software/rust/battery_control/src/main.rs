@@ -20,7 +20,7 @@ use crate::{
 /// Calibrates the charging rheostat based on the CC pins.
 ///
 /// Will block to for the necessary spacing.
-fn set_rheostat_from_cc(cur_rheostat: &mut CurrentRheostat, cur_mon: &mut CurrentMonitor) {}
+fn set_rheostat_from_cc(_cur_rheostat: &mut CurrentRheostat, _cur_mon: &mut CurrentMonitor) {}
 
 fn main() {
     // ---------- //
@@ -30,14 +30,15 @@ fn main() {
     // Disable charging on panic
     let default_panic = std::panic::take_hook();
     std::panic::set_hook(Box::new(move |info| {
-        while !ChgEn::maybe_new().is_some() {}
+        while ChgEn::maybe_new().is_none() {}
         default_panic(info);
     }));
 
     // Try disabling charge just once on Ctrl-C
     ctrlc::set_handler(|| {
-        ChgEn::maybe_new();
-    });
+        let _ = ChgEn::maybe_new();
+    })
+    .unwrap();
 
     let chg_en = ChgEn::new();
     // ---------- //
@@ -48,9 +49,9 @@ fn main() {
 
     info!("Intializing SPI and I2C devices...");
     let (mut cur_rheostat, mut bat_mon, mut cur_mon) = thread::scope(|s| {
-        let rheostat_thread = s.spawn(|| CurrentRheostat::new());
-        let battery_thread = s.spawn(|| BatteryMonitor::new());
-        let current_thread = s.spawn(|| CurrentMonitor::new());
+        let rheostat_thread = s.spawn(CurrentRheostat::new);
+        let battery_thread = s.spawn(BatteryMonitor::new);
+        let current_thread = s.spawn(CurrentMonitor::new);
 
         (
             rheostat_thread.join().unwrap(),

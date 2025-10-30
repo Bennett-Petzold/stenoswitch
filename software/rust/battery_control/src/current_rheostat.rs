@@ -2,7 +2,7 @@ use std::{cmp::min, time::Duration};
 
 use i2cdev::{
     core::{I2CDevice, I2CMessage, I2CTransfer},
-    linux::{LinuxI2CBus, LinuxI2CDevice, LinuxI2CMessage},
+    linux::{LinuxI2CDevice, LinuxI2CMessage},
 };
 use log::warn;
 

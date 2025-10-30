@@ -1,6 +1,5 @@
-use std::{io::Write, mem::MaybeUninit, thread::sleep, time::Duration};
+use std::io::Write;
 
-use gpio_cdev::{Chip, LineHandle, LineRequestFlags};
 use log::debug;
 use spidev::{SpiModeFlags, Spidev, SpidevOptions, SpidevTransfer};
 
