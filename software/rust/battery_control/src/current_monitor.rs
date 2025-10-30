@@ -103,7 +103,8 @@ impl CurrentMonitor {
     /// Creates all interfaces, panicking on hardware issues.
     pub fn new() -> Self {
         let spi = {
-            let mut spi = Spidev::open(env!("CURRENT_MONITOR_SPI")).unwrap();
+            let mut spi =
+                Spidev::open(option_env!("CURRENT_MONITOR_SPI").unwrap_or("/dev/null")).unwrap();
             spi.configure(
                 &SpidevOptions::new()
                     // Standard bits per word

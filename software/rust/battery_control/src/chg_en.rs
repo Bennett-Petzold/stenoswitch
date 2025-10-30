@@ -8,9 +8,9 @@ impl ChgEn {
     ///
     /// Defaults to disabled.
     pub fn new() -> Self {
-        let mut chip = Chip::new(env!("GPIO_CHIP")).unwrap();
+        let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null")).unwrap();
         let this = Self(
-            chip.get_line(str::parse(env!("CHG_EN")).unwrap())
+            chip.get_line(str::parse(option_env!("CHG_EN").unwrap_or("/dev/null")).unwrap())
                 .unwrap()
                 .request(LineRequestFlags::OUTPUT, 0, "battery_control")
                 .unwrap(),
@@ -23,9 +23,9 @@ impl ChgEn {
     ///
     /// Defaults to disabled.
     pub fn maybe_new() -> Option<Self> {
-        let mut chip = Chip::new(env!("GPIO_CHIP")).ok()?;
+        let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null")).ok()?;
         let this = Self(
-            chip.get_line(str::parse(env!("CHG_EN")).unwrap())
+            chip.get_line(str::parse(option_env!("CHG_EN").unwrap_or("/dev/null")).unwrap())
                 .ok()?
                 .request(LineRequestFlags::OUTPUT, 0, "battery_control")
                 .ok()?,

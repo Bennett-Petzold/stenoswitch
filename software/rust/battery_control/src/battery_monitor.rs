@@ -146,7 +146,11 @@ impl BatteryMonitor {
         let i2c = {
             /// 1010101 -> 0x2E.
             const MONITOR_ADDR: u16 = 0x55;
-            LinuxI2CDevice::new(env!("BATTERY_I2C"), MONITOR_ADDR).unwrap()
+            LinuxI2CDevice::new(
+                option_env!("BATTERY_I2C").unwrap_or("/dev/null"),
+                MONITOR_ADDR,
+            )
+            .unwrap()
         };
 
         let mut this = Self {

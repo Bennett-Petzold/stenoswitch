@@ -11,10 +11,26 @@ use std::{
 use gpio_cdev::{Chip, EventRequestFlags, EventType, LineRequestFlags};
 use log::debug;
 
-const BATMON_LINE: &str = env!("ALERT_BATMON");
-const CHG_ON_LINE: &str = env!("CHG_ON");
-const USB_ON_LINE: &str = env!("USB_ON");
-const BAT_ON_LINE: &str = env!("BAT_ON");
+const BATMON_LINE: &str = if let Some(x) = option_env!("ALERT_BATMON") {
+    x
+} else {
+    "NaN"
+};
+const CHG_ON_LINE: &str = if let Some(x) = option_env!("CHG_ON") {
+    x
+} else {
+    "NaN "
+};
+const USB_ON_LINE: &str = if let Some(x) = option_env!("USB_ON") {
+    x
+} else {
+    "NaN "
+};
+const BAT_ON_LINE: &str = if let Some(x) = option_env!("BAT_ON") {
+    x
+} else {
+    "NaN "
+};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum NotifySource {
@@ -39,7 +55,7 @@ impl NotifyLines {
     pub fn new() -> Self {
         let (tx, rx) = mpsc::sync_channel(0);
 
-        let mut chip = Chip::new(env!("GPIO_CHIP")).unwrap();
+        let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null")).unwrap();
 
         let _both_edges = [
             (CHG_ON_LINE, NotifySource::ChgOn),

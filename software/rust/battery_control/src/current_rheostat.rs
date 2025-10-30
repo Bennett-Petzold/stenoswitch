@@ -37,7 +37,11 @@ impl CurrentRheostat {
         // On some MCP40D19T-104s, the max kOhm is 80,
         // so this gives a 0.5A limit.
         let mut this = Self {
-            i2c: LinuxI2CDevice::new(env!("RHEOSTAT_I2C"), RHEO_ADDR).unwrap(),
+            i2c: LinuxI2CDevice::new(
+                option_env!("RHEOSTAT_I2C").unwrap_or("/dev/null"),
+                RHEO_ADDR,
+            )
+            .unwrap(),
             setting: CUR_LIMIT_MAX,
         };
 
