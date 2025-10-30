@@ -38,6 +38,7 @@ pub enum NotifySource {
     ChgOn,
     UsbOn,
     BatOn,
+    StoreOn,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -61,6 +62,7 @@ impl NotifyLines {
             (CHG_ON_LINE, NotifySource::ChgOn),
             (USB_ON_LINE, NotifySource::UsbOn),
             (BAT_ON_LINE, NotifySource::BatOn),
+            (BAT_ON_LINE, NotifySource::StoreOn),
         ]
         .map(|(line, source)| {
             let tx = tx.clone();

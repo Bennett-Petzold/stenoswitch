@@ -138,6 +138,9 @@ fn main() {
                     info!("Turned on battery monitor sleep");
                 }
             }
+            NotifySource::StoreOn => {
+                todo!("Set battery charging to stop at 3.7 V")
+            }
         }
     }
 }
