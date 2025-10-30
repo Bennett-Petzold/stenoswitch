@@ -97,7 +97,6 @@ impl AmpLimit {
 #[derive(Debug)]
 pub struct CurrentMonitor {
     spi: Spidev,
-    sel: LineHandle,
 }
 
 impl CurrentMonitor {
@@ -118,15 +117,7 @@ impl CurrentMonitor {
             spi
         };
 
-        let sel = {
-            let mut chip = Chip::new(env!("GPIO_CHIP")).unwrap();
-            chip.get_line(str::parse(env!("CURRENT_MONITOR_SEL")).unwrap())
-                .unwrap()
-                .request(LineRequestFlags::OUTPUT, 1, "current_monitor")
-                .unwrap()
-        };
-
-        Self { spi, sel }
+        Self { spi }
     }
 }
 
@@ -139,8 +130,6 @@ impl Default for CurrentMonitor {
 impl CurrentMonitor {
     /// Returns the ADC reading for a given channel.
     fn read_channel(&mut self, id: mcp_defs::ChannelId) -> mcp_defs::AdcVal {
-        self.sel.set_value(0).unwrap(); // Enable the MCP3204 SPI.
-
         // For initial debug purposes, fill this to make null or not reading obvious
         //let mut read_buf: [u8; mcp_defs::REQUEST_LEN] = unsafe { MaybeUninit::uninit().assume_init() };
         let mut read_buf = [255; mcp_defs::REQUEST_LEN];
@@ -151,7 +140,6 @@ impl CurrentMonitor {
             ))
             .unwrap();
 
-        self.sel.set_value(1).unwrap(); // Disable the MCP3204 SPI.
         let _ = self.spi.write_all(&[0]); // Guarantee spacing before next request.
 
         // Since the value is 12 bits long, set the first 4 garbage bits to 0.
