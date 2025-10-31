@@ -1,0 +1,45 @@
+/dts-v1/;
+/plugin/;
+
+
+/ {
+	compatible = "brcm,bcm2835";
+
+	fragment@0 {
+		target = <&spi0_cs_pins>;
+		frag0: __overlay__ {
+			brcm,pins = <22>;
+		};
+	};
+
+	fragment@1 {
+		target = <&spi0>;
+		frag1: __overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			cs-gpios = <&gpio 22 1>;
+			status = "okay";
+
+			spidev0_0: spidev@0 {
+				compatible = "spidev";
+				reg = <0>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+				spi-max-frequency = <125000000>;
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <&emmc_gpio22>;
+		frag2: __overlay__ {
+			emmc-gpio22 {
+				brcm,pins = <0x17 0x18 0x19 0x1a 0x1b>;
+				brcm,function = <0x07>;
+				phandle = <0x48>;
+			};
+		};
+	};
+
+};
