@@ -60,12 +60,15 @@ impl NotifyLines {
             let tx = tx.clone();
             let line = chip.get_line(str::parse(line).unwrap()).unwrap();
             std::thread::spawn(move || {
-                let init_value = line
-                    .request(LineRequestFlags::INPUT, 0, "battery_control")
-                    .unwrap()
-                    .get_value()
-                    .unwrap()
-                    != 0;
+                let events = line
+                    .events(
+                        LineRequestFlags::INPUT,
+                        EventRequestFlags::BOTH_EDGES,
+                        "battery_control",
+                    )
+                    .unwrap();
+
+                let init_value = events.get_value().unwrap() != 0;
                 tx.send(LineNotification {
                     source,
                     value: init_value,
@@ -75,14 +78,7 @@ impl NotifyLines {
                 // Small race possibility if the line flips between sending the
                 // initial read and notification monitoring.
 
-                for event in line
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::BOTH_EDGES,
-                        "battery_control",
-                    )
-                    .unwrap()
-                {
+                for event in events {
                     let value = match event.unwrap().event_type() {
                         EventType::RisingEdge => true,
                         EventType::FallingEdge => false,
@@ -98,12 +94,15 @@ impl NotifyLines {
         let _batmon = {
             let line = chip.get_line(str::parse(BATMON_LINE).unwrap()).unwrap();
             std::thread::spawn(move || {
-                let init_value = line
-                    .request(LineRequestFlags::INPUT, 0, "battery_control")
-                    .unwrap()
-                    .get_value()
-                    .unwrap()
-                    != 0;
+                let events = line
+                    .events(
+                        LineRequestFlags::INPUT,
+                        EventRequestFlags::RISING_EDGE,
+                        "battery_control",
+                    )
+                    .unwrap();
+
+                let init_value = events.get_value().unwrap() != 0;
                 tx.send(LineNotification {
                     source: NotifySource::Batmon,
                     value: init_value,
@@ -113,14 +112,7 @@ impl NotifyLines {
                 // Small race possibility if the line flips between sending the
                 // initial read and notification monitoring.
 
-                for _event in line
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "battery_control",
-                    )
-                    .unwrap()
-                {
+                for _event in events {
                     debug!("Line event: {:#?} -> {}", NotifySource::Batmon, true);
                     // Small missed event possibility if the line triggers
                     // again while waiting for this to be consumed.
