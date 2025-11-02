@@ -2,7 +2,7 @@
 Description=bluetooth pin enabled
 
 [Service]
-Type=notify
+Type=simple
 TimeoutStartSec=infinity
 # Active while the bluetooth pin (0) is active.
 ExecStartPre=/usr/bin/pin_enable_wait 0
