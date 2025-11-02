@@ -10,19 +10,16 @@ fn main() {
         .get_line(str::parse(&args().nth(1).unwrap()).unwrap())
         .unwrap();
 
-    // Exit on either false or first falling edge.
-    if line
-        .request(LineRequestFlags::INPUT, 0, "GPIO disable monitor")
-        .unwrap()
-        .get_value()
-        .unwrap()
-        == 0
-    {
-        line.events(
+    let mut events = line
+        .events(
             LineRequestFlags::INPUT,
             EventRequestFlags::FALLING_EDGE,
             "GPIO disable monitor",
         )
         .unwrap();
+
+    // Exit on either false or first falling edge.
+    if events.get_value().unwrap() == 0 {
+        let _ = events.next();
     }
 }
