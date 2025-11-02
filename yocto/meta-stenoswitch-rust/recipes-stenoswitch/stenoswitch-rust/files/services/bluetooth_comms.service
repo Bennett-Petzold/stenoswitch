@@ -1,0 +1,13 @@
+[Unit]
+Description=bluetooth communication
+BindsTo=bluetooth_pin_en.service
+After=bluetooth_pin_en.service
+
+[Service]
+Type=notify
+TimeoutStartSec=infinity
+ExecStart=/usr/bin/bluetooth_comms
+Restart=always
+
+[Install]
+WantedBy=bluetooth_pin_en.service

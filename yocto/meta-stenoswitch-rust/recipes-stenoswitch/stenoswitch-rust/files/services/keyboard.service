@@ -1,0 +1,10 @@
+[Unit]
+Description=keyboard capture
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/keyboard
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

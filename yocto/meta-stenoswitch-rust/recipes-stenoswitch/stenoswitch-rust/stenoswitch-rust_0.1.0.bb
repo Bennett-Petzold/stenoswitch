@@ -8,17 +8,36 @@ SRC_URI = "git://${TOPDIR}/../..;protocol=file;usehead=1;subpath=software/rust;d
 SRCREV:pn-stenoswitch-rust = "${AUTOREV}"
 
 inherit cargo_bin
+inherit systemd
+
+SYSTEMD_AUTO_ENABLE = "enable"
+SYSTEMD_SERVICE:${PN}:append = " battery_control.service"
+SYSTEMD_SERVICE:${PN}:append = " bluetooth_comms.service"
+SYSTEMD_SERVICE:${PN}:append = " bluetooth_pin_en.service"
+SYSTEMD_SERVICE:${PN}:append = " keyboard.service"
+SYSTEMD_SERVICE:${PN}:append = " storage_pin_status.service"
+SYSTEMD_SERVICE:${PN}:append = " translation_pin_en.service"
+SYSTEMD_SERVICE:${PN}:append = " usb_comms.service"
+SRC_URI:append = " file://services/"
+FILES:${PN} += " ${systemd_unitdir}/system/"
 
 do_compile[network] = "1"
 
 do_compile:prepend() {
-    export CURRENT_MONITOR_SPI=""
-    export GPIO_CHIP=""
-    export CURRENT_MONITOR_SEL=""
-    export BATTERY_I2C=""
-    export CHG_EN=""
-    export ALERT_BATMON=""
-    export CHG_ON=""
-    export USB_ON=""
-    export BAT_ON=""
+    export CURRENT_MONITOR_SPI="/dev/spidev0.0"
+    export GPIO_CHIP="/dev/gpiochip0"
+    export CURRENT_MONITOR_SEL="25"
+    export BATTERY_I2C="/dev/i2c-1"
+    export RHEOSTAT_I2C="/dev/i2c-1"
+    export CHG_EN="15"
+    export ALERT_BATMON="4"
+    export CHG_ON="18"
+    export USB_ON="12"
+    export BAT_ON="16"
+    export STORE_ON="8"
+}
+
+do_install:append() {
+    install -d ${D}/${systemd_unitdir}/system/
+    install -m 0644 ${WORKDIR}/services/*.service ${D}/${systemd_unitdir}/system/
 }

@@ -1,0 +1,11 @@
+[Unit]
+Description=usb communication
+
+[Service]
+Type=notify
+TimeoutStartSec=infinity
+ExecStart=/usr/bin/usb_comms
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=battery control
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/battery_control
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

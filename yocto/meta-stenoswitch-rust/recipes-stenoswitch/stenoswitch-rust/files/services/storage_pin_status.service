@@ -1,0 +1,11 @@
+[Unit]
+Description=update storage-mode status
+
+[Service]
+Type=notify
+TimeoutStartSec=infinity
+ExecStart=/usr/bin/storage_pin_status
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

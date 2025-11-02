@@ -1,0 +1,13 @@
+[Unit]
+Description=translation pin enabled
+
+[Service]
+Type=notify
+TimeoutStartSec=infinity
+# Active while the translation pin (6) is active.
+ExecStartPre=/usr/bin/pin_enable_wait 6
+ExecStart=/usr/bin/pin_disable_wait 6
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
