@@ -1,12 +1,10 @@
 tmpfs /tmp tmpfs rw,nodev,nosuid,noatime,size=40% 0 0
 tmpfs /run tmpfs rw,nodev,nosuid,noatime,size=40% 0 0
-#overlayfs /user/.config/plover overlayfs noauto,rolowerdir=/system/config/plover/:/user/data/.config/plover,x-systemd.automount,x-systemd.requires=/user/data/
 #/var/lib/bluetooth /tmp/var-lib-bluetooth/ noauto,x-systemd.automount,x-systemd.requires=/tmp,X-mount.mkdir bind
 
 /dev/mmcblk0p2 / squashfs ro 0 0
-# Empty trailing data partition. Expanded on boot.
-# Creating the partition is handled by a systemd service that reboots to apply.
-/dev/mmcblk0p3 /user/data vfat nofail,flush,user,ro,x-systemd.makefs
+# Empty trailing data partition. Created on first boot.
+/dev/mmcblk0p3 /user/data vfat auto,flush,user,ro,x-systemd.makefs
 # Combines custom plover extensions with user config.
 # If underlying .config doesn't have this folder on first boot, default plover items will be installed.
 # That is also done by a service this Requires and is After.
