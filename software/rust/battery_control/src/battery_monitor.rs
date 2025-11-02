@@ -120,7 +120,7 @@ impl CommandSpacing {
         self.last_command_write = is_write;
 
         // 0 seconds wait is a valid result.
-        time_passed.saturating_sub(command_spacing)
+        command_spacing.saturating_sub(time_passed)
     }
 }
 
