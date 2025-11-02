@@ -60,6 +60,7 @@ fn main() {
         )
     });
     info!("Initialized SPI and I2C devices");
+    sd_notify::notify(true, &[sd_notify::NotifyState::Ready]).unwrap();
 
     // Initial states
     debug!("CC Lines: {:?}", cur_mon.read_cc());

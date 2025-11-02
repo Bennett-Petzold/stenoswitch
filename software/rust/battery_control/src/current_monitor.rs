@@ -9,6 +9,10 @@ type Voltage = f32;
 pub type Amps = f32;
 
 /// Measurements assume the system keeps a clean 5V input as reference.
+/// USB 1 spec allows this to vary +/- 5%, [4.75, 5.25] V.
+/// USB 2 spec allows this to vary down to 4.4 V on a low powered hub.
+/// A low power USB 2 host advertising 1.5A pull is unlikely, so mismeasuring
+/// CC input is unlikely.
 const REF_VOLTAGE: Voltage = 5.0;
 
 /// Values from the MCP3204 datasheet.
