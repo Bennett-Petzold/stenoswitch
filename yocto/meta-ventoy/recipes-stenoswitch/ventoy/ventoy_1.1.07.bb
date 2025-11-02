@@ -2,6 +2,7 @@ LICENSE = "GPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://license-ventoy.txt;md5=6a7c9eaafd980b1b8947087b8f3ffe07"
 
 FILES:${PN} = "/user/ventoy.img"
+SYSROOT_DIRS:append = "/user"
 
 SRC_URI = "https://github.com/ventoy/Ventoy/releases/download/v1.1.07/ventoy-1.1.07-linux.tar.gz;name=tarball \
            https://raw.githubusercontent.com/ventoy/Ventoy/refs/heads/master/License/license-ventoy.txt"
