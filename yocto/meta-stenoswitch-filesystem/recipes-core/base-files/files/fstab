@@ -8,4 +8,4 @@ tmpfs /run tmpfs rw,nodev,nosuid,noatime,size=40% 0 0
 # Combines custom plover extensions with user config.
 # If underlying .config doesn't have this folder on first boot,
 # default plover items will be installed by a required-before service.
-overlayfs /user/.config/plover overlayfs noauto,rolowerdir=/system/config/plover/:/user/data/.config/plover,x-systemd.requires=/user/data/,x-systemd.automount
+overlayfs /user/.config/plover overlayfs noauto,rolowerdir=/system/config/plover/:/user/data/.config/plover,x-systemd.requires-mounts-for=/system/config/plover/,x-systemd.requires-mounts-for=/user/data/

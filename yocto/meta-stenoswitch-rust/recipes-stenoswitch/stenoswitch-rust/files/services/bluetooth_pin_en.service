@@ -1,5 +1,6 @@
 [Unit]
 Description=bluetooth pin enabled
+After=multi-user.target
 
 [Service]
 Type=simple

@@ -1,5 +1,6 @@
 [Unit]
 Description=keyboard capture
+After=multi-user.target
 
 [Service]
 Type=notify

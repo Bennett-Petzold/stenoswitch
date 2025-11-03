@@ -1,6 +1,8 @@
 [Unit]
 Description=create the user partition
 Before=user-data.mount
+Requires=multi-user.target
+After=multi-user.target
 
 [Service]
 Type=oneshot
