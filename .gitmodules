@@ -40,3 +40,10 @@
 	path = yocto/meta-clang
 	url = https://github.com/kraj/meta-clang
 	branch = scarthgap
+[submodule "yocto/pyside-setup"]
+	path = yocto/pyside-setup
+	url = https://github.com/pyside/pyside-setup
+	branch = 6.10.0
+[submodule "yocto/PiP2Bitbake"]
+	path = yocto/PiP2Bitbake
+	url = git@github.com:robseb/PiP2Bitbake.git
