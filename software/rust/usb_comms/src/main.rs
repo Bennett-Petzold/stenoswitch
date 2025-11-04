@@ -1,6 +1,9 @@
 use std::{fs::File, thread::sleep, time::Duration};
 
-use usb_gadget::{Class, Config, Gadget, Id, Strings, default_udc, function::hid::Hid};
+use usb_gadget::{
+    Class, Config, Gadget, Id, Strings, default_udc,
+    function::{Handle, hid::Hid},
+};
 
 const KEYBOARD_REPORT_DESCRIPTOR: [u8; 69] = [
     0x5, 0x1, 0x9, 0x6, 0xA1, 0x1, 0x5, 0x7, 0x19, 0xE0, 0x29, 0xE7, 0x15, 0x0, 0x25, 0x1, 0x75,
@@ -42,6 +45,20 @@ impl KeyboardReport {
     }
 }
 
+/// From R_{ISET}.
+const MAX_CHARGE_MA: u16 = 1600;
+/// From R_{OLIM}.
+const MAX_SYSTEM_MA: u16 = 200;
+
+fn usb_config(description: &str, function_handle: Handle) -> Config {
+    let mut config =
+        Config::new("Stenoswitch ".to_string() + description).with_function(function_handle);
+    config.max_power = MAX_CHARGE_MA + MAX_SYSTEM_MA;
+    config.self_powered = false;
+    config.remote_wakeup = true;
+    config
+}
+
 fn main() {
     let udc = default_udc().unwrap();
     usb_gadget::remove_all().unwrap();
@@ -62,7 +79,7 @@ fn main() {
         // TODO: get serial from RPi
         Strings::new("Bennett Petzold", "Stenoswitch", "0"),
     )
-    .with_config(Config::new("Stenoswitch Keyboard Mode").with_function(handle))
+    .with_config(usb_config("Keyboard Mode", handle))
     .bind(&udc)
     .unwrap();
 
@@ -76,6 +93,7 @@ fn main() {
 
     loop {
         sleep(Duration::from_secs(1));
-        println!("Status = {:?}", hid.status());
+        println!("HID Status = {:?}", hid.status());
+        println!("UDC State = {:?}", udc.state());
     }
 }
