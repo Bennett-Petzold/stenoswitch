@@ -21,29 +21,7 @@
 [submodule "yocto/meta-openembedded"]
 	path = yocto/meta-openembedded
 	url = git://git.openembedded.org/meta-openembedded
-[submodule "yocto/meta-agl-demo"]
-	path = yocto/meta-agl-demo
-	url = https://git.automotivelinux.org/AGL/meta-agl-demo
-[submodule "yocto/meta-agl"]
-	path = yocto/meta-agl
-	url = https://gerrit.automotivelinux.org/gerrit/AGL/meta-agl
-	branch = salmon
-[submodule "yocto/meta-qt6"]
-	path = yocto/meta-qt6
-	url = https://code.qt.io/yocto/meta-qt6
-	branch = 6.7
-[submodule "yocto/meta-flutter"]
-	path = yocto/meta-flutter
-	url = https://github.com/meta-flutter/meta-flutter
-	branch = scarthgap
-[submodule "yocto/meta-clang"]
-	path = yocto/meta-clang
-	url = https://github.com/kraj/meta-clang
-	branch = scarthgap
 [submodule "yocto/pyside-setup"]
 	path = yocto/pyside-setup
 	url = https://github.com/pyside/pyside-setup
 	branch = 6.10.0
-[submodule "yocto/PiP2Bitbake"]
-	path = yocto/PiP2Bitbake
-	url = git@github.com:robseb/PiP2Bitbake.git
