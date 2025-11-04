@@ -4,7 +4,7 @@ do_deploy:append () {
     # TODO add i2c_arm=off for software i2c
     # TODO add dtoverlay=disable-wifi on non-debug builds
 
-    printf '%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n' \
+    printf '%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n' \
         'dtparam=act_led_trigger=timer' \
         'dtparam=audio=off' \
         'dtparam=axiperf=off' \
@@ -15,5 +15,6 @@ do_deploy:append () {
         'dtparam=uart0=off' \
         'dtparam=uart1=off' \
         'dtoverlay=spi0-1cs,cs0_pin=25' \
+        'dtoverlay=dwc2' \
     >> "${CONFIG}"
 }
