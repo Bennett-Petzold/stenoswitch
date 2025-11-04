@@ -1,0 +1,17 @@
+[Unit]
+Description=create the plover user config mountpoints
+Requires=user-data.mount
+After=user-data.mount
+Before=plover_noui.service
+
+[Service]
+Type=oneshot
+# Fills in default cfg if the user data is empty
+ExecCondition=/usr/bin/sh -c '! [[ -d /user/data/.config/plover ]]'
+ExecStart=/usr/bin/mount -o remount,rw /user/data/
+ExecStart=/usr/bin/mkdir -p /user/data/.config/plover/
+ExecStart=/usr/bin/cp /system/config/plover/* /user/data/.config/plover/
+ExecStart=/usr/bin/mount -o remount,ro /user/data/
+
+[Install]
+RequiredBy=plover_noui.service

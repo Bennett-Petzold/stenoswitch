@@ -1,0 +1,11 @@
+[Unit]
+Description=plover daemon
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/plover -g none
+
+[Install]
+Alias=plover
+WantedBy=multi-user.target

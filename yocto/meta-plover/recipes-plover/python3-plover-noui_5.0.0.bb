@@ -13,7 +13,7 @@ S = "${WORKDIR}/plover-5.0.0"
 
 DEPENDS = " sed-native"
 
-RDEPENDS:${PN} = "python3-modules python3-appdirs python3-pkginfo python3-plover-stroke python3-pygments python3-pyserial python3-packaging python3-requests-futures python3-rtf-tokenize python3-setuptools python3-wcwidth python3-evdev"
+RDEPENDS:${PN} = "python3-modules python3-appdirs python3-pkginfo python3-plover-stroke python3-pygments python3-pyserial python3-rtf-tokenize python3-wcwidth python3-evdev python3-psutil"
 
 SETUPTOOLS_BUILD_ARGS += " build_py"
 
