@@ -13,13 +13,16 @@ S = "${WORKDIR}/plover-5.0.0"
 
 DEPENDS = " sed-native"
 
-RDEPENDS:${PN} = "python3-modules python3-appdirs python3-pkginfo python3-plover-stroke python3-pygments python3-pyserial python3-packaging python3-requests-futures python3-rtf-tokenize python3-setuptools python3-wcwidth"
+RDEPENDS:${PN} = "python3-modules python3-appdirs python3-pkginfo python3-plover-stroke python3-pygments python3-pyserial python3-packaging python3-requests-futures python3-rtf-tokenize python3-setuptools python3-wcwidth python3-evdev"
 
 SETUPTOOLS_BUILD_ARGS += " build_py"
 
 do_configure:append () {
     sed -i '/build_ui/d' setup.py
     sed -i '/compile_catalog/d' setup.py
+    sed -i '/gui_qt/d' \
+        setup.py setup.cfg MANIFEST.in plover.egg-info/SOURCES.txt
+    rm -rf plover/gui_qt/ build/lib/plover/gui_qt
 }
 
 inherit setuptools3
