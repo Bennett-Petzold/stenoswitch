@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "1ac88d9e5eda10436c4517e390a4142d88638fe682c436c93db7ce4a27
 
 S = "${WORKDIR}/cattrs-25.3.0"
 
-RDEPENDS_${PN} = "python3-attrs python3-typing-extensions"
+RDEPENDS:${PN} = "python3-attrs python3-typing-extensions"
 
 inherit setuptools3

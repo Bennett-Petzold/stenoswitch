@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "9020aa801502b5de60be2b7709b9ce4cb29cd70df6f5fc4953315cf158
 
 S = "${WORKDIR}/rtf_tokenize-1.0.1"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

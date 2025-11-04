@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "74a540a3b6eba1d95bdc610c24f2c0141639f3ba903501e61a52a87302
 
 S = "${WORKDIR}/url_normalize-2.2.1"
 
-RDEPENDS_${PN} = "python3-idna"
+RDEPENDS:${PN} = "python3-idna"
 
 inherit setuptools3

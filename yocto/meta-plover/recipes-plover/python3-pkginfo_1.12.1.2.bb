@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "5cd957824ac36f140260964eba3c6be6442a8359b8c48f4adf90210f33
 
 S = "${WORKDIR}/pkginfo-1.12.1.2"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3

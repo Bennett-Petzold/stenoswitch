@@ -11,6 +11,6 @@ SRC_URI[sha256sum] = "de03b23f4aee66b65f69f7d4ecc4233681b43541502d86bf14fde29eaa
 
 S = "${WORKDIR}/plover_stroke-1.1.0"
 
-RDEPENDS_${PN} = ""
+RDEPENDS:${PN} = ""
 
 inherit setuptools3
