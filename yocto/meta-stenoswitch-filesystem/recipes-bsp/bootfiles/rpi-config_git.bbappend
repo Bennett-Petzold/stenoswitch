@@ -15,6 +15,6 @@ do_deploy:append () {
         'dtparam=uart0=off' \
         'dtparam=uart1=off' \
         'dtoverlay=spi0-1cs,cs0_pin=25' \
-        'dtoverlay=dwc2' \
+        'dtoverlay=dwc2,dr_mode=peripheral' \
     >> "${CONFIG}"
 }
