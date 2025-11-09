@@ -2,9 +2,13 @@ mod battery_monitor;
 mod chg_en;
 mod current_monitor;
 mod current_rheostat;
+mod i2c;
 mod notify_lines;
 
-use std::thread::{self};
+use std::{
+    sync::Mutex,
+    thread::{self},
+};
 
 use log::{debug, info};
 use systemd_journal_logger::JournalLog;
@@ -14,6 +18,7 @@ use crate::{
     chg_en::ChgEn,
     current_monitor::CurrentMonitor,
     current_rheostat::CurrentRheostat,
+    i2c::I2C,
     notify_lines::{NotifyLines, NotifySource},
 };
 
@@ -46,6 +51,11 @@ fn main() {
     JournalLog::new().unwrap().install().unwrap();
     log::set_max_level(log::LevelFilter::Trace);
     info!("Set charging to pre-setup disable");
+
+    info!("Intializing I2C bus...");
+    let sda_pin = str::parse(option_env!("SDA_PIN").unwrap_or("/dev/null")).unwrap();
+    let scl_pin = str::parse(option_env!("SCL_PIN").unwrap_or("/dev/null")).unwrap();
+    let i2c = Mutex::new(I2C::new(400_000, sda_pin, scl_pin));
 
     info!("Intializing SPI and I2C devices...");
     let (mut cur_rheostat, mut bat_mon, mut cur_mon) = thread::scope(|s| {

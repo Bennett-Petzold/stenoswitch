@@ -4,10 +4,13 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+bare_err_tree = "1"
 ctrlc = "3"
 gpio-cdev = "0.6"
 i2cdev = "0.6"
 log = "0.4"
 sd-notify = "0.4"
 spidev = "0.7"
+spin_sleep = "1"
 systemd-journal-logger = "2"
+thiserror = "2"
