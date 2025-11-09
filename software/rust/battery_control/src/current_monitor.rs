@@ -1,4 +1,7 @@
-use std::io::Write;
+use std::{
+    cmp::max,
+    io::{self, Write},
+};
 
 use log::debug;
 use spidev::{SpiModeFlags, Spidev, SpidevOptions, SpidevTransfer};
@@ -104,10 +107,9 @@ pub struct CurrentMonitor {
 
 impl CurrentMonitor {
     /// Creates all interfaces, panicking on hardware issues.
-    pub fn new() -> Self {
+    pub fn new() -> io::Result<Self> {
         let spi = {
-            let mut spi =
-                Spidev::open(option_env!("CURRENT_MONITOR_SPI").unwrap_or("/dev/null")).unwrap();
+            let mut spi = Spidev::open(option_env!("CURRENT_MONITOR_SPI").unwrap_or("/dev/null"))?;
             spi.configure(
                 &SpidevOptions::new()
                     // Standard bits per word
@@ -116,33 +118,24 @@ impl CurrentMonitor {
                     .max_speed_hz(2_000_000)
                     .mode(SpiModeFlags::SPI_MODE_0)
                     .build(),
-            )
-            .unwrap();
+            )?;
             spi
         };
 
-        Self { spi }
-    }
-}
-
-impl Default for CurrentMonitor {
-    fn default() -> Self {
-        Self::new()
+        Ok(Self { spi })
     }
 }
 
 impl CurrentMonitor {
     /// Returns the ADC reading for a given channel.
-    fn read_channel(&mut self, id: mcp_defs::ChannelId) -> mcp_defs::AdcVal {
+    fn read_channel(&mut self, id: mcp_defs::ChannelId) -> io::Result<mcp_defs::AdcVal> {
         // For initial debug purposes, fill this to make null or not reading obvious
         //let mut read_buf: [u8; mcp_defs::REQUEST_LEN] = unsafe { MaybeUninit::uninit().assume_init() };
         let mut read_buf = [255; mcp_defs::REQUEST_LEN];
-        self.spi
-            .transfer(&mut SpidevTransfer::read_write(
-                &mcp_defs::request(id),
-                &mut read_buf,
-            ))
-            .unwrap();
+        self.spi.transfer(&mut SpidevTransfer::read_write(
+            &mcp_defs::request(id),
+            &mut read_buf,
+        ))?;
 
         let _ = self.spi.write_all(&[0]); // Guarantee spacing before next request.
 
@@ -156,32 +149,30 @@ impl CurrentMonitor {
             "Read current_monitor {id:?} as RAW {read_buf:?}, U16 {adc_val}, MEASURE {voltage}V"
         );
 
-        adc_val
+        Ok(adc_val)
     }
 
     /// Returns the CC amperage limit.
-    pub fn read_cc(&mut self) -> AmpLimit {
-        let adc_val = CC_CHANNELS
-            .iter()
-            .map(|channel| self.read_channel(*channel))
-            .max()
-            .expect("Always >0 elements, CC_CHANNELS has 2.");
+    pub fn read_cc(&mut self) -> io::Result<AmpLimit> {
+        let first_adc_val = self.read_channel(CC_CHANNELS[0])?;
+        let second_adc_val = self.read_channel(CC_CHANNELS[1])?;
+        let adc_val = max(first_adc_val, second_adc_val);
 
-        AmpLimit::from_cc_volts(adc_to_voltage(adc_val))
+        Ok(AmpLimit::from_cc_volts(adc_to_voltage(adc_val)))
     }
 
     /// Returns the charger input current limit in amps.
-    pub fn read_current_limit(&mut self) -> Amps {
+    pub fn read_current_limit(&mut self) -> io::Result<Amps> {
         const UPPER_DIV_OHMS: f32 = 10_000.0;
 
-        let divh = self.read_channel(CHRG_DIVH);
-        let divl = self.read_channel(CHRG_DIVL);
+        let divh = self.read_channel(CHRG_DIVH)?;
+        let divl = self.read_channel(CHRG_DIVL)?;
 
         let volt_diff = adc_to_voltage(divh - divl);
         let divider_current = volt_diff / UPPER_DIV_OHMS;
         let variable_resistor = adc_to_voltage(divl) / divider_current;
 
         // See the MP2637 datasheet page 27 for the I_ILIM equation used
-        45_000.0 / (UPPER_DIV_OHMS + variable_resistor)
+        Ok(45_000.0 / (UPPER_DIV_OHMS + variable_resistor))
     }
 }

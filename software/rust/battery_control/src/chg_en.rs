@@ -4,34 +4,15 @@ use gpio_cdev::{Chip, LineHandle, LineRequestFlags};
 pub struct ChgEn(LineHandle);
 
 impl ChgEn {
-    /// Panics if the system is misconfigured.
-    ///
     /// Defaults to disabled.
-    pub fn new() -> Self {
-        let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null")).unwrap();
+    pub fn new() -> Result<Self, gpio_cdev::Error> {
+        let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null"))?;
         let this = Self(
-            chip.get_line(str::parse(option_env!("CHG_EN").unwrap_or("/dev/null")).unwrap())
-                .unwrap()
-                .request(LineRequestFlags::OUTPUT, 0, "battery_control")
-                .unwrap(),
+            chip.get_line(str::parse(option_env!("CHG_EN").unwrap_or("/dev/null"))?)?
+                .request(LineRequestFlags::OUTPUT, 0, "battery_control")?,
         );
-        this.disable().unwrap();
-        this
-    }
-
-    /// [`Self::new`] returning None instead of panicking.
-    ///
-    /// Defaults to disabled.
-    pub fn maybe_new() -> Option<Self> {
-        let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null")).ok()?;
-        let this = Self(
-            chip.get_line(str::parse(option_env!("CHG_EN").unwrap_or("/dev/null")).unwrap())
-                .ok()?
-                .request(LineRequestFlags::OUTPUT, 0, "battery_control")
-                .ok()?,
-        );
-        this.disable().ok()?;
-        Some(this)
+        this.disable()?;
+        Ok(this)
     }
 }
 

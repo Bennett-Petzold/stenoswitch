@@ -1,18 +1,33 @@
 use std::{
     hint::spin_loop,
-    mem::MaybeUninit,
     time::{Duration, Instant},
 };
 
+use bare_err_tree::err_tree;
 use gpio_cdev::{Chip, LineHandle, LineRequestFlags};
 use thiserror::Error;
 
+#[err_tree(I2CErrorS)]
 #[derive(Debug, Error)]
 pub enum I2CError {
     #[error(transparent)]
     Gpio(#[from] gpio_cdev::Error),
     #[error("NACK from slave")]
     Nack,
+}
+
+impl From<gpio_cdev::Error> for I2CErrorS {
+    #[track_caller]
+    fn from(value: gpio_cdev::Error) -> Self {
+        I2CError::from(value).into()
+    }
+}
+
+impl I2CErrorS {
+    #[track_caller]
+    fn nack() -> Self {
+        I2CError::Nack.into()
+    }
 }
 
 /// Software implementation of I2C.
@@ -31,7 +46,7 @@ impl I2C {
     /// Initializes the i2c connection.
     ///
     /// Frequency is in hertz.
-    pub fn new(frequency: u32, sda_pin: u32, scl_pin: u32) -> Result<Self, I2CError> {
+    pub fn new(frequency: u32, sda_pin: u32, scl_pin: u32) -> Result<Self, I2CErrorS> {
         let line_hold_time = Duration::from_secs(1) / frequency;
 
         // Both lines sit in the default high state.
@@ -61,7 +76,7 @@ impl I2C {
         Ok(this)
     }
 
-    fn clock_tick(&mut self) -> Result<(), I2CError> {
+    fn clock_tick(&mut self) -> Result<(), I2CErrorS> {
         spin_sleep::sleep_until(self.last_scl_change + self.line_hold_time);
         Ok(())
     }
@@ -69,7 +84,7 @@ impl I2C {
     /// Assumes SCL is low, reads a single bit over a whole clock cycle.
     ///
     /// Sets SCL to low at the end.
-    fn read_bit(&mut self) -> Result<u8, I2CError> {
+    fn read_bit(&mut self) -> Result<u8, I2CErrorS> {
         debug_assert_eq!(self.scl.get_value().unwrap(), 0);
 
         self.clock_tick()?;
@@ -85,13 +100,13 @@ impl I2C {
         Ok(bit?)
     }
 
-    fn scl_low(&mut self) -> Result<(), I2CError> {
+    fn scl_low(&mut self) -> Result<(), I2CErrorS> {
         self.scl.set_value(0)?;
         self.last_scl_change = Instant::now();
         Ok(())
     }
 
-    fn scl_high(&mut self) -> Result<(), I2CError> {
+    fn scl_high(&mut self) -> Result<(), I2CErrorS> {
         self.scl.set_value(1)?;
 
         // Wait for clock stretching to finish.
@@ -105,7 +120,7 @@ impl I2C {
     }
 
     /// Assumes SDA and SCL are already set high.
-    fn start(&mut self) -> Result<(), I2CError> {
+    fn start(&mut self) -> Result<(), I2CErrorS> {
         self.clock_tick()?;
         self.sda.set_value(0)?;
         self.clock_tick()?;
@@ -113,7 +128,7 @@ impl I2C {
     }
 
     /// Assumes SDA and SCL are set low.
-    fn repeated_start(&mut self) -> Result<(), I2CError> {
+    fn repeated_start(&mut self) -> Result<(), I2CErrorS> {
         self.sda.set_value(1)?;
         self.clock_tick()?;
         self.scl_high()?;
@@ -123,7 +138,7 @@ impl I2C {
     }
 
     /// Assumes SCL is already set low.
-    fn stop(&mut self) -> Result<(), I2CError> {
+    fn stop(&mut self) -> Result<(), I2CErrorS> {
         self.sda.set_value(0)?;
         self.clock_tick()?;
         self.scl_high()?;
@@ -135,7 +150,7 @@ impl I2C {
     /// Sends a single byte over i2c.
     ///
     /// Assumes write was already sent and SCL is set low.
-    fn send_byte(&mut self, byte: u8) -> Result<(), I2CError> {
+    fn send_byte(&mut self, byte: u8) -> Result<(), I2CErrorS> {
         let mut mask: u8 = 0b1000_0000;
 
         for _ in 0..8 {
@@ -159,14 +174,14 @@ impl I2C {
         if self.read_bit()? == 0 {
             Ok(())
         } else {
-            Err(I2CError::Nack)
+            Err(I2CErrorS::nack())
         }
     }
 
     /// Reads a single byte over i2c.
     ///
     /// Assumes read was already set up and SCL is set low.
-    fn read_byte(&mut self, final_read: bool) -> Result<u8, I2CError> {
+    fn read_byte(&mut self, final_read: bool) -> Result<u8, I2CErrorS> {
         let mut buffer: u8 = 0;
 
         for shift in (0..8).rev() {
@@ -183,7 +198,7 @@ impl I2C {
         Ok(buffer)
     }
 
-    pub fn reset(&mut self) -> Result<(), I2CError> {
+    pub fn reset(&mut self) -> Result<(), I2CErrorS> {
         self.start()?;
 
         // Nine pulses of highs.
@@ -207,7 +222,7 @@ impl I2C {
     }
 
     /// Send data over I2C.
-    pub fn write<I>(&mut self, device_address: u8, bytes: I) -> Result<(), I2CError>
+    pub fn write<I>(&mut self, device_address: u8, bytes: I) -> Result<(), I2CErrorS>
     where
         I: IntoIterator<Item = u8>,
     {
@@ -227,12 +242,12 @@ impl I2C {
     /// Receive data over I2C.
     ///
     /// Reads in the full length of dest. Slice for the appropriate length.
-    pub fn read<const READ_LEN: usize>(
+    pub fn read(
         &mut self,
         device_address: u8,
         register: u8,
         dest: &mut [u8],
-    ) -> Result<(), I2CError> {
+    ) -> Result<(), I2CErrorS> {
         // Fill in the LSB 0 bit for a write.
         let address_write = device_address << 1;
         // Fill in the LSB 1 bit for a read.

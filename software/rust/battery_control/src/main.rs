@@ -6,10 +6,12 @@ mod i2c;
 mod notify_lines;
 
 use std::{
+    error::Error,
     sync::Mutex,
     thread::{self},
 };
 
+use bare_err_tree::{AsErrTree, WrapErr, tree};
 use log::{debug, info};
 use systemd_journal_logger::JournalLog;
 
@@ -21,6 +23,23 @@ use crate::{
     i2c::I2C,
     notify_lines::{NotifyLines, NotifySource},
 };
+
+#[track_caller]
+pub fn bare_err_unwrap<T, E>(res: Result<T, E>) -> T
+where
+    E: AsErrTree,
+{
+    const ERROR_DEPTH: usize = 10;
+    bare_err_tree::tree_unwrap::<{ ERROR_DEPTH * 6 }, _, _>(res)
+}
+
+#[track_caller]
+pub fn std_unwrap<T, E>(res: Result<T, E>) -> T
+where
+    E: Error,
+{
+    bare_err_unwrap(res.map_err(WrapErr))
+}
 
 /// Calibrates the charging rheostat based on the CC pins.
 ///
@@ -35,33 +54,32 @@ fn main() {
     // Disable charging on panic
     let default_panic = std::panic::take_hook();
     std::panic::set_hook(Box::new(move |info| {
-        while ChgEn::maybe_new().is_none() {}
+        while ChgEn::new().is_err() {}
         default_panic(info);
     }));
 
     // Try disabling charge just once on Ctrl-C
-    ctrlc::set_handler(|| {
-        let _ = ChgEn::maybe_new();
-    })
-    .unwrap();
+    std_unwrap(ctrlc::set_handler(|| {
+        let _ = ChgEn::new();
+    }));
 
-    let chg_en = ChgEn::new();
+    let chg_en = std_unwrap(ChgEn::new());
     // ---------- //
 
-    JournalLog::new().unwrap().install().unwrap();
+    std_unwrap(std_unwrap(JournalLog::new()).install());
     log::set_max_level(log::LevelFilter::Trace);
     info!("Set charging to pre-setup disable");
 
     info!("Intializing I2C bus...");
-    let sda_pin = str::parse(option_env!("SDA_PIN").unwrap_or("/dev/null")).unwrap();
-    let scl_pin = str::parse(option_env!("SCL_PIN").unwrap_or("/dev/null")).unwrap();
-    let i2c = Mutex::new(I2C::new(400_000, sda_pin, scl_pin));
+    let sda_pin = std_unwrap(str::parse(option_env!("SDA_PIN").unwrap_or("/dev/null")));
+    let scl_pin = std_unwrap(str::parse(option_env!("SCL_PIN").unwrap_or("/dev/null")));
+    let i2c = Mutex::new(bare_err_unwrap(I2C::new(400_000, sda_pin, scl_pin)));
 
     info!("Intializing SPI and I2C devices...");
     let (mut cur_rheostat, mut bat_mon, mut cur_mon) = thread::scope(|s| {
-        let rheostat_thread = s.spawn(CurrentRheostat::new);
-        let battery_thread = s.spawn(BatteryMonitor::new);
-        let current_thread = s.spawn(CurrentMonitor::new);
+        let rheostat_thread = s.spawn(|| bare_err_unwrap(CurrentRheostat::new(&i2c)));
+        let battery_thread = s.spawn(|| bare_err_unwrap(BatteryMonitor::new(&i2c)));
+        let current_thread = s.spawn(|| std_unwrap(CurrentMonitor::new()));
 
         (
             rheostat_thread.join().unwrap(),
@@ -74,23 +92,30 @@ fn main() {
 
     // Initial states
     debug!("CC Lines: {:?}", cur_mon.read_cc());
-    debug!("Current limit = {} amps", cur_mon.read_current_limit());
+    debug!(
+        "Current limit = {} amps",
+        std_unwrap(cur_mon.read_current_limit())
+    );
+    let raw_soc = bare_err_unwrap(bat_mon.raw_state_of_charge());
     info!(
         "Battery stats: {}% charge, {}% raw charge, {}% of design, {} mV, {} mA, {} mW",
-        bat_mon.state_of_charge(),
-        bat_mon.raw_state_of_charge(),
-        (bat_mon.full_available_capacity() as f32)
+        std_unwrap(bat_mon.state_of_charge(raw_soc)),
+        raw_soc,
+        (bare_err_unwrap(bat_mon.full_available_capacity()) as f32)
             / (battery_monitor::BATTERY_DESIGN_CAPACITY as f32),
-        bat_mon.millivolts(),
-        bat_mon.average_current(),
-        bat_mon.average_power(),
+        bare_err_unwrap(bat_mon.millivolts()),
+        bare_err_unwrap(bat_mon.average_current()),
+        bare_err_unwrap(bat_mon.average_power()),
     );
 
     let notify_lines = NotifyLines::new();
 
     loop {
         debug!("CC Lines: {:?}", cur_mon.read_cc());
-        debug!("Current limit = {} amps", cur_mon.read_current_limit());
+        debug!(
+            "Current limit = {} amps",
+            std_unwrap(cur_mon.read_current_limit())
+        );
 
         let notification = notify_lines.next_notification();
         match notification.source {
@@ -102,16 +127,19 @@ fn main() {
                 // some of this info.
                 // And/or capture in special log fake device.
                 debug!("Battery monitor notification");
-                debug!(
-                    "Battery stats: {}% charge, {}% raw charge, {}% of design, {} mV, {} mA, {} mW",
-                    bat_mon.state_of_charge(),
-                    bat_mon.raw_state_of_charge(),
-                    (bat_mon.full_available_capacity() as f32)
-                        / (battery_monitor::BATTERY_DESIGN_CAPACITY as f32),
-                    bat_mon.millivolts(),
-                    bat_mon.average_current(),
-                    bat_mon.average_power(),
-                );
+                if log::max_level() >= log::LevelFilter::Debug {
+                    let raw_soc = bare_err_unwrap(bat_mon.raw_state_of_charge());
+                    debug!(
+                        "Battery stats: {}% charge, {}% raw charge, {}% of design, {} mV, {} mA, {} mW",
+                        std_unwrap(bat_mon.state_of_charge(raw_soc)),
+                        raw_soc,
+                        (bare_err_unwrap(bat_mon.full_available_capacity()) as f32)
+                            / (battery_monitor::BATTERY_DESIGN_CAPACITY as f32),
+                        bare_err_unwrap(bat_mon.millivolts()),
+                        bare_err_unwrap(bat_mon.average_current()),
+                        bare_err_unwrap(bat_mon.average_power()),
+                    );
+                }
             }
             NotifySource::ChgOn => {
                 if notification.value {
@@ -125,8 +153,8 @@ fn main() {
                 // If USB was connected, this prevents overdrawing.
                 // If USB was disconnected, this is extra protection for the
                 // next connection.
-                chg_en.disable().unwrap();
-                cur_rheostat.set_max();
+                std_unwrap(chg_en.disable());
+                bare_err_unwrap(cur_rheostat.set_max());
 
                 if notification.value {
                     info!("Switched to USB power");
@@ -135,7 +163,7 @@ fn main() {
                     chg_en.enable().unwrap();
                     info!(
                         "Configured rheostat and enabled charging with {} mA limit",
-                        cur_mon.read_cc().to_milliamps()
+                        std_unwrap(cur_mon.read_cc()).to_milliamps()
                     );
 
                     bat_mon.sleep(false);
