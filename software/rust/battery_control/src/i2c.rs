@@ -36,6 +36,7 @@ impl I2CErrorS {
 /// clock stretching properly.
 #[derive(Debug)]
 pub struct I2C {
+    // Half the clock duration, single edge of the square signal.
     line_hold_time: Duration,
     sda: LineHandle,
     scl: LineHandle,
@@ -47,7 +48,8 @@ impl I2C {
     ///
     /// Frequency is in hertz.
     pub fn new(frequency: u32, sda_pin: u32, scl_pin: u32) -> Result<Self, I2CErrorS> {
-        let line_hold_time = Duration::from_secs(1) / frequency;
+        // Frequency is doubled to get the duration for a single edge.
+        let line_hold_time = Duration::from_secs(1) / (frequency * 2);
 
         // Both lines sit in the default high state.
         let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null"))?;
@@ -90,7 +92,7 @@ impl I2C {
         self.clock_tick()?;
         self.scl_high()?;
 
-        // Read halfway through the clock period.
+        // Read halfway through the clock edge period.
         spin_sleep::sleep_until(self.last_scl_change + (self.line_hold_time / 2));
         let bit = self.sda.get_value();
         spin_sleep::sleep_until(self.last_scl_change + self.line_hold_time);
