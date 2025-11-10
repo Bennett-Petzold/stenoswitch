@@ -7,12 +7,16 @@ mod notify_lines;
 
 use std::{
     error::Error,
-    sync::Mutex,
-    thread::{self},
+    process::exit,
+    sync::{
+        Mutex,
+        atomic::{AtomicBool, Ordering},
+    },
+    thread::{self, sleep},
 };
 
-use bare_err_tree::{AsErrTree, WrapErr, tree};
-use log::{debug, info};
+use bare_err_tree::{AsErrTree, WrapErr};
+use log::{debug, error, info, warn};
 use systemd_journal_logger::JournalLog;
 
 use crate::{
@@ -23,6 +27,8 @@ use crate::{
     i2c::I2C,
     notify_lines::{NotifyLines, NotifySource},
 };
+
+const STORAGE_CHARGE_LIMIT_MILLIVOLTS: u16 = 3700;
 
 #[track_caller]
 pub fn bare_err_unwrap<T, E>(res: Result<T, E>) -> T
@@ -44,27 +50,87 @@ where
 /// Calibrates the charging rheostat based on the CC pins.
 ///
 /// Will block to for the necessary spacing.
-fn set_rheostat_from_cc(_cur_rheostat: &mut CurrentRheostat, _cur_mon: &mut CurrentMonitor) {}
+///
+/// Even stepping to the rheostat max, this should execute in under a second.
+fn set_rheostat_from_cc(cur_rheostat: &mut CurrentRheostat, cur_mon: &mut CurrentMonitor) {
+    let cc_limit = std_unwrap(cur_mon.read_cc()).to_amps();
+
+    while std_unwrap(cur_mon.read_current_limit()) < cc_limit {
+        // Prevent infinite loops if the rheostat can't raise far enough.
+        if cur_rheostat.setting() >= current_rheostat::CUR_LIMIT_MAX {
+            warn!(
+                "Rheostat topped out below target limit: {:?} < {}",
+                cur_mon.read_current_limit(),
+                cc_limit
+            );
+            break;
+        }
+        bare_err_unwrap(cur_rheostat.step_up());
+        sleep(current_rheostat::WIPER_SET_WAIT);
+    }
+
+    while std_unwrap(cur_mon.read_current_limit()) > cc_limit {
+        // Prevent infinite loops if the rheostat can't lower far enough.
+        if cur_rheostat.setting() == 0 {
+            error!(
+                "Rheostat bottomed out above target limit: {:?} < {}",
+                cur_mon.read_current_limit(),
+                cc_limit
+            );
+            break;
+        }
+        bare_err_unwrap(cur_rheostat.step_down());
+        sleep(current_rheostat::WIPER_SET_WAIT);
+    }
+}
+
+/// Gets new stats from the battery.
+///
+/// Returns the raw state of charge.
+/// TODO battery monitor status stuff
+/// Should be doing writes to a SQLite database in /tmp/
+/// This can be used for data displayed over Bluetooth etc.
+/// Probably also have files in mass storage filesystem with
+/// some of this info.
+/// And/or capture in special log fake device.
+fn update_battery_stats(bat_mon: &mut BatteryMonitor) -> u16 {
+    let raw_soc = bare_err_unwrap(bat_mon.raw_state_of_charge());
+    debug!(
+        "Battery stats: {}% charge, {}% raw charge, {}% of design, {} mV, {} mA, {} mW",
+        std_unwrap(bat_mon.state_of_charge(raw_soc)),
+        raw_soc,
+        (bare_err_unwrap(bat_mon.full_available_capacity()) as f32)
+            / (battery_monitor::BATTERY_DESIGN_CAPACITY as f32),
+        bare_err_unwrap(bat_mon.millivolts()),
+        bare_err_unwrap(bat_mon.average_current()),
+        bare_err_unwrap(bat_mon.average_power()),
+    );
+
+    raw_soc
+}
 
 fn main() {
-    // ---------- //
+    // ---------------------------------- //
     // Establish safe state on the En pin //
-    // ---------- //
+    // ---------------------------------- //
 
     // Disable charging on panic
     let default_panic = std::panic::take_hook();
     std::panic::set_hook(Box::new(move |info| {
         while ChgEn::new().is_err() {}
         default_panic(info);
+        // Child threads also terminate the program.
+        exit(1);
     }));
 
     // Try disabling charge just once on Ctrl-C
     std_unwrap(ctrlc::set_handler(|| {
         let _ = ChgEn::new();
+        exit(2);
     }));
 
-    let chg_en = std_unwrap(ChgEn::new());
-    // ---------- //
+    let chg_en = Mutex::new(std_unwrap(ChgEn::new()));
+    // ---------------------------------- //
 
     std_unwrap(std_unwrap(JournalLog::new()).install());
     log::set_max_level(log::LevelFilter::Trace);
@@ -76,14 +142,14 @@ fn main() {
     let i2c = Mutex::new(bare_err_unwrap(I2C::new(400_000, sda_pin, scl_pin)));
 
     info!("Intializing SPI and I2C devices...");
-    let (mut cur_rheostat, mut bat_mon, mut cur_mon) = thread::scope(|s| {
+    let (cur_rheostat, bat_mon, mut cur_mon) = thread::scope(|s| {
         let rheostat_thread = s.spawn(|| bare_err_unwrap(CurrentRheostat::new(&i2c)));
         let battery_thread = s.spawn(|| bare_err_unwrap(BatteryMonitor::new(&i2c)));
         let current_thread = s.spawn(|| std_unwrap(CurrentMonitor::new()));
 
         (
-            rheostat_thread.join().unwrap(),
-            battery_thread.join().unwrap(),
+            Mutex::new(rheostat_thread.join().unwrap()),
+            Mutex::new(battery_thread.join().unwrap()),
             current_thread.join().unwrap(),
         )
     });
@@ -91,96 +157,134 @@ fn main() {
     sd_notify::notify(true, &[sd_notify::NotifyState::Ready]).unwrap();
 
     // Initial states
-    debug!("CC Lines: {:?}", cur_mon.read_cc());
-    debug!(
+    info!("CC Lines: {:?}", cur_mon.read_cc());
+    info!(
         "Current limit = {} amps",
         std_unwrap(cur_mon.read_current_limit())
     );
-    let raw_soc = bare_err_unwrap(bat_mon.raw_state_of_charge());
-    info!(
-        "Battery stats: {}% charge, {}% raw charge, {}% of design, {} mV, {} mA, {} mW",
-        std_unwrap(bat_mon.state_of_charge(raw_soc)),
-        raw_soc,
-        (bare_err_unwrap(bat_mon.full_available_capacity()) as f32)
-            / (battery_monitor::BATTERY_DESIGN_CAPACITY as f32),
-        bare_err_unwrap(bat_mon.millivolts()),
-        bare_err_unwrap(bat_mon.average_current()),
-        bare_err_unwrap(bat_mon.average_power()),
-    );
 
+    let cur_mon = Mutex::new(cur_mon);
     let notify_lines = NotifyLines::new();
+    let storage_voltage = AtomicBool::new(false);
+    let charging = AtomicBool::new(false);
 
-    loop {
-        debug!("CC Lines: {:?}", cur_mon.read_cc());
-        debug!(
-            "Current limit = {} amps",
-            std_unwrap(cur_mon.read_current_limit())
-        );
+    thread::scope(|s| {
+        let _ = s.spawn(|| {
+            let mut bat_mon = bat_mon.lock().unwrap();
+            update_battery_stats(&mut bat_mon)
+        });
 
-        let notification = notify_lines.next_notification();
-        match notification.source {
-            NotifySource::Batmon => {
-                // TODO battery monitor status stuff
-                // Should be doing writes to a SQLite database in /tmp/
-                // This can be used for data displayed over Bluetooth etc.
-                // Probably also have files in mass storage filesystem with
-                // some of this info.
-                // And/or capture in special log fake device.
-                debug!("Battery monitor notification");
-                if log::max_level() >= log::LevelFilter::Debug {
-                    let raw_soc = bare_err_unwrap(bat_mon.raw_state_of_charge());
-                    debug!(
-                        "Battery stats: {}% charge, {}% raw charge, {}% of design, {} mV, {} mA, {} mW",
-                        std_unwrap(bat_mon.state_of_charge(raw_soc)),
-                        raw_soc,
-                        (bare_err_unwrap(bat_mon.full_available_capacity()) as f32)
-                            / (battery_monitor::BATTERY_DESIGN_CAPACITY as f32),
-                        bare_err_unwrap(bat_mon.millivolts()),
-                        bare_err_unwrap(bat_mon.average_current()),
-                        bare_err_unwrap(bat_mon.average_power()),
-                    );
+        // Initial states
+        if log::max_level() >= log::LevelFilter::Debug {
+            let mut cur_mon = cur_mon.lock().unwrap();
+            debug!("CC Lines: {:?}", cur_mon.read_cc());
+            debug!(
+                "Current limit = {} amps",
+                std_unwrap(cur_mon.read_current_limit())
+            );
+        }
+
+        loop {
+            let notification = notify_lines.next_notification();
+            match notification.source {
+                NotifySource::Batmon => {
+                    debug!("Battery monitor notification");
+
+                    let _ = s.spawn(|| {
+                        let mut bat_mon = bat_mon.lock().unwrap();
+                        let raw_soc = update_battery_stats(&mut bat_mon);
+
+                        let storage_stop = storage_voltage.load(Ordering::Relaxed)
+                            && (bare_err_unwrap(bat_mon.millivolts())
+                                > STORAGE_CHARGE_LIMIT_MILLIVOLTS);
+                        let soc_stop = raw_soc >= bat_mon.state_of_charge_max();
+                        let disable_charging = soc_stop || storage_stop;
+                        let prev_charge_state = charging.swap(!disable_charging, Ordering::Relaxed);
+
+                        // If they match, the charging state flipped.
+                        if disable_charging == prev_charge_state {
+                            if disable_charging {
+                                std_unwrap(chg_en.lock().unwrap().disable());
+                                info!("Battery beyond limits, turned off charging");
+                            } else {
+                                std_unwrap(chg_en.lock().unwrap().enable());
+                                info!("Battery fell below limits, turned on charging");
+                            }
+                        }
+                    });
                 }
-            }
-            NotifySource::ChgOn => {
-                if notification.value {
-                    info!("Started charging battery from USB")
-                } else {
-                    info!("Stopped charging battery from USB")
+                NotifySource::ChgOn => {
+                    if notification.value {
+                        info!("Started charging battery from USB")
+                    } else {
+                        info!("Stopped charging battery from USB")
+                    }
                 }
-            }
-            NotifySource::UsbOn => {
-                // Always start USB power changes by setting to a safe state.
-                // If USB was connected, this prevents overdrawing.
-                // If USB was disconnected, this is extra protection for the
-                // next connection.
-                std_unwrap(chg_en.disable());
-                bare_err_unwrap(cur_rheostat.set_max());
+                NotifySource::UsbOn => {
+                    // Always start USB power changes by setting to a safe state.
+                    // If USB was connected, this prevents overdrawing.
+                    // If USB was disconnected, this is extra protection for the
+                    // next connection.
+                    std_unwrap(chg_en.lock().unwrap().disable());
 
-                if notification.value {
-                    info!("Switched to USB power");
+                    if notification.value {
+                        let _ = s.spawn(|| {
+                            info!("Switched to USB power");
 
-                    set_rheostat_from_cc(&mut cur_rheostat, &mut cur_mon);
-                    chg_en.enable().unwrap();
-                    info!(
-                        "Configured rheostat and enabled charging with {} mA limit",
-                        std_unwrap(cur_mon.read_cc()).to_milliamps()
-                    );
+                            let skip_charging = s.spawn(|| {
+                                let mut bat_mon = bat_mon.lock().unwrap();
+                                bare_err_unwrap(bat_mon.sleep(false));
+                                info!("Turned off battery monitor sleep");
 
-                    bat_mon.sleep(false);
-                    info!("Turned off battery monitor sleep");
+                                let storage_stop = storage_voltage.load(Ordering::Relaxed)
+                                    && (bare_err_unwrap(bat_mon.millivolts())
+                                        > STORAGE_CHARGE_LIMIT_MILLIVOLTS);
+                                let soc_stop = bare_err_unwrap(bat_mon.raw_state_of_charge())
+                                    >= bat_mon.state_of_charge_max();
+
+                                storage_stop || soc_stop
+                            });
+
+                            {
+                                let mut cur_rheostat = cur_rheostat.lock().unwrap();
+                                let mut cur_mon = cur_mon.lock().unwrap();
+                                set_rheostat_from_cc(&mut cur_rheostat, &mut cur_mon);
+                                info!(
+                                    "Configured rheostat with {} mA limit",
+                                    std_unwrap(cur_mon.read_cc()).to_milliamps()
+                                );
+                            }
+
+                            let skip_charging = skip_charging.join().unwrap();
+                            charging.store(!skip_charging, Ordering::Relaxed);
+                            if skip_charging {
+                                info!("Battery beyond limits, keeping charging disabled");
+                            } else {
+                                std_unwrap(chg_en.lock().unwrap().enable());
+                                info!("Enabled charging");
+                            }
+                        });
+                    }
                 }
-            }
-            NotifySource::BatOn => {
-                if notification.value {
-                    info!("Switched to battery power");
-
-                    bat_mon.sleep(true);
-                    info!("Turned on battery monitor sleep");
+                NotifySource::BatOn => {
+                    if notification.value {
+                        info!("Switched to battery power");
+                        let _ = s.spawn(|| {
+                            bare_err_unwrap(bat_mon.lock().unwrap().sleep(true));
+                            info!("Turned on battery monitor sleep");
+                        });
+                    }
                 }
-            }
-            NotifySource::StoreOn => {
-                todo!("Set battery charging to stop at 3.7 V")
+                NotifySource::StoreOn => {
+                    storage_voltage.store(notification.value, Ordering::Relaxed);
+
+                    if notification.value {
+                        info!("Set battery charging to stop at 3.7 V");
+                    } else {
+                        info!("Set battery charging to stop at configured max state of charge");
+                    };
+                }
             }
         }
-    }
+    });
 }

@@ -1,5 +1,7 @@
 use gpio_cdev::{Chip, LineHandle, LineRequestFlags};
 
+use crate::std_unwrap;
+
 #[derive(Debug)]
 pub struct ChgEn(LineHandle);
 
@@ -8,17 +10,13 @@ impl ChgEn {
     pub fn new() -> Result<Self, gpio_cdev::Error> {
         let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null"))?;
         let this = Self(
-            chip.get_line(str::parse(option_env!("CHG_EN").unwrap_or("/dev/null"))?)?
-                .request(LineRequestFlags::OUTPUT, 0, "battery_control")?,
+            chip.get_line(std_unwrap(str::parse(
+                option_env!("CHG_EN").unwrap_or("/dev/null"),
+            )))?
+            .request(LineRequestFlags::OUTPUT, 0, "battery_control")?,
         );
         this.disable()?;
         Ok(this)
-    }
-}
-
-impl Default for ChgEn {
-    fn default() -> Self {
-        Self::new()
     }
 }
 

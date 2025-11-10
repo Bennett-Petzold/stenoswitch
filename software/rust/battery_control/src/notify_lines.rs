@@ -75,17 +75,12 @@ impl NotifyLines {
                 })
                 .unwrap();
 
-                // Small race possibility if the line flips between sending the
-                // initial read and notification monitoring.
-
                 for event in events {
                     let value = match event.unwrap().event_type() {
                         EventType::RisingEdge => true,
                         EventType::FallingEdge => false,
                     };
                     debug!("Line event: {source:#?} -> {value}");
-                    // Small race possibility if the line flips while waiting
-                    // for this to be consumed.
                     tx.send(LineNotification { source, value }).unwrap();
                 }
             })
@@ -109,13 +104,8 @@ impl NotifyLines {
                 })
                 .unwrap();
 
-                // Small race possibility if the line flips between sending the
-                // initial read and notification monitoring.
-
                 for _event in events {
                     debug!("Line event: {:#?} -> {}", NotifySource::Batmon, true);
-                    // Small missed event possibility if the line triggers
-                    // again while waiting for this to be consumed.
                     tx.send(LineNotification {
                         source: NotifySource::Batmon,
                         value: true,

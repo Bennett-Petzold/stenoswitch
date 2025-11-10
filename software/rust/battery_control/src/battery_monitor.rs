@@ -3,7 +3,6 @@
 use std::{
     fs::{self, read_to_string},
     io,
-    mem::MaybeUninit,
     process::Command,
     sync::Mutex,
     thread::sleep,
@@ -193,8 +192,7 @@ impl BatteryMonitor<'_> {
 
     /// Read a single byte, blocking for the necessary time to space commands.
     fn read_byte(&mut self, register: u8) -> Result<u8, I2CErrorS> {
-        // SAFETY: u8 arrays don't need to be initialized.
-        let mut buffer: [u8; 1] = unsafe { MaybeUninit::uninit().assume_init() };
+        let mut buffer = [0];
         self.read(&mut buffer, register)?;
         Ok(buffer[0])
     }
@@ -269,11 +267,11 @@ impl BatteryMonitor<'_> {
 
     fn read_block(&mut self, subclass: u8, offset: u8) -> Result<u16, I2CErrorS> {
         // Enable block data memory control
-        self.write(extended_commands::BLOCK_DATA_CONTROL, 0);
+        self.write(extended_commands::BLOCK_DATA_CONTROL, 0)?;
         // Access subclass
-        self.write(extended_commands::DATA_CLASS, subclass);
+        self.write(extended_commands::DATA_CLASS, subclass)?;
         // Set block offset
-        self.write(extended_commands::DATA_BLOCK, offset / 32);
+        self.write(extended_commands::DATA_BLOCK, offset / 32)?;
 
         let inner_register = extended_commands::BLOCK_DATA_START + (offset % 32);
         self.read_u16(inner_register)
@@ -316,11 +314,11 @@ impl BatteryMonitor<'_> {
     ///
     /// From BQ27427 Technical Reference Manual, page 18
     fn set_chemistry_profile(&mut self) -> Result<(), I2CErrorS> {
-        self.set_cfgupdate();
-        self.write_u16(standard_commands::CONTROL, CHEM_ID);
-        self.soft_reset();
+        self.set_cfgupdate()?;
+        self.write_u16(standard_commands::CONTROL, CHEM_ID)?;
+        self.soft_reset()?;
         #[cfg(debug_assertions)]
-        self.assert_no_cfgupdate();
+        self.assert_no_cfgupdate()?;
 
         // Assert the chemical ID is set correctly.
         debug_assert_eq!(
@@ -353,8 +351,8 @@ impl BatteryMonitor<'_> {
         /// The defaults are unmodified, but being explicit doesn't hurt.
         const DEFAULT_OPCONFIG: u16 = u16::from_be_bytes([0x64, 0x78]);
 
-        self.unseal();
-        self.update_block_cfg(REGISTERS_SUBCLASS, OPCONFIG_OFFSET, DEFAULT_OPCONFIG);
+        self.unseal()?;
+        self.update_block_cfg(REGISTERS_SUBCLASS, OPCONFIG_OFFSET, DEFAULT_OPCONFIG)?;
         self.seal()
     }
 

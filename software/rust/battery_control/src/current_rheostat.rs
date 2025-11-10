@@ -5,7 +5,7 @@ use log::warn;
 use crate::i2c::{I2C, I2CErrorS};
 
 /// Maximum code for the current limiter rheostat.
-const CUR_LIMIT_MAX: u8 = 0x7F;
+pub const CUR_LIMIT_MAX: u8 = 0x7F;
 const CUR_LIMIT_DEFAULT: u8 = 0x3F;
 /// Maximum variance in ohms for the current limit rheostat.
 pub const WIPER_RES_VARIANCE: u8 = 100;
