@@ -35,6 +35,24 @@ do_compile:prepend() {
     export USB_ON="12"
     export BAT_ON="16"
     export STORE_ON="8"
+
+    export ROW0="13"
+    export ROW1="22"
+    # TODO 27 on v0.4, v0.3 has a jumper hack for RCOL4
+    export ROW2="17"
+
+    export RCOL0="19"
+    export RCOL1="26"
+    export RCOL2="7"
+    export RCOL3="14"
+    # TODO 17 on v0.4, v0.3 has a jumper hack for RCOL4
+    export RCOL4="27"
+
+    export LCOL0="1"
+    export LCOL1="12"
+    export LCOL2="16"
+    export LCOL3="20"
+    export LCOL4="21"
 }
 
 do_install:append() {
