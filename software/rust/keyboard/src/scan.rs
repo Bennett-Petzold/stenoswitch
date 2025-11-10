@@ -3,13 +3,15 @@ use std::{
     simd::Simd,
 };
 
+const GEMINI_PR_BYTES: usize = 6;
+
 #[derive(Debug)]
-struct GeminiPr([u8; 6]);
+struct GeminiPr([u8; GEMINI_PR_BYTES]);
 
 impl GeminiPr {
     /// Creates a new empty packet.
     pub const fn new() -> Self {
-        let mut inner = [0; 6];
+        let mut inner = [0; GEMINI_PR_BYTES];
         inner[0] = 0b1;
         Self(inner)
     }
@@ -39,6 +41,9 @@ impl DerefMut for GeminiPr {
 /// 30 SIMD elements, two blank
 const RAW_SCAN_LEN: usize = 32;
 
+/// 
+const PROCESS_SCAN_LEN: usize = GEMINI_PR_BYTES * 8;
+
 /// First 30 elements are scan results.
 ///
 /// Last elements are guaranteed to be 0 (false).
@@ -58,6 +63,10 @@ impl RawScan {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0,
         ]);
+
+        const SHIFTS: Simd<u8, RAW_SCAN_LEN> = Simd::from_slice([[
+            0, 7, 6, 5, 4, 3, 2, 1, 0,
+        ]; 4].as_flattened());
 
         // Change positions for GeminiPR splits
         // Each row is put in reverse order of final GeminiPR.
@@ -87,4 +96,12 @@ impl RawScan {
         packet[4] = byte_conv(row4);
         packet[5] = z[0];
     }
+}
+
+/// First 30 elements are scan results.
+///
+/// Last elements are guaranteed to be 0 (false).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+struct KeyScanner {
+    rows: []
 }
