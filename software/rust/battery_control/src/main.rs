@@ -93,11 +93,11 @@ fn set_rheostat_from_cc(cur_rheostat: &mut CurrentRheostat, cur_mon: &mut Curren
 /// Probably also have files in mass storage filesystem with
 /// some of this info.
 /// And/or capture in special log fake device.
-fn update_battery_stats(bat_mon: &mut BatteryMonitor) -> u16 {
+fn update_battery_stats(bat_mon: &mut BatteryMonitor, is_discharging: bool) -> u16 {
     let raw_soc = bare_err_unwrap(bat_mon.raw_state_of_charge());
     debug!(
         "Battery stats: {}% charge, {}% raw charge, {}% of design, {} mV, {} mA, {} mW",
-        std_unwrap(bat_mon.state_of_charge(raw_soc)),
+        std_unwrap(bat_mon.state_of_charge(raw_soc, is_discharging)),
         raw_soc,
         (bare_err_unwrap(bat_mon.full_available_capacity()) as f32)
             / (battery_monitor::BATTERY_DESIGN_CAPACITY as f32),
@@ -171,7 +171,7 @@ fn main() {
     thread::scope(|s| {
         let _ = s.spawn(|| {
             let mut bat_mon = bat_mon.lock().unwrap();
-            update_battery_stats(&mut bat_mon)
+            update_battery_stats(&mut bat_mon, !charging.load(Ordering::Relaxed))
         });
 
         // Initial states
@@ -192,7 +192,8 @@ fn main() {
 
                     let _ = s.spawn(|| {
                         let mut bat_mon = bat_mon.lock().unwrap();
-                        let raw_soc = update_battery_stats(&mut bat_mon);
+                        let raw_soc =
+                            update_battery_stats(&mut bat_mon, !charging.load(Ordering::Relaxed));
 
                         let storage_stop = storage_voltage.load(Ordering::Relaxed)
                             && (bare_err_unwrap(bat_mon.millivolts())

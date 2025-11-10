@@ -65,6 +65,7 @@ mod extended_commands {
     pub const BLOCK_DATA_CONTROL: u8 = 0x61;
 }
 
+const CONFIG_DIR: &str = "/user/data/.config/";
 const SOC_OFFSET_FILE: &str = "/user/data/.config/state_of_charge_offset";
 const SOC_MAX_FILE: &str = "/user/data/.config/state_of_charge_max";
 
@@ -431,7 +432,11 @@ impl BatteryMonitor<'_> {
     /// Returns the adjusted state of charge.
     ///
     /// Also updates the SOC offset if this is lower than previously achieved.
-    pub fn state_of_charge(&self, raw_charge: Percent) -> io::Result<Percent> {
+    pub fn state_of_charge(
+        &mut self,
+        raw_charge: Percent,
+        is_discharging: bool,
+    ) -> io::Result<Percent> {
         // Usual case
         if raw_charge > self.soc_offset {
             let num = raw_charge - self.soc_offset;
@@ -439,14 +444,19 @@ impl BatteryMonitor<'_> {
             let adjusted_num = num * 100;
             Ok(adjusted_num / (self.soc_max - self.soc_offset))
         } else {
-            // Have to update for the new minimum state of charge.
-            let _ = Command::new("mount")
-                .args(["-o", "remount,rw", "/user/data/"])
-                .output()?;
-            fs::write(SOC_OFFSET_FILE, raw_charge.to_string())?;
-            let _ = Command::new("mount")
-                .args(["-o", "remount,ro", "/user/data/"])
-                .output()?;
+            if is_discharging {
+                // Have to update for the new minimum state of charge.
+                let _ = Command::new("mount")
+                    .args(["-o", "remount,rw", "/user/data/"])
+                    .output()?;
+                fs::create_dir_all(CONFIG_DIR)?;
+                fs::write(SOC_OFFSET_FILE, raw_charge.to_string())?;
+                let _ = Command::new("mount")
+                    .args(["-o", "remount,ro", "/user/data/"])
+                    .output()?;
+
+                self.soc_offset = raw_charge;
+            }
 
             Ok(0)
         }
