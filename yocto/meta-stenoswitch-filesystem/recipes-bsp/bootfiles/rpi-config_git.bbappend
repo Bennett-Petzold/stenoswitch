@@ -1,7 +1,6 @@
 ETH_LED_OFF ??= "14"
 
 do_deploy:append () {
-    # TODO add i2c_arm=off for software i2c
     # TODO add dtoverlay=disable-wifi on non-debug builds
 
     printf '%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n' \
@@ -14,6 +13,7 @@ do_deploy:append () {
         'dtparam=spi=on' \
         'dtparam=uart0=off' \
         'dtparam=uart1=off' \
+        'dtoverlay=i2c_arm=off' \
         'dtoverlay=spi0-1cs,cs0_pin=25' \
         'dtoverlay=dwc2,dr_mode=peripheral' \
     >> "${CONFIG}"
