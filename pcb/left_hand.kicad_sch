@@ -749,7 +749,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "e1c190b6-d043-4859-85f9-52bae64f20da")
 		(property "Reference" "Left_Plug0"

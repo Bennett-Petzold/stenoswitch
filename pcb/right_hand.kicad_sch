@@ -956,7 +956,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "414e1efb-099c-435b-88d1-98b8bdfcb4ed")
 		(property "Reference" "Right_Plug0"
