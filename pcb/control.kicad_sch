@@ -2602,7 +2602,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0fc81c17-e739-47de-b805-5e27ca37c6c7")
-		(property "Reference" "#PWR020"
+		(property "Reference" "#PWR034"
 			(at 139.7 80.01 0)
 			(effects
 				(font
@@ -2674,7 +2674,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "28e55d68-b476-4d96-bcfd-0b7a510844ff")
-		(property "Reference" "TRANSLATION0"
+		(property "Reference" "TRANSLATION_EN0"
 			(at 168.91 38.1 0)
 			(effects
 				(font
@@ -2782,7 +2782,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "50040783-42eb-4b7c-8dea-2e1d30d25974")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR06"
 			(at 63.5 49.53 0)
 			(effects
 				(font
@@ -2854,7 +2854,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "63ba4bc2-e349-4cd7-ab75-aa1b3e358268")
-		(property "Reference" "STORAGE0"
+		(property "Reference" "STORAGE_EN0"
 			(at 167.64 59.69 0)
 			(effects
 				(font
@@ -2962,7 +2962,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "67d1c4db-f8dc-4f4d-9ebd-b41db63b2b0a")
-		(property "Reference" "#PWR0127"
+		(property "Reference" "#PWR014"
 			(at 175.26 76.2 0)
 			(effects
 				(font
@@ -3034,7 +3034,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7d0aca2d-5d32-4cb7-920d-1d9526d159f3")
-		(property "Reference" "#PWR024"
+		(property "Reference" "#PWR032"
 			(at 73.66 54.61 0)
 			(effects
 				(font
@@ -3151,6 +3151,15 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C20345394"
+			(at 184.15 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "ae4667aa-5b3d-4ebd-9924-15ef39dce14d")
 		)
@@ -3158,6 +3167,12 @@
 			(uuid "213c83ff-c467-41b7-b301-c5dd34673e0f")
 		)
 		(instances
+			(project "stenoswitch"
+				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/93dd658d-093b-457b-aa9d-06e2289958ef"
+					(reference "CR5")
+					(unit 1)
+				)
+			)
 			(project "right_hand"
 				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/93dd658d-093b-457b-aa9d-06e2289958ef"
 					(reference "CR5")
@@ -3176,7 +3191,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "91d93fc2-5266-4d8e-85b8-efa3ef88e5e3")
-		(property "Reference" "BLUETOOTH0"
+		(property "Reference" "BT_EN0"
 			(at 167.64 80.01 0)
 			(effects
 				(font
@@ -3484,7 +3499,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a4bf158f-34ed-4d42-9bb7-df520a43e663")
-		(property "Reference" "#PWR026"
+		(property "Reference" "#PWR033"
 			(at 142.24 59.69 0)
 			(effects
 				(font
@@ -3556,7 +3571,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b5ee5573-023d-41a0-901d-89efd314a6a0")
-		(property "Reference" "#PWR0128"
+		(property "Reference" "#PWR00"
 			(at 175.26 96.52 0)
 			(effects
 				(font
@@ -3628,7 +3643,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b8c8092d-dfdd-43a0-982b-ebe80b872acd")
-		(property "Reference" "#PWR022"
+		(property "Reference" "#PWR011"
 			(at 69.85 74.93 0)
 			(effects
 				(font
@@ -3700,7 +3715,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e5b55ede-9926-4db8-bccb-4ba91f95cbb5")
-		(property "Reference" "#PWR0126"
+		(property "Reference" "#PWR015"
 			(at 176.53 54.61 0)
 			(effects
 				(font
@@ -3773,7 +3788,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f8dbb4fd-b316-4e68-9436-f914a3d25aef")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR0101"
 			(at 194.31 71.12 0)
 			(effects
 				(font
@@ -3821,6 +3836,12 @@
 			(uuid "3fdc10d4-37b9-454f-8dad-5348d2929982")
 		)
 		(instances
+			(project "stenoswitch"
+				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95/93dd658d-093b-457b-aa9d-06e2289958ef"
+					(reference "#PWR0101")
+					(unit 1)
+				)
+			)
 			(project "right_hand"
 				(path "/efcccfe8-5e20-4b1b-8d3b-61fce771481e/93dd658d-093b-457b-aa9d-06e2289958ef"
 					(reference "#PWR030")

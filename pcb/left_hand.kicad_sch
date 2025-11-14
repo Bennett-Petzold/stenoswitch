@@ -891,7 +891,7 @@
 			)
 		)
 		(instances
-			(project "portable_steno"
+			(project "stenoswitch"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/2477db2d-d681-4372-a745-e817369fb274"
 					(page "3")
 				)

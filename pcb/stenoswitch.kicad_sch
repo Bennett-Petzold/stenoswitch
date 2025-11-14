@@ -98,7 +98,7 @@
 			)
 		)
 		(instances
-			(project "portable_steno"
+			(project "stenoswitch"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07"
 					(page "2")
 				)
@@ -160,7 +160,7 @@
 			)
 		)
 		(instances
-			(project "portable_steno"
+			(project "stenoswitch"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07"
 					(page "4")
 				)

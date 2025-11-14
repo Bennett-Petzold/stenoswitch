@@ -1098,7 +1098,7 @@
 			)
 		)
 		(instances
-			(project "portable_steno"
+			(project "stenoswitch"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95"
 					(page "5")
 				)
@@ -1325,7 +1325,7 @@
 			)
 		)
 		(instances
-			(project "portable_steno"
+			(project "stenoswitch"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95"
 					(page "6")
 				)
@@ -1522,7 +1522,7 @@
 			)
 		)
 		(instances
-			(project "portable_steno"
+			(project "stenoswitch"
 				(path "/06a6eca0-edda-4cc0-a23f-017602e67f07/99f3b279-b2b0-4dd5-ab05-9b518546ce95"
 					(page "7")
 				)
