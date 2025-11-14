@@ -9,8 +9,8 @@
 	(paper "A4")
 	(title_block
 		(title "Stenoswitch Left Hand")
-		(date "2025-10-20")
-		(rev "0.3")
+		(date "2025-11-14")
+		(rev "0.4")
 		(company "https://github.com/Bennett-Petzold/stenoswitch")
 		(comment 1 "NO WARRANTY. See license.")
 		(comment 2 "https://creativecommons.org/licenses/by-sa/4.0/")
@@ -1465,7 +1465,7 @@
 		(property "Reference" ""
 			(at 0 0 0)
 			(layer "F.SilkS")
-			(uuid "11401ad4-7c7c-4d75-aed2-1b9ed5547054")
+			(uuid "f84c8acb-584d-4287-8264-de39b112486e")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1476,7 +1476,7 @@
 		(property "Value" ""
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "ce3ff81c-bb35-4495-bde7-5940af77c0e6")
+			(uuid "34ec0004-e73d-4c13-9226-37d1c38582d5")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1488,7 +1488,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "56212080-4591-4190-aff7-05c21dfded5f")
+			(uuid "3151c4d5-74ae-45bc-b651-be45dbc62099")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1500,7 +1500,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "71b5b3b0-0745-4828-88bc-9a1b59bc2f74")
+			(uuid "a6113d44-9b83-4fe6-a124-09a9b6a9e48d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1508,12 +1508,11 @@
 				)
 			)
 		)
-		(pad "" thru_hole circle
+		(pad "" np_thru_hole circle
 			(at 0 0 180)
-			(size 4 4)
-			(drill 2.75)
+			(size 2.4384 2.4384)
+			(drill 2.4384)
 			(layers "*.Cu" "*.Mask")
-			(remove_unused_layers no)
 			(uuid "5147ad48-6153-44d2-a990-acfff5ca9b47")
 		)
 		(embedded_fonts no)
@@ -2579,12 +2578,11 @@
 				)
 			)
 		)
-		(pad "" thru_hole circle
+		(pad "" np_thru_hole circle
 			(at 0 0 180)
-			(size 4 4)
-			(drill 2.75)
+			(size 2.4384 2.4384)
+			(drill 2.4384)
 			(layers "*.Cu" "*.Mask")
-			(remove_unused_layers no)
 			(uuid "7b9f7220-fbfe-4131-a13a-5af0b1541699")
 		)
 		(embedded_fonts no)
@@ -3829,12 +3827,11 @@
 				)
 			)
 		)
-		(pad "" thru_hole circle
+		(pad "" np_thru_hole circle
 			(at 0 0 180)
-			(size 4 4)
-			(drill 2.75)
+			(size 2.4384 2.4384)
+			(drill 2.4384)
 			(layers "*.Cu" "*.Mask")
-			(remove_unused_layers no)
 			(uuid "375542b6-1d62-4c3a-8ca8-aa6fb91d653e")
 		)
 		(embedded_fonts no)
@@ -3889,12 +3886,11 @@
 				)
 			)
 		)
-		(pad "" thru_hole circle
+		(pad "" np_thru_hole circle
 			(at 0 0 180)
-			(size 4 4)
-			(drill 2.75)
+			(size 2.4384 2.4384)
+			(drill 2.4384)
 			(layers "*.Cu" "*.Mask")
-			(remove_unused_layers no)
 			(uuid "87f02f31-1999-4557-8c25-d62b919836c2")
 		)
 		(embedded_fonts no)
@@ -4243,7 +4239,7 @@
 		(property "Reference" ""
 			(at 0 0 0)
 			(layer "F.SilkS")
-			(uuid "aeb784c7-92c9-4f62-9c7d-7766409c6d2a")
+			(uuid "7e546dbb-2a4c-4ff9-9303-d2a905a8417f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4254,7 +4250,7 @@
 		(property "Value" ""
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "38f6ba2d-8594-4d5d-8de8-b8437ff0faf0")
+			(uuid "e1e2b457-3ff5-42eb-b7c8-5dcf4a54ce3a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4266,7 +4262,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "64d66a3b-fe9b-4b32-b9cf-28aecfd883a3")
+			(uuid "636ab9d1-0d8d-4330-bfca-88b487032a1a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4278,7 +4274,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c2a2d373-591c-4cd4-9f78-c99ec03d5b0f")
+			(uuid "096dc516-e867-4f2e-b1cd-61015b182ef9")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4286,12 +4282,11 @@
 				)
 			)
 		)
-		(pad "" thru_hole circle
+		(pad "" np_thru_hole circle
 			(at 0 0 180)
-			(size 4 4)
-			(drill 2.75)
+			(size 2.4384 2.4384)
+			(drill 2.4384)
 			(layers "*.Cu" "*.Mask")
-			(remove_unused_layers no)
 			(uuid "f2a3a6f8-34cc-4ae0-b13a-9955dd47deb8")
 		)
 		(embedded_fonts no)
@@ -5694,12 +5689,11 @@
 				)
 			)
 		)
-		(pad "" thru_hole circle
+		(pad "" np_thru_hole circle
 			(at 0 0 180)
-			(size 4 4)
-			(drill 2.75)
+			(size 2.4384 2.4384)
+			(drill 2.4384)
 			(layers "*.Cu" "*.Mask")
-			(remove_unused_layers no)
 			(uuid "2016f0e4-d7ff-48b3-8d9b-dfeeba978928")
 		)
 		(embedded_fonts no)
@@ -6765,12 +6759,11 @@
 				)
 			)
 		)
-		(pad "" thru_hole circle
+		(pad "" np_thru_hole circle
 			(at 0 0 180)
-			(size 4 4)
-			(drill 2.75)
+			(size 2.4384 2.4384)
+			(drill 2.4384)
 			(layers "*.Cu" "*.Mask")
-			(remove_unused_layers no)
 			(uuid "7ef4cadd-8fe3-47e5-8a39-f65bd51bf7a3")
 		)
 		(embedded_fonts no)
@@ -12138,7 +12131,7 @@
 		(layer "Edge.Cuts")
 		(uuid "fb82d237-6d1c-4b8a-8d77-3199c2c06187")
 	)
-	(gr_text "Stenoswitch Left Hand v0.3"
+	(gr_text "Stenoswitch Left Hand v0.4"
 		(at 73.8 141.6 0)
 		(layer "F.SilkS")
 		(uuid "cf76344c-4692-4823-aa17-0ccb5905ea5a")
@@ -12151,7 +12144,7 @@
 		)
 	)
 	(gr_text "*"
-		(at 126.6 87.6 90)
+		(at 127.2 87.6 90)
 		(layer "B.SilkS")
 		(uuid "104765c3-e194-4970-9a51-a3c376d4ebed")
 		(effects
@@ -12210,7 +12203,7 @@
 			(justify mirror)
 		)
 	)
-	(gr_text "Stenoswitch Left Hand v0.3"
+	(gr_text "Stenoswitch Left Hand v0.4"
 		(at 179.2 148.8 0)
 		(layer "B.SilkS")
 		(uuid "4d80cbcc-9619-4659-94ab-479dec81a37a")
@@ -12368,7 +12361,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "2.9"
+		(gr_text "0.1142"
 			(at 67.45 43.25 0)
 			(layer "Dwgs.User")
 			(uuid "067f25b5-1a06-453c-817d-77a0f488c7a3")
@@ -12406,7 +12399,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "25.4"
+		(gr_text "1"
 			(at 131.4 123.25 0)
 			(layer "Dwgs.User")
 			(uuid "1b87d6d6-bb66-4bd8-a343-8b08a7ccbf5e")
@@ -12444,7 +12437,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "25.4"
+		(gr_text "1"
 			(at 156.8 123.25 0)
 			(layer "Dwgs.User")
 			(uuid "2e152621-578d-41a0-b3b1-8246b8abcf1d")
@@ -12482,7 +12475,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "2.9"
+		(gr_text "0.1142"
 			(at 73.8 47.6 90)
 			(layer "Dwgs.User")
 			(uuid "3205229f-16eb-4bc3-90f4-3da8ef9d4882")
@@ -12520,7 +12513,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "12.7"
+		(gr_text "0.5"
 			(at 131.52 108.375 90)
 			(layer "Dwgs.User")
 			(uuid "3d4b6d9e-c3b1-43bc-99da-f4e583ec08cf")
@@ -12558,7 +12551,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "105"
+		(gr_text "4.1339"
 			(at 224.8 98.5 90)
 			(layer "Dwgs.User")
 			(uuid "3e41857e-3516-45d6-bf1d-47b4aae89a6f")
@@ -12596,7 +12589,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "12.7"
+		(gr_text "0.5"
 			(at 108.12 121.075 90)
 			(layer "Dwgs.User")
 			(uuid "5a5ac916-0d15-4417-b4b7-e69a7a73e069")
@@ -12634,7 +12627,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "19.05"
+		(gr_text "0.75"
 			(at 179.025 123.25 0)
 			(layer "Dwgs.User")
 			(uuid "5c1acf45-9055-45da-8c61-7dfb0017d2f6")
@@ -12672,7 +12665,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "19.05"
+		(gr_text "0.75"
 			(at 204.62 105.2 90)
 			(layer "Dwgs.User")
 			(uuid "65b45f4d-fee8-4177-9d76-465f6b0b2ea6")
@@ -12710,7 +12703,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "28.575"
+		(gr_text "1.125"
 			(at 187.4 129.0125 90)
 			(layer "Dwgs.User")
 			(uuid "b97c00bb-b362-4542-af8b-862b443fbffa")
@@ -12748,7 +12741,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "150"
+		(gr_text "5.9055"
 			(at 141 36.8 0)
 			(layer "Dwgs.User")
 			(uuid "c07f62c2-a902-4fd6-bd97-8977a5305367")
@@ -12786,7 +12779,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "25.4"
+		(gr_text "1"
 			(at 106 126.275 0)
 			(layer "Dwgs.User")
 			(uuid "cd8b3042-e9ae-4750-98a7-86d5d2ee3580")
@@ -12824,7 +12817,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "12.7"
+		(gr_text "0.5"
 			(at 156.12 108.375 90)
 			(layer "Dwgs.User")
 			(uuid "fdda6a36-6a68-46a1-a00d-c5cd0d48b5cb")
