@@ -4,3 +4,5 @@
 _autosave*
 *gerbers*
 *.zip
+*/production
+fabrication-toolkit-options.json

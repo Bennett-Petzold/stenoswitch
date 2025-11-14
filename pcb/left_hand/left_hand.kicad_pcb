@@ -219,7 +219,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/748a3ed2-02bf-451c-a1ba-84feec8afe56")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -556,7 +556,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/352e8193-0919-4f88-9a67-c32e9fd7c553")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -893,7 +893,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/ce107900-b2db-4225-8039-86c0165d7929")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -1230,7 +1230,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/cc184a26-e6ef-4443-ab37-2e19ae15d335")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -1508,6 +1508,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" np_thru_hole circle
 			(at 0 0 180)
 			(size 2.4384 2.4384)
@@ -1626,7 +1627,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/c2718953-fbd7-4777-b120-b31b82ee0869")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -1963,7 +1964,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/060dffca-f245-4224-b727-889304a86cca")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -2300,7 +2301,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/c1f48095-130d-4f45-ab01-a89f4b67bae3")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -2578,6 +2579,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" np_thru_hole circle
 			(at 0 0 180)
 			(size 2.4384 2.4384)
@@ -2696,7 +2698,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/60dabcc0-e2de-4570-af96-77eaff80e2c0")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -3033,7 +3035,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/98482b9f-ae30-460f-8a59-4658db65a6a9")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -3321,7 +3323,7 @@
 		(path "/e1c190b6-d043-4859-85f9-52bae64f20da")
 		(sheetname "/")
 		(sheetfile "left_hand.kicad_sch")
-		(attr smd)
+		(attr smd dnp)
 		(fp_rect
 			(start -9.01 6.5)
 			(end 9.01 -6.5)
@@ -3549,7 +3551,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/f02fc5d6-b285-4764-aefd-b366041b0113")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -3827,6 +3829,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" np_thru_hole circle
 			(at 0 0 180)
 			(size 2.4384 2.4384)
@@ -3886,6 +3889,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" np_thru_hole circle
 			(at 0 0 180)
 			(size 2.4384 2.4384)
@@ -4004,7 +4008,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/371f9278-3ccf-4bcd-bb66-b31b8ce87901")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -4282,6 +4286,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" np_thru_hole circle
 			(at 0 0 180)
 			(size 2.4384 2.4384)
@@ -4400,7 +4405,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/94b369fa-3291-42a3-8b12-b3acf96946da")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -4737,7 +4742,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/9429857d-800b-4e5d-95d2-9fb55e6bc2d6")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -5074,7 +5079,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/122bdee1-2242-468a-827d-0473477f1de4")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -5411,7 +5416,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/7d166fe4-8d70-4496-8bc7-c76e7bca7bb7")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -5689,6 +5694,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" np_thru_hole circle
 			(at 0 0 180)
 			(size 2.4384 2.4384)
@@ -5807,7 +5813,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/5b547a51-ba1d-44ad-a92d-30eb2d8ef970")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -6144,7 +6150,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/832fd287-209d-4c80-8aa1-0adb44beb52b")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -6481,7 +6487,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/4e0898fc-5b3a-47f6-acc2-68b242be24ef")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -6759,6 +6765,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" np_thru_hole circle
 			(at 0 0 180)
 			(size 2.4384 2.4384)
@@ -6877,7 +6884,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/387c9e40-a015-4de1-b1e3-7cd4c7f5348f")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -7214,7 +7221,7 @@
 		(path "/f651b724-284b-4a82-a638-8f4a85d8d53c/ef0f0bc7-e54f-4174-ac51-0f060f83e0d6")
 		(sheetname "/Left Hand Keys/")
 		(sheetfile "left_hand_keys.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start -7.1 -7.1)
 			(end -7.1 7.1)
@@ -7473,7 +7480,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -7487,7 +7494,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -7521,6 +7528,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "4c67ca1e-e36e-4f47-9de9-24c02fd933f6")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "4c3d224d-6595-4a3e-8a1b-9851a53d7c00")
 			(effects
 				(font
 					(size 1 1)
@@ -7780,7 +7801,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -7794,7 +7815,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -7828,6 +7849,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "8ef49819-93a3-4b1d-94e5-33d8fb4c754c")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "59b187c3-b683-4c87-990a-b4e2cec5c513")
 			(effects
 				(font
 					(size 1 1)
@@ -8087,7 +8122,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -8101,7 +8136,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -8135,6 +8170,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "9cee18b5-6ee1-4ef8-877a-997b7413caf5")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "56c251f1-47ba-4617-9e36-1f469177b731")
 			(effects
 				(font
 					(size 1 1)
@@ -8394,7 +8443,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -8408,7 +8457,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -8442,6 +8491,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "ecdadb0b-a721-4e34-97ee-3da8e94873e9")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "02895999-3b3a-43b4-afb4-7728816cefdf")
 			(effects
 				(font
 					(size 1 1)
@@ -8701,7 +8764,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -8715,7 +8778,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -8749,6 +8812,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "bbc13800-3cb7-4256-a10f-2d030457a78f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "18b282c4-1386-480b-9525-1a348d2d24b0")
 			(effects
 				(font
 					(size 1 1)
@@ -9008,7 +9085,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -9022,7 +9099,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -9056,6 +9133,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "37d31480-45f2-4156-bc4b-d1dd7d169d5a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "e77c671f-7d94-48f7-838e-d0b32df0767f")
 			(effects
 				(font
 					(size 1 1)
@@ -9315,7 +9406,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -9329,7 +9420,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -9363,6 +9454,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "eba0e8bf-803f-4387-93c3-2c543e764848")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "5c57c6f3-2c6b-4ca8-a710-ab609180c891")
 			(effects
 				(font
 					(size 1 1)
@@ -9622,7 +9727,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -9636,7 +9741,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -9670,6 +9775,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "d06ba321-3ae9-4280-b8cc-da54cbe2f6fd")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "49c152f6-ddb7-46a3-89e1-8f6cb002da15")
 			(effects
 				(font
 					(size 1 1)
@@ -9929,7 +10048,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -9943,7 +10062,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -9977,6 +10096,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "1d17a011-4cb1-4345-ad6a-29c622d04b4b")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "7cb37236-5fe8-496b-8668-ed2e7a686cb0")
 			(effects
 				(font
 					(size 1 1)
@@ -10236,7 +10369,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -10250,7 +10383,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -10284,6 +10417,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "7a109907-28c0-4c9c-b410-9f3d9eecdc0f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "0189488a-ac7f-4595-bdaf-0507ee3646cf")
 			(effects
 				(font
 					(size 1 1)
@@ -10543,7 +10690,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -10557,7 +10704,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -10591,6 +10738,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "2b115dd7-ac61-4e81-a73b-74f815e686c7")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "5fc341a4-b85c-41e0-8834-9fe3c9d66aca")
 			(effects
 				(font
 					(size 1 1)
@@ -10850,7 +11011,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -10864,7 +11025,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -10898,6 +11059,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "110a1d1d-a883-4e35-955b-47fed0efdfce")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "d257b0a5-cd17-4a70-9708-8cb5f63e6933")
 			(effects
 				(font
 					(size 1 1)
@@ -11157,7 +11332,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -11171,7 +11346,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -11205,6 +11380,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "2f2400ba-71f5-48bb-962b-b06a20f63bd7")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "4d1dd927-e2ce-4f02-b221-b0844f894ad5")
 			(effects
 				(font
 					(size 1 1)
@@ -11464,7 +11653,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -11478,7 +11667,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -11512,6 +11701,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "215133af-2b0e-46c5-b48f-b0a5f31667e2")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "ee574f87-e5bc-4468-9b40-e945426b392e")
 			(effects
 				(font
 					(size 1 1)
@@ -11771,7 +11974,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mccsemi.com/pdf/Products/1N4148WX(SOD-323).pdf"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -11785,7 +11988,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "75V 0.15A Fast Switching Diode, SOD-123"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -11819,6 +12022,20 @@
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "1ff91f6a-2bfd-4437-bef3-0a3ce60f0712")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C78740"
+			(at 0 0 270)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "22a4239c-0701-4e0e-8961-e864745344e6")
 			(effects
 				(font
 					(size 1 1)
