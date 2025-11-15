@@ -7309,12 +7309,17 @@
 		)
 		(pad "" thru_hole circle
 			(at 0 0 180)
-			(size 4.7625 4.7625)
+			(size 4.0005 4.0005)
 			(drill 2.4384)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net 14 "GND")
+			(solder_mask_margin 0)
+			(solder_paste_margin 0)
+			(clearance 0)
 			(zone_connect 2)
+			(thermal_bridge_width 0)
+			(thermal_gap 0)
 			(uuid "276bdb64-32b0-41fa-bf67-a052aab344ee")
 		)
 		(embedded_fonts no)
@@ -32305,7 +32310,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "110"
+		(gr_text "4.3307"
 			(at 236.2 91.8 90)
 			(layer "Dwgs.User")
 			(uuid "87db45c1-de83-4a05-90ac-9022e96e364e")
@@ -32344,7 +32349,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "160"
+		(gr_text "6.2992"
 			(at 149.3 27.05 0)
 			(layer "Dwgs.User")
 			(uuid "d979b35c-3ac0-4cd5-babb-ca0826630ca0")
