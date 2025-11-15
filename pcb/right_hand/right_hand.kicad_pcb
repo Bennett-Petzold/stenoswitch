@@ -1276,6 +1276,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "1" smd circle
 			(at 0 0 180)
 			(size 4 4)
@@ -1672,6 +1673,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" thru_hole circle
 			(at 0 0 180)
 			(size 4.7625 4.7625)
@@ -1734,6 +1736,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" thru_hole circle
 			(at 0 0 180)
 			(size 4.7625 4.7625)
@@ -2565,6 +2568,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "1" smd circle
 			(at 0 0 180)
 			(size 4 4)
@@ -5622,6 +5626,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" thru_hole circle
 			(at 0 0 180)
 			(size 4.7625 4.7625)
@@ -5685,6 +5690,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" thru_hole circle
 			(at 0 0 180)
 			(size 4.7625 4.7625)
@@ -5748,6 +5754,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "1" smd circle
 			(at 0 0 180)
 			(size 4 4)
@@ -5807,6 +5814,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" thru_hole circle
 			(at 0 0 180)
 			(size 4.7625 4.7625)
@@ -6207,6 +6215,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "1" smd circle
 			(at 0 0 180)
 			(size 4 4)
@@ -6267,6 +6276,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" thru_hole circle
 			(at 0 0 180)
 			(size 4.7625 4.7625)
@@ -6845,6 +6855,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" thru_hole circle
 			(at 0 0 180)
 			(size 4.7625 4.7625)
@@ -7245,6 +7256,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" thru_hole circle
 			(at 0 0 180)
 			(size 4.7625 4.7625)
@@ -7307,6 +7319,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" thru_hole circle
 			(at 0 0 180)
 			(size 4.0005 4.0005)
@@ -8723,6 +8736,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "1" smd circle
 			(at 0 0 180)
 			(size 2 2)
@@ -9569,6 +9583,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "1" smd circle
 			(at 0 0 180)
 			(size 4 4)
@@ -9967,6 +9982,7 @@
 				)
 			)
 		)
+		(attr dnp)
 		(pad "" thru_hole circle
 			(at 0 0 180)
 			(size 4.7625 4.7625)
@@ -13126,6 +13142,7 @@
 				(justify mirror)
 			)
 		)
+		(attr dnp)
 		(pad "1" smd circle
 			(at 0 0)
 			(size 4 4)
@@ -22656,6 +22673,7 @@
 				(justify mirror)
 			)
 		)
+		(attr dnp)
 		(pad "1" smd circle
 			(at 0 0 180)
 			(size 4 4)
@@ -28403,6 +28421,7 @@
 				(justify mirror)
 			)
 		)
+		(attr dnp)
 		(pad "1" smd circle
 			(at 0 0)
 			(size 4 4)
@@ -32310,7 +32329,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "4.3307"
+		(gr_text "110"
 			(at 236.2 91.8 90)
 			(layer "Dwgs.User")
 			(uuid "87db45c1-de83-4a05-90ac-9022e96e364e")
@@ -32349,7 +32368,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "6.2992"
+		(gr_text "160"
 			(at 149.3 27.05 0)
 			(layer "Dwgs.User")
 			(uuid "d979b35c-3ac0-4cd5-babb-ca0826630ca0")
