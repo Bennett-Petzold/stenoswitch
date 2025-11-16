@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "Stenoswitch")
-		(date "2025-11-10")
+		(date "2025-11-16")
 		(rev "0.4")
 		(company "https://github.com/Bennett-Petzold/port_plover")
 		(comment 1 "NO WARRANTY. See license.")
@@ -2639,6 +2639,15 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C27834"
+			(at 102.87 57.15 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "eec99281-05ac-4960-82bb-3606a9d438bb")
 		)
@@ -4060,6 +4069,15 @@
 		)
 		(property "Description" "Resistor, US symbol"
 			(at 201.93 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C27834"
+			(at 201.93 57.15 90)
 			(effects
 				(font
 					(size 1.27 1.27)

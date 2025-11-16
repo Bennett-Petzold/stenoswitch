@@ -6,7 +6,7 @@
 	(paper "A5")
 	(title_block
 		(title "Stenoswitch")
-		(date "2025-11-10")
+		(date "2025-11-16")
 		(rev "0.4")
 		(company "https://github.com/Bennett-Petzold/port_plover")
 		(comment 1 "NO WARRANTY. See license.")
