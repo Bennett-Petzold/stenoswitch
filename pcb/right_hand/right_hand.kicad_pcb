@@ -9,7 +9,7 @@
 	(paper "A4")
 	(title_block
 		(title "Stenoswitch Right Hand")
-		(date "2025-11-14")
+		(date "2025-11-15")
 		(rev "v0.4")
 		(company "https://github.com/Bennett-Petzold/stenoswitch")
 		(comment 1 "NO WARRANTY. See license.")
@@ -4272,7 +4272,7 @@
 		(path "/cd3314d0-f605-42f0-be2b-644cabc7637c/acaa3521-7032-4a8a-adbb-019f51b56731/e8f7a46b-8607-4d8b-bc1c-6f370d460c1e")
 		(sheetname "/Interface/Battery/")
 		(sheetfile "battery.kicad_sch")
-		(attr through_hole)
+		(attr through_hole dnp)
 		(fp_line
 			(start 38.525 -10.325)
 			(end -38.525 -10.325)
@@ -13865,7 +13865,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 3.426875 0.47 0)
+			(at 3.396875 0.1 0)
 			(layer "B.SilkS")
 			(uuid "7bb1631e-b024-487d-a691-1d3104ae99b6")
 			(effects
@@ -18359,7 +18359,7 @@
 			)
 		)
 		(fp_text user "*"
-			(at -2.1493 -0.2 90)
+			(at 2.1493 -0.2 90)
 			(unlocked yes)
 			(layer "B.SilkS")
 			(uuid "676e212a-3f13-4bae-af5c-d71426e2ffff")
@@ -20702,7 +20702,7 @@
 			(uuid "b2a07e2a-fef4-449a-ba3c-7ba618186c84")
 		)
 		(fp_text user "*"
-			(at -2 -0.2 90)
+			(at 1.4 1 90)
 			(layer "B.SilkS")
 			(uuid "ee789983-99dc-4105-98dd-a93635281476")
 			(effects
@@ -24749,7 +24749,7 @@
 			(uuid "b8a9702f-578c-4438-9d7e-6ae0ef045bc3")
 		)
 		(fp_text user "*"
-			(at -2.0507 -0.2 90)
+			(at 1.6 1 90)
 			(layer "B.SilkS")
 			(uuid "3988ef47-ef00-4064-9ebf-1b183ff5cffa")
 			(effects
@@ -24761,7 +24761,7 @@
 			)
 		)
 		(fp_text user "*"
-			(at -2.0507 -0.2 90)
+			(at 1.6 1 90)
 			(unlocked yes)
 			(layer "B.SilkS")
 			(uuid "b8d3ab68-35c5-48fc-a082-a4cd31abd1ff")
@@ -28101,7 +28101,7 @@
 			)
 		)
 		(fp_text user "*"
-			(at -1.9757 -0.275 180)
+			(at 2.2243 -0.3683 180)
 			(unlocked yes)
 			(layer "B.SilkS")
 			(uuid "bd12d1e5-d78c-4869-8c50-530f0794debe")
@@ -28790,7 +28790,7 @@
 			(uuid "d17827f1-a18a-4960-85ad-8371b3a54b1c")
 		)
 		(fp_text user "*"
-			(at -1.6 -1 0)
+			(at 2 -0.2 0)
 			(layer "B.SilkS")
 			(uuid "f8d53605-7149-4a61-9ccc-c960bea31cd0")
 			(effects
@@ -32329,7 +32329,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "110"
+		(gr_text "4.3307"
 			(at 236.2 91.8 90)
 			(layer "Dwgs.User")
 			(uuid "87db45c1-de83-4a05-90ac-9022e96e364e")
@@ -32368,7 +32368,7 @@
 			(extension_offset 0.5)
 			(keep_text_aligned yes)
 		)
-		(gr_text "160"
+		(gr_text "6.2992"
 			(at 149.3 27.05 0)
 			(layer "Dwgs.User")
 			(uuid "d979b35c-3ac0-4cd5-babb-ca0826630ca0")
