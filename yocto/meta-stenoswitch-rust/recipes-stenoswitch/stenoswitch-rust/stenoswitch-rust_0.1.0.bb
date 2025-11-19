@@ -21,6 +21,8 @@ SYSTEMD_SERVICE:${PN}:append = " usb_comms.service"
 SRC_URI:append = " file://services/"
 FILES:${PN} += " ${systemd_unitdir}/system/"
 
+DEPENDS:append = " udev"
+
 do_compile[network] = "1"
 
 do_compile:prepend() {
