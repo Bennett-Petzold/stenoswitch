@@ -7,3 +7,7 @@ edition = "2024"
 gpio-cdev = "0.6"
 nix = { version = "0.30", features = ["time"] }
 spin_sleep = "1"
+log = { version = "0.4", features = ["release_max_level_info"] }
+systemd-journal-logger = "2"
+sd-notify = "0.4"
+virtual-serialport = "0.1"

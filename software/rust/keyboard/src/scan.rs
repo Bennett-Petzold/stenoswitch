@@ -1,13 +1,14 @@
 use std::{
     io,
     ops::{Deref, DerefMut},
-    simd::{Simd, num::SimdUint},
-    sync::{Condvar, Mutex},
+    simd::{self, Simd, num::SimdUint, simd_swizzle},
+    sync::{Condvar, Mutex, mpsc},
     thread,
     time::{Duration, Instant},
 };
 
 use gpio_cdev::{Chip, EventRequestFlags, LineEventHandle, LineHandle, LineRequestFlags};
+use log::{debug, trace};
 use nix::{
     sys::time::TimeValLike,
     time::{ClockId, clock_gettime},
@@ -137,15 +138,13 @@ impl RawScan {
         // [_(always 0), *3, *4, -E, -U, -F, -R]
         // [-P, -B, -L, -G, -T, -S, -D]
         // [#B, #C, -Z]
-        const RELOCS: Simd<u8, RAW_SCAN_LEN_SIMD> = Simd::from_array([
-            3, 23, 21, 19, 15, // [-T, -L, -P, -F, *3]
-            0, 2, 4, 6, 10, // [S1-, T-, P-, H-, *1]
-            26, 24, 22, 20, 16, // [-S, -G, -B, -R, *4]
-            1, 3, 5, 7, 11, // [S2-, K-, W-, R-, *2]
-            30, 27, 29, 18, 17, // [-Z, -D, #C, -U, -E]
-            13, 12, 29, 8, 9, // [res2, res1, #B, A-, O-]
-            14, 31, // _(always 0), END
-        ]);
+        const RELOCS: [usize; RAW_SCAN_LEN_SIMD] = [
+            5, 15, 0, 16, 2, 17, 8, // [S1-, S2-, T-, K-, P-, W-, H-]
+            0, 0, 0, 0, 0, 0, 0, // [R-, A-, O-, *1, *2, res1, res2]
+            31, 0, 0, 0, 0, 0, 0, // [_(always 0), *3, *4, -E, -U, -F, -R]
+            0, 0, 0, 0, 0, 0, 0, // [-P, -B, -L, -G, -T, -S, -D]
+            0, 0, 31, 31, // [#B, #C, -Z, _(always 0), _(always 0)]
+        ];
 
         // MSB order with 4 chunks of 7, one chunk of 3, one trailing
         const SHIFTS: Simd<u8, RAW_SCAN_LEN_SIMD> = Simd::from_array([
@@ -155,7 +154,7 @@ impl RawScan {
 
         // Change positions for GeminiPR splits
         // Organized in lines of 7 bits
-        self.0 = self.0.swizzle_dyn(RELOCS);
+        self.0 = simd_swizzle!(self.0, RELOCS);
         self.0 <<= SHIFTS;
 
         // Shrink into individual chunks
@@ -165,6 +164,17 @@ impl RawScan {
         let row4 = self.0.extract::<{ 7 * 3 }, 7>();
         let row5 = self.0.extract::<{ 7 * 4 }, 4>();
         let simd_split = [row1, row2, row3, row4];
+
+        debug!(
+            "GeminiPR split rows: {:#?}",
+            [
+                row1.as_array().as_slice(),
+                row2.as_array().as_slice(),
+                row3.as_array().as_slice(),
+                row4.as_array().as_slice(),
+                row5.as_array().as_slice()
+            ]
+        );
 
         // Convert to single bytes and write in.
         // First row is left as default, the keyboard never changes those
@@ -195,7 +205,9 @@ impl Default for RawScan {
 pub struct KeyScanner {
     rows: [LineHandle; 3],
     // Right hand columns first
-    columns: [[LineEventHandle; 5]; 2],
+    columns: [LineHandle; 10],
+    // Captures the event times of all rising edges
+    line_events: mpsc::Receiver<u64>,
 }
 
 impl KeyScanner {
@@ -215,81 +227,55 @@ impl KeyScanner {
                 .request(LineRequestFlags::OUTPUT, 0, "keyboard_scan")?,
         ];
 
-        let columns = [
-            [
-                chip.get_line(str::parse(option_env!("RCOL0").unwrap_or("/dev/null")).unwrap())?
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "keyboard_scan",
-                    )?,
-                chip.get_line(str::parse(option_env!("RCOL1").unwrap_or("/dev/null")).unwrap())?
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "keyboard_scan",
-                    )?,
-                chip.get_line(str::parse(option_env!("RCOL2").unwrap_or("/dev/null")).unwrap())?
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "keyboard_scan",
-                    )?,
-                chip.get_line(str::parse(option_env!("RCOL3").unwrap_or("/dev/null")).unwrap())?
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "keyboard_scan",
-                    )?,
-                chip.get_line(str::parse(option_env!("RCOL4").unwrap_or("/dev/null")).unwrap())?
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "keyboard_scan",
-                    )?,
-            ],
-            [
-                chip.get_line(str::parse(option_env!("LCOL0").unwrap_or("/dev/null")).unwrap())?
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "keyboard_scan",
-                    )?,
-                chip.get_line(str::parse(option_env!("LCOL1").unwrap_or("/dev/null")).unwrap())?
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "keyboard_scan",
-                    )?,
-                chip.get_line(str::parse(option_env!("LCOL2").unwrap_or("/dev/null")).unwrap())?
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "keyboard_scan",
-                    )?,
-                chip.get_line(str::parse(option_env!("LCOL3").unwrap_or("/dev/null")).unwrap())?
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "keyboard_scan",
-                    )?,
-                chip.get_line(str::parse(option_env!("LCOL4").unwrap_or("/dev/null")).unwrap())?
-                    .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "keyboard_scan",
-                    )?,
-            ],
+        let raw_columns = [
+            chip.get_line(str::parse(option_env!("RCOL0").unwrap_or("/dev/null")).unwrap())?,
+            chip.get_line(str::parse(option_env!("RCOL1").unwrap_or("/dev/null")).unwrap())?,
+            chip.get_line(str::parse(option_env!("RCOL2").unwrap_or("/dev/null")).unwrap())?,
+            chip.get_line(str::parse(option_env!("RCOL3").unwrap_or("/dev/null")).unwrap())?,
+            chip.get_line(str::parse(option_env!("RCOL4").unwrap_or("/dev/null")).unwrap())?,
+            chip.get_line(str::parse(option_env!("LCOL0").unwrap_or("/dev/null")).unwrap())?,
+            chip.get_line(str::parse(option_env!("LCOL1").unwrap_or("/dev/null")).unwrap())?,
+            chip.get_line(str::parse(option_env!("LCOL2").unwrap_or("/dev/null")).unwrap())?,
+            chip.get_line(str::parse(option_env!("LCOL3").unwrap_or("/dev/null")).unwrap())?,
+            chip.get_line(str::parse(option_env!("LCOL4").unwrap_or("/dev/null")).unwrap())?,
         ];
 
-        Ok(Self { rows, columns })
+        let (line_events_tx, line_events) = mpsc::sync_channel(0);
+
+        // Wait for any key to be pressed.
+        // Since the events are blocking, each column needs its own thread.
+        // These will be cleaned up on struct drop due to receiver drop.
+        for column in &raw_columns {
+            let mut column = column.events(
+                LineRequestFlags::INPUT,
+                EventRequestFlags::RISING_EDGE,
+                "keyboard_scan",
+            )?;
+
+            let tx = line_events_tx.clone();
+            let _monitor_column_thread = thread::spawn(move || {
+                loop {
+                    if let Ok(event) = column.get_event() {
+                        tx.send(event.timestamp()).unwrap();
+                    }
+                }
+            });
+        }
+
+        let columns = raw_columns.map(|col| {
+            col.request(LineRequestFlags::INPUT, 0, "keyboard_scan")
+                .unwrap()
+        });
+
+        Ok(Self {
+            rows,
+            columns,
+            line_events,
+        })
     }
 
-    /// Busy waits until a key is pressed.
+    /// Blocks until a key is pressed.
     pub fn wait_for_input(&mut self) -> Result<(), gpio_cdev::Error> {
-        let notify = Condvar::new();
-        let status_mut = Mutex::new(false);
-
         let start_time = clock_gettime(ClockId::CLOCK_MONOTONIC)
             .expect("Well defined Linux call")
             .num_milliseconds() as u64;
@@ -299,26 +285,18 @@ impl KeyScanner {
             row.set_value(1)?;
         }
 
-        // Wait for any key to be pressed.
-        // Since the events are blocking, each column needs its own thread.
-        thread::scope(|s| {
-            for column in self.columns.as_flattened_mut() {
-                s.spawn(|| {
-                    loop {
-                        if let Ok(event) = column.get_event() {
-                            if event.timestamp() > start_time {
-                                *status_mut.lock().unwrap() = true;
-                                notify.notify_all();
-                            }
-                        }
-                    }
-                });
+        debug!("Waiting for input");
+        loop {
+            let event = self.line_events.recv().unwrap();
+            // Discard all prior events.
+            // A previous keyboard scan will produce a lot of these.
+            if event >= start_time {
+                trace!("Accepted event: {event} >= {start_time}");
+                return Ok(());
+            } else {
+                trace!("Rejected past event: {event} < {start_time}");
             }
-
-            while *notify.wait(status_mut.lock().unwrap()).unwrap() != true {}
-        });
-
-        Ok(())
+        }
     }
 
     /// Scans at an effective 133 KHz.
@@ -336,6 +314,8 @@ impl KeyScanner {
             row.set_value(0)?;
         }
 
+        debug!("Starting keyboard scan...");
+
         while empty_count < EMPTY_TO_END {
             let mut new_data = [0; 30];
             for (row_num, row) in self.rows.iter().enumerate() {
@@ -343,10 +323,7 @@ impl KeyScanner {
                 spin_sleep::sleep(LINE_DELAY);
 
                 let base_idx = row_num * 10;
-                for (dest, column) in new_data[base_idx..10]
-                    .iter_mut()
-                    .zip(self.columns.as_flattened())
-                {
+                for (dest, column) in new_data[base_idx..10].iter_mut().zip(&self.columns) {
                     *dest = column.get_value()?;
                 }
                 row.set_value(0)?;
@@ -366,6 +343,8 @@ impl KeyScanner {
 
             data.extend(new_data);
         }
+
+        debug!("Finished keyboard scan, raw scan: {data:?}");
 
         Ok(data.create_gemini())
     }
