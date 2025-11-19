@@ -148,7 +148,12 @@ fn main() {
     // ---------------------------------- //
 
     std_unwrap(std_unwrap(JournalLog::new()).install());
-    log::set_max_level(log::LevelFilter::Trace);
+    log::set_max_level(if cfg!(debug_assertions) {
+        log::LevelFilter::Trace
+    } else {
+        log::LevelFilter::Info
+    });
+
     info!("Set charging to pre-setup disable");
 
     info!("Intializing I2C bus...");

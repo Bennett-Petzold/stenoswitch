@@ -8,7 +8,7 @@ bare_err_tree = "1"
 ctrlc = "3"
 gpio-cdev = "0.6"
 i2cdev = "0.6"
-log = "0.4"
+log = { version = "0.4", features = ["release_max_level_info"] }
 sd-notify = "0.4"
 spidev = "0.7"
 spin_sleep = "1"
