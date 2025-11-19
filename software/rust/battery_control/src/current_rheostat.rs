@@ -1,6 +1,6 @@
 use std::{cmp::min, sync::Mutex, time::Duration};
 
-use log::warn;
+use log::{debug, warn};
 
 use crate::i2c::{I2C, I2CErrorS};
 
@@ -23,6 +23,8 @@ pub struct CurrentRheostat<'a> {
 
 impl<'a> CurrentRheostat<'a> {
     pub fn new(i2c: &'a Mutex<I2C>) -> Result<Self, I2CErrorS> {
+        debug!("Creating rheostat instance");
+
         // Initialize as minimum allowed current
         // On the low tolerance MCP40D19T-104s, the max kOhm is 80,
         // so this gives a 0.5A limit.
@@ -56,7 +58,13 @@ impl CurrentRheostat<'_> {
     }
 
     fn apply(&mut self) -> Result<(), I2CErrorS> {
-        self.i2c.lock().unwrap().write(RHEO_ADDR, [0, self.setting])
+        debug!("Setting rheostat to {}", self.setting);
+        self.i2c
+            .lock()
+            .unwrap()
+            .write(RHEO_ADDR, [0, self.setting])?;
+        debug!("Set rheostat to {}", self.setting);
+        Ok(())
     }
 
     /// Returns the current rheostat value.

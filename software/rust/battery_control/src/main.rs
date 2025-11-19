@@ -7,12 +7,14 @@ mod notify_lines;
 
 use std::{
     error::Error,
+    mem,
     process::exit,
     sync::{
         Mutex,
         atomic::{AtomicBool, Ordering},
     },
     thread::{self, sleep},
+    time::Duration,
 };
 
 use bare_err_tree::{AsErrTree, WrapErr};
@@ -53,7 +55,20 @@ where
 ///
 /// Even stepping to the rheostat max, this should execute in under a second.
 fn set_rheostat_from_cc(cur_rheostat: &mut CurrentRheostat, cur_mon: &mut CurrentMonitor) {
+    // Always start by setting to a safe maximum
+    bare_err_unwrap(cur_rheostat.set_max());
+
+    // Sleep until the current limit can actually be read.
+    while !std_unwrap(cur_mon.current_limit_energized()) {
+        debug!("Waiting for current limit to energize...");
+        sleep(Duration::from_secs(1));
+    }
+
     let cc_limit = std_unwrap(cur_mon.read_cc()).to_amps();
+
+    while !std_unwrap(cur_mon.current_limit_energized()) {
+        debug!("Waiting for current limit to be energized...");
+    }
 
     while std_unwrap(cur_mon.read_current_limit()) < cc_limit {
         // Prevent infinite loops if the rheostat can't raise far enough.
@@ -167,8 +182,9 @@ fn main() {
     let notify_lines = NotifyLines::new();
     let storage_voltage = AtomicBool::new(false);
     let charging = AtomicBool::new(false);
-
     thread::scope(|s| {
+        let mut charge_enabled_thread = s.spawn(|| {});
+
         let _ = s.spawn(|| {
             let mut bat_mon = bat_mon.lock().unwrap();
             update_battery_stats(&mut bat_mon, !charging.load(Ordering::Relaxed))
@@ -199,6 +215,8 @@ fn main() {
                             && (bare_err_unwrap(bat_mon.millivolts())
                                 > STORAGE_CHARGE_LIMIT_MILLIVOLTS);
                         let soc_stop = raw_soc >= bat_mon.state_of_charge_max();
+                        drop(bat_mon); // No need to hold the mutex past this point.
+
                         let disable_charging = soc_stop || storage_stop;
                         let prev_charge_state = charging.swap(!disable_charging, Ordering::Relaxed);
 
@@ -228,43 +246,53 @@ fn main() {
                     // next connection.
                     std_unwrap(chg_en.lock().unwrap().disable());
 
-                    if notification.value {
-                        let _ = s.spawn(|| {
-                            info!("Switched to USB power");
+                    // Tune the charge limit when USB is attached AND there
+                    // isn't an existing tuning thread.
+                    // Skipping the tuning thread check could cause
+                    // uncontrolled thread spawning.
+                    if notification.value && charge_enabled_thread.is_finished() {
+                        let old_thread = mem::replace(
+                            &mut charge_enabled_thread,
+                            s.spawn(|| {
+                                info!("Switched to USB power");
 
-                            let skip_charging = s.spawn(|| {
-                                let mut bat_mon = bat_mon.lock().unwrap();
-                                bare_err_unwrap(bat_mon.sleep(false));
-                                info!("Turned off battery monitor sleep");
+                                let skip_charging = s.spawn(|| {
+                                    let mut bat_mon = bat_mon.lock().unwrap();
+                                    bare_err_unwrap(bat_mon.sleep(false));
+                                    info!("Turned off battery monitor sleep");
 
-                                let storage_stop = storage_voltage.load(Ordering::Relaxed)
-                                    && (bare_err_unwrap(bat_mon.millivolts())
-                                        > STORAGE_CHARGE_LIMIT_MILLIVOLTS);
-                                let soc_stop = bare_err_unwrap(bat_mon.raw_state_of_charge())
-                                    >= bat_mon.state_of_charge_max();
+                                    let storage_stop = storage_voltage.load(Ordering::Relaxed)
+                                        && (bare_err_unwrap(bat_mon.millivolts())
+                                            > STORAGE_CHARGE_LIMIT_MILLIVOLTS);
+                                    let soc_stop = bare_err_unwrap(bat_mon.raw_state_of_charge())
+                                        >= bat_mon.state_of_charge_max();
 
-                                storage_stop || soc_stop
-                            });
+                                    storage_stop || soc_stop
+                                });
 
-                            {
-                                let mut cur_rheostat = cur_rheostat.lock().unwrap();
-                                let mut cur_mon = cur_mon.lock().unwrap();
-                                set_rheostat_from_cc(&mut cur_rheostat, &mut cur_mon);
-                                info!(
-                                    "Configured rheostat with {} mA limit",
-                                    std_unwrap(cur_mon.read_cc()).to_milliamps()
-                                );
-                            }
+                                {
+                                    let mut cur_rheostat = cur_rheostat.lock().unwrap();
+                                    let mut cur_mon = cur_mon.lock().unwrap();
+                                    set_rheostat_from_cc(&mut cur_rheostat, &mut cur_mon);
+                                    info!(
+                                        "Configured rheostat with {} mA limit",
+                                        std_unwrap(cur_mon.read_cc()).to_milliamps()
+                                    );
+                                }
 
-                            let skip_charging = skip_charging.join().unwrap();
-                            charging.store(!skip_charging, Ordering::Relaxed);
-                            if skip_charging {
-                                info!("Battery beyond limits, keeping charging disabled");
-                            } else {
-                                std_unwrap(chg_en.lock().unwrap().enable());
-                                info!("Enabled charging");
-                            }
-                        });
+                                let skip_charging = skip_charging.join().unwrap();
+                                charging.store(!skip_charging, Ordering::Relaxed);
+                                if skip_charging {
+                                    info!("Battery beyond limits, keeping charging disabled");
+                                } else {
+                                    std_unwrap(chg_en.lock().unwrap().enable());
+                                    info!("Enabled charging");
+                                }
+                            }),
+                        );
+
+                        // Catch any panic from the previous invocation.
+                        old_thread.join().unwrap();
                     }
                 }
                 NotifySource::BatOn => {

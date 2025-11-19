@@ -1,5 +1,5 @@
 use std::{
-    cmp::max,
+    cmp::{max, min},
     io::{self, Write},
 };
 
@@ -108,6 +108,7 @@ pub struct CurrentMonitor {
 impl CurrentMonitor {
     /// Creates all interfaces, panicking on hardware issues.
     pub fn new() -> io::Result<Self> {
+        debug!("Creating current monitor instance");
         let spi = {
             let mut spi = Spidev::open(option_env!("CURRENT_MONITOR_SPI").unwrap_or("/dev/null"))?;
             spi.configure(
@@ -162,11 +163,20 @@ impl CurrentMonitor {
     }
 
     /// Returns the charger input current limit in amps.
+    ///
+    /// Requires [`Self::current_limit_energized`] returned true, indicating
+    /// there is a voltage across the ADC pins to measure resistances with.
     pub fn read_current_limit(&mut self) -> io::Result<Amps> {
         const UPPER_DIV_OHMS: f32 = 10_000.0;
 
         let divh = self.read_channel(CHRG_DIVH)?;
         let divl = self.read_channel(CHRG_DIVL)?;
+
+        if (divh == 0) || (divl == 0) {
+            return Err(io::Error::other(format!(
+                "Zero amps on current limit circuit (high, low): {divh}, {divl}",
+            )));
+        }
 
         let volt_diff = adc_to_voltage(divh - divl);
         let divider_current = volt_diff / UPPER_DIV_OHMS;
@@ -174,5 +184,15 @@ impl CurrentMonitor {
 
         // See the MP2637 datasheet page 27 for the I_ILIM equation used
         Ok(45_000.0 / (UPPER_DIV_OHMS + variable_resistor))
+    }
+
+    /// Returns true if the current limit can be read.
+    ///
+    /// Requires a voltage across the ADC pins to measure resistances with.
+    pub fn current_limit_energized(&mut self) -> io::Result<bool> {
+        let divh = self.read_channel(CHRG_DIVH)?;
+        let divl = self.read_channel(CHRG_DIVL)?;
+
+        Ok((divh != 0) && (divl != 0))
     }
 }

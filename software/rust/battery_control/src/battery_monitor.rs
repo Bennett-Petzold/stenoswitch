@@ -9,7 +9,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-use log::debug;
+use log::{debug, trace};
 
 use crate::i2c::{I2C, I2CErrorS};
 
@@ -142,6 +142,8 @@ pub struct BatteryMonitor<'a> {
 impl<'a> BatteryMonitor<'a> {
     /// Sets up the battery monitor, panicking on hardware failures.
     pub fn new(i2c: &'a Mutex<I2C>) -> Result<Self, I2CErrorS> {
+        debug!("Creating battery monitor instance");
+
         // Get previously recorded lowest SOC.
         // If this is a fresh system, 100% guarantees we write in lower percents.
         // New systems are expected to do a full charge and discharge cycle.
@@ -172,6 +174,7 @@ impl BatteryMonitor<'_> {
     /// All writes must be 1-byte at 100kHz, see BQ27427 manual page 7.
     fn write(&mut self, command: u8, data: u8) -> Result<(), I2CErrorS> {
         sleep(self.spacing.next_spacing(true));
+        trace!("Writing {command} to battery monitor with {data}");
         self.i2c
             .lock()
             .unwrap()
@@ -180,6 +183,7 @@ impl BatteryMonitor<'_> {
 
     /// Write out the two-byte data, blocking for the necessary time to space commands.
     fn write_u16(&mut self, command: u8, data: u16) -> Result<(), I2CErrorS> {
+        trace!("Writing {command} to battery monitor with u16 {data}");
         let [lsb, msb] = data.to_le_bytes();
         self.write(command, lsb)?;
         self.write(command + 1, msb)
@@ -187,6 +191,10 @@ impl BatteryMonitor<'_> {
 
     /// Read the data to a buffer, blocking for the necessary time to space commands.
     fn read(&mut self, data: &mut [u8], register: u8) -> Result<(), I2CErrorS> {
+        trace!(
+            "Reading {}-bytes of {register} from battery monitor",
+            data.len()
+        );
         sleep(self.spacing.next_spacing(false));
         self.i2c.lock().unwrap().read(MONITOR_ADDR, register, data)
     }
@@ -281,6 +289,7 @@ impl BatteryMonitor<'_> {
     /// Reboots the monitor; critical after any configuration changes.
     #[inline]
     fn soft_reset(&mut self) -> Result<(), I2CErrorS> {
+        trace!("Soft resetting battery monitor");
         self.write_u16(standard_commands::CONTROL, 0x0042)
     }
 
