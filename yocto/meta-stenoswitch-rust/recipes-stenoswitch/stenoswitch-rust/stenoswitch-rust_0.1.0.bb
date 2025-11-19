@@ -38,15 +38,13 @@ do_compile:prepend() {
 
     export ROW0="13"
     export ROW1="22"
-    # TODO 27 on v0.4, v0.3 has a jumper hack for RCOL4
-    export ROW2="17"
+    export ROW2="27"
 
     export RCOL0="19"
     export RCOL1="26"
     export RCOL2="7"
     export RCOL3="14"
-    # TODO 17 on v0.4, v0.3 has a jumper hack for RCOL4
-    export RCOL4="27"
+    export RCOL4="17"
 
     export LCOL0="1"
     export LCOL1="12"
