@@ -1,7 +1,9 @@
 [package]
 name = "pin_disable_wait"
 version = "0.1.0"
-edition = "2024"
+authors.workspace = true
+edition.workspace = true
 
 [dependencies]
-gpio-cdev = "0.6"
+gpio-cdev.workspace = true
+nix.workspace = true

@@ -1,16 +1,17 @@
 [package]
 name = "battery_control"
 version = "0.1.0"
-edition = "2024"
+authors.workspace = true
+edition.workspace = true
 
 [dependencies]
-bare_err_tree = "1"
-ctrlc = "3"
-gpio-cdev = "0.6"
-i2cdev = "0.6"
-log = { version = "0.4", features = ["release_max_level_info"] }
-sd-notify = "0.4"
-spidev = "0.7"
-spin_sleep = "1"
-systemd-journal-logger = "2"
-thiserror = "2"
+bare_err_tree.workspace = true
+ctrlc.workspace = true
+gpio-cdev.workspace = true
+i2cdev.workspace = true
+log.workspace = true
+sd-notify.workspace = true
+spidev.workspace = true
+spin_sleep.workspace = true
+systemd-journal-logger.workspace = true
+thiserror.workspace = true

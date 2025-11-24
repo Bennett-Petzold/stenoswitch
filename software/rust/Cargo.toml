@@ -1,3 +1,21 @@
 [workspace]
 resolver = "3"
 members = ["battery_control", "keyboard", "pin_enable_wait", "pin_disable_wait", "storage_pin_status", "usb_comms", "bluetooth_comms"]
+
+[workspace.package]
+authors = ["Bennett Petzold <dansecob.dev@gmail.com"]
+description = "Stenoswitch Rust programs"
+edition = "2024"
+
+[workspace.dependencies]
+bare_err_tree = "1"
+ctrlc = "3"
+gpio-cdev = "0.6"
+i2cdev = "0.6"
+log = { version = "0.4", features = ["release_max_level_info"] }
+sd-notify = "0.4"
+spidev = "0.7"
+spin_sleep = "1"
+systemd-journal-logger = "2"
+thiserror = "2"
+nix = { version = "0.30", features = ["time"] }

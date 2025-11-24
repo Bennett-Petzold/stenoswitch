@@ -1,8 +1,9 @@
 [package]
 name = "usb_comms"
 version = "0.1.0"
-edition = "2024"
+authors.workspace = true
+edition.workspace = true
 
 [dependencies]
-nix = "0.30"
+nix.workspace = true
 usb-gadget = "0.7"
