@@ -325,6 +325,7 @@ name = "pin_disable_wait"
 version = "0.1.0"
 dependencies = [
  "gpio-cdev",
+ "nix 0.30.1",
 ]
 
 [[package]]
@@ -332,6 +333,7 @@ name = "pin_enable_wait"
 version = "0.1.0"
 dependencies = [
  "gpio-cdev",
+ "nix 0.30.1",
 ]
 
 [[package]]
