@@ -1,11 +1,14 @@
 [Unit]
 Description=plover daemon
-After=multi-user.target
+BindsTo=translation_pin_en.service
+After=translation_pin_en.service
 
 [Service]
 Type=simple
+TimeoutStartSec=infinity
 ExecStart=/usr/bin/plover -g none
+Restart=always
 
 [Install]
 Alias=plover
-WantedBy=multi-user.target
+WantedBy=translation_pin_en.service

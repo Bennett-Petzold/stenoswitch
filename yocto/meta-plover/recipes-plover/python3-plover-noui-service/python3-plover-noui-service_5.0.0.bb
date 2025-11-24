@@ -6,7 +6,7 @@ inherit systemd
 RDEPENDS:${PN} = "python3-plover-noui"
 
 SYSTEMD_AUTO_ENABLE = "enable"
-SYSTEMD_SERVICE:${PN} = "plover_noui.service create_plover_user_config.service"
+SYSTEMD_SERVICE:${PN} = "plover_noui.service create_plover_user_config.service translation_pin_en.service"
 SRC_URI = " file://services/ file://plover-default-cfg/"
 FILES:${PN} += " ${systemd_unitdir}/system/ /system/config/plover/ /root/.config/plover"
 
