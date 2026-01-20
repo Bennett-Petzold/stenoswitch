@@ -278,7 +278,9 @@ impl KeyScanner {
     pub fn wait_for_input(&mut self) -> Result<(), gpio_cdev::Error> {
         let start_time = clock_gettime(ClockId::CLOCK_MONOTONIC)
             .expect("Well defined Linux call")
-            .num_milliseconds() as u64;
+            .num_nanoseconds()
+            .try_into()
+            .unwrap_or(0_u64);
 
         // Turning on all rows means any key will trigger a press
         for row in &self.rows {

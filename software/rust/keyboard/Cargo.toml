@@ -12,3 +12,4 @@ log.workspace = true
 systemd-journal-logger.workspace = true
 sd-notify.workspace = true
 virtual-serialport = "0.1"
+serialport = "4.8.1"

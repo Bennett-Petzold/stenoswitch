@@ -10,7 +10,9 @@ use nix::{
 fn main() {
     let start_time = clock_gettime(ClockId::CLOCK_MONOTONIC)
         .expect("Well defined Linux call")
-        .num_milliseconds() as u64;
+        .num_nanoseconds()
+        .try_into()
+        .unwrap_or(0_u64);
 
     let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null")).unwrap();
 

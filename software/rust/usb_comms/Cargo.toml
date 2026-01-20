@@ -6,4 +6,19 @@ edition.workspace = true
 
 [dependencies]
 nix.workspace = true
+log.workspace = true
+systemd-journal-logger.workspace = true
+sd-notify.workspace = true
 usb-gadget = "0.7"
+
+[[bin]]
+name = "usb_charging"
+path = "src/usb_charging.rs"
+
+[[bin]]
+name = "usb_serial"
+path = "src/usb_serial.rs"
+
+[[bin]]
+name = "usb_keyboard"
+path = "src/usb_keyboard.rs"
