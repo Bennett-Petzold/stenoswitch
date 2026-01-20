@@ -81,7 +81,9 @@ impl I2C {
     }
 
     fn clock_tick(&mut self) -> Result<(), I2CErrorS> {
+        trace!("Start tick");
         spin_sleep::sleep_until(self.last_scl_change + self.line_hold_time);
+        trace!("End tick");
         Ok(())
     }
 
