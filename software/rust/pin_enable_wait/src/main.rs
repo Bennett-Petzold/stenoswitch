@@ -30,7 +30,7 @@ fn main() {
         .unwrap();
 
     // Exit on true or first rising edge.
-    if events.get_value().unwrap() != 0 {
+    if events.get_value().unwrap() == 0 {
         println!("Value is not zero, it is {:?}", events.get_value());
         loop {
             let event = events.next().expect("GPIO events are infinite").unwrap();

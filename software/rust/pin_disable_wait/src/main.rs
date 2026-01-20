@@ -29,7 +29,7 @@ fn main() {
         .unwrap();
 
     // Exit on either false or first falling edge.
-    if events.get_value().unwrap() == 0 {
+    if events.get_value().unwrap() != 0 {
         loop {
             let event = events.next().expect("GPIO events are infinite").unwrap();
             if event.event_type() == EventType::FallingEdge && event.timestamp() >= start_time {
