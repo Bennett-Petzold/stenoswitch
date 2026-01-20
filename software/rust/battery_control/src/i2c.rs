@@ -51,16 +51,21 @@ impl I2C {
     pub fn new(frequency: u32, sda_pin: u32, scl_pin: u32) -> Result<Self, I2CErrorS> {
         // Frequency is doubled to get the duration for a single edge.
         let line_hold_time = Duration::from_secs(1) / (frequency * 2);
+        debug!("Debug enabled!");
+        trace!("Trace enabled!");
         info!("I2C frequency, line hold time: {frequency} Hz, {line_hold_time:?}");
 
         // Both lines sit in the default high state.
+        trace!("Before chip");
         let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null"))?;
+        trace!("Before SDA");
         let sda = chip.get_line(sda_pin)?.request(
             //LineRequestFlags::OPEN_DRAIN | LineRequestFlags::OUTPUT | LineRequestFlags::INPUT,
             LineRequestFlags::OPEN_DRAIN,
             1,
             "battery_control",
         )?;
+        trace!("Before SCL");
         let scl = chip.get_line(scl_pin)?.request(
             //LineRequestFlags::OPEN_DRAIN | LineRequestFlags::OUTPUT | LineRequestFlags::INPUT,
             LineRequestFlags::OPEN_DRAIN,
@@ -75,6 +80,7 @@ impl I2C {
             last_scl_change: Instant::now(),
         };
 
+        trace!("Before reset");
         this.reset()?;
 
         Ok(this)

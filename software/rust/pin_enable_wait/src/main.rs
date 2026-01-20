@@ -13,7 +13,6 @@ fn main() {
         .num_nanoseconds()
         .try_into()
         .unwrap_or(0_u64);
-    println!("Start time: {start_time}");
 
     let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null")).unwrap();
 
@@ -31,10 +30,8 @@ fn main() {
 
     // Exit on true or first rising edge.
     if events.get_value().unwrap() == 0 {
-        println!("Value is not zero, it is {:?}", events.get_value());
         loop {
             let event = events.next().expect("GPIO events are infinite").unwrap();
-            println!("Event: {event:#?}");
             if event.event_type() == EventType::RisingEdge && event.timestamp() >= start_time {
                 break;
             }
