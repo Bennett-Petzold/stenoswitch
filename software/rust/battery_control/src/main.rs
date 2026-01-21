@@ -132,7 +132,10 @@ fn main() {
     // Disable charging on panic
     let default_panic = std::panic::take_hook();
     std::panic::set_hook(Box::new(move |info| {
-        while ChgEn::new().is_err() {}
+        while ChgEn::new().is_err() {
+            error!("Failed to disable charging! {:#?}", ChgEn::new());
+        }
+        error!("PANIC! {info:#?}");
         default_panic(info);
         // Child threads also terminate the program.
         exit(1);
