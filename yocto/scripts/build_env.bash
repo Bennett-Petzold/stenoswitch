@@ -13,7 +13,7 @@ trap 'set +x' EXIT
 set -x
 
 cd "$(dirname "${BASH_SOURCE[0]}")"/.. || return
-git submodule update --init --recursive "${GIT_SUBMODULES[@]}" || return
+#git submodule update --init --recursive "${GIT_SUBMODULES[@]}" || return
 cd poky || return
 source oe-init-build-env ../build/ || return
 

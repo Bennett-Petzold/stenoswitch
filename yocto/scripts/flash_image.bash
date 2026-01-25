@@ -15,4 +15,4 @@ SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 cd "$SCRIPT_DIR" || return
 ./make_image.bash "$@"
 
-pv -o /dev/mmcblk0 "$(find ../build/wic-builds/ | tac | grep -m 1 -v '\.p.*$')"
+pv -o "$(find /dev/ -name 'mmcblk*' -and -not -name 'mmcblk*p*' | head -n 1)" "$(find ../build/wic-builds/ | tac | grep -m 1 -v '\.p.*$')"
