@@ -9,7 +9,8 @@ Type=oneshot
 # Only run when the partition doesn't exist yet
 ExecCondition=/usr/bin/sh -c '! lsblk --list | grep -q mmcblk0p3'
 # Creates a new partition from existing empty space
-ExecStart=/usr/bin/sh -c 'printf "n\np\n\n\n\n\nw\n" | fdisk /dev/mmcblk0'
+#ExecStart=/usr/bin/sh -c 'printf "n\np\n\n\n\n\nw\n" | fdisk /dev/mmcblk0'
+ExecStart=/usr/bin/sh -c 'true'
 
 [Install]
 RequiredBy=user-data.mount
