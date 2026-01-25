@@ -7,5 +7,5 @@ Type=notify
 ExecStart=/usr/bin/battery_control
 Restart=always
 
-[Install]
-WantedBy=multi-user.target
+#[Install]
+#WantedBy=multi-user.target

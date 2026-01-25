@@ -8,5 +8,5 @@ TimeoutStartSec=infinity
 ExecStart=/usr/bin/storage_pin_status
 Restart=always
 
-[Install]
-WantedBy=multi-user.target
+#[Install]
+#WantedBy=multi-user.target

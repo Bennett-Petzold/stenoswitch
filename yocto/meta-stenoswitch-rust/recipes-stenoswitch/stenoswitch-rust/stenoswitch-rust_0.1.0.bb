@@ -17,11 +17,14 @@ SYSTEMD_SERVICE:${PN}:append = " bluetooth_pin_en.service"
 SYSTEMD_SERVICE:${PN}:append = " keyboard.service"
 SYSTEMD_SERVICE:${PN}:append = " storage_pin_status.service"
 SYSTEMD_SERVICE:${PN}:append = " translation_pin_en.service"
-SYSTEMD_SERVICE:${PN}:append = " usb_comms.service"
+SYSTEMD_SERVICE:${PN}:append = " usb_charging.service"
 SRC_URI:append = " file://services/"
 FILES:${PN} += " ${systemd_unitdir}/system/"
 
 DEPENDS:append = " udev"
+
+# Temporary until I have a better way of flagging this
+CARGO_BUILD_PROFILE = "dev"
 
 do_compile[network] = "1"
 

@@ -10,6 +10,6 @@ ExecStartPre=/usr/bin/pin_enable_wait 0
 ExecStart=/usr/bin/pin_disable_wait 0
 Restart=always
 
-[Install]
-WantedBy=multi-user.target
-RequiredBy=bluetooth.service
+#[Install]
+#WantedBy=multi-user.target
+#RequiredBy=bluetooth.service

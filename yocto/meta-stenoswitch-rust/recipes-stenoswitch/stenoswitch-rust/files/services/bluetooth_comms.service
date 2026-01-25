@@ -9,5 +9,5 @@ TimeoutStartSec=infinity
 ExecStart=/usr/bin/bluetooth_comms
 Restart=always
 
-[Install]
-WantedBy=bluetooth_pin_en.service
+#[Install]
+#WantedBy=bluetooth_pin_en.service

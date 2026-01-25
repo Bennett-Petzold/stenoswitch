@@ -1,10 +1,11 @@
 [Unit]
-Description=keyboard capture
+Description=usb charging only
 After=multi-user.target
 
 [Service]
 Type=notify
-ExecStart=/usr/bin/keyboard
+TimeoutStartSec=infinity
+ExecStart=/usr/bin/usb_charging
 Restart=always
 
 #[Install]

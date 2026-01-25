@@ -10,5 +10,5 @@ ExecStartPre=/usr/bin/pin_enable_wait 6
 ExecStart=/usr/bin/pin_disable_wait 6
 Restart=always
 
-[Install]
-WantedBy=multi-user.target
+#[Install]
+#WantedBy=multi-user.target
