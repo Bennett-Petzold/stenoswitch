@@ -1,5 +1,5 @@
 use gpio_cdev::{Chip, LineHandle, LineRequestFlags};
-use log::{debug, error};
+use log::{debug, error, trace};
 
 use crate::std_unwrap;
 

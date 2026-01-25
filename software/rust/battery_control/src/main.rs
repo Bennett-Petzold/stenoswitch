@@ -136,7 +136,6 @@ fn main() {
         if let Err(e) = CHG_EN.disable() {
             error!("Failed to disable charging on panic! {e:#?}");
         };
-        error!("PANIC! {info:#?}");
         default_panic(info);
         // Child threads also terminate the program.
         exit(1);

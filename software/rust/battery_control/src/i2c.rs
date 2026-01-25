@@ -57,23 +57,13 @@ impl I2C {
         trace!("Before chip");
         let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null"))?;
         trace!("Before SDA");
-        let sda = chip.get_line(sda_pin)?.request(
-            LineRequestFlags::OPEN_DRAIN
-                .union(LineRequestFlags::OUTPUT)
-                .union(LineRequestFlags::INPUT),
-            //LineRequestFlags::OPEN_DRAIN,
-            1,
-            "battery_control",
-        )?;
+        let sda =
+            chip.get_line(sda_pin)?
+                .request(LineRequestFlags::OPEN_DRAIN, 1, "battery_control")?;
         trace!("Before SCL");
-        let scl = chip.get_line(scl_pin)?.request(
-            LineRequestFlags::OPEN_DRAIN
-                .union(LineRequestFlags::OUTPUT)
-                .union(LineRequestFlags::INPUT),
-            //LineRequestFlags::OPEN_DRAIN,
-            1,
-            "battery_control",
-        )?;
+        let scl =
+            chip.get_line(scl_pin)?
+                .request(LineRequestFlags::OPEN_DRAIN, 1, "battery_control")?;
 
         let mut this = Self {
             line_hold_time,
