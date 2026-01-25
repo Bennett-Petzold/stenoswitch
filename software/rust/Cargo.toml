@@ -10,7 +10,8 @@ edition = "2024"
 [workspace.dependencies]
 bare_err_tree = { version = "1", features = ["tracing", "source_line"] }
 ctrlc = "3"
-gpio-cdev = "0.6"
+#gpio-cdev = "0.6"
+gpio-cdev = { git = "https://github.com/jothan/gpio-cdev.git", branch = "master" }
 i2cdev = "0.6"
 log = { version = "0.4", features = ["release_max_level_info"] }
 sd-notify = "0.4"

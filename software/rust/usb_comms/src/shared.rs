@@ -82,6 +82,7 @@ pub fn init(hid_desc: Option<(HidBuilder, &str)>) -> Option<Hid> {
 
     let reg = reg.bind(&udc).unwrap();
     debug!("PATH: {:#?}", reg.path());
+    let reg = Box::leak(Box::new(reg));
 
     if log::max_level() >= log::LevelFilter::Trace {
         thread::spawn(move || {

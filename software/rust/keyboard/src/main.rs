@@ -32,6 +32,8 @@ fn main() {
         let mut scanner = KeyScanner::new().unwrap();
         info!("Initialized key scanner");
 
+        scanner.verify_scan();
+
         loop {
             scanner.wait_for_input();
             let packet = scanner.scan().unwrap();
@@ -42,6 +44,7 @@ fn main() {
 
     let _ = remove_file("/tmp/ttyKeyboardIn");
     let _ = remove_file("/tmp/ttyKeyboardOut");
+    /*
     let _socat = Command::new("socat")
         .args([
             "pty,rawer,link=/tmp/ttyKeyboardIn,b115200",
@@ -49,6 +52,7 @@ fn main() {
         ])
         .spawn()
         .unwrap();
+    */
 
     let mut port = VirtualPort::loopback(GEMINI_BAUD_RATE, SERIAL_BUFFER_SIZE).unwrap();
     info!("Initialized virtual port");

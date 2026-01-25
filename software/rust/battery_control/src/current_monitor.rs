@@ -21,6 +21,8 @@ const REF_VOLTAGE: Voltage = 5.0;
 /// Values from the MCP3204 datasheet.
 /// <https://ww1.microchip.com/downloads/en/DeviceDoc/21298e.pdf>
 mod mcp_defs {
+    use log::warn;
+
     /// There are only two channel bits at the front.
     pub type ChannelId = u8;
     /// Packet size for a full communication.
@@ -45,7 +47,8 @@ mod mcp_defs {
 
     #[inline]
     /// Generate the write portion to read an ADC channel.
-    pub const fn request(id: ChannelId) -> Request {
+    pub fn request(id: ChannelId) -> Request {
+        warn!("Request for {id}");
         // Last line is ignored, 0 avoids a line change.
         [START_SINGLE, id, 0]
     }
@@ -109,21 +112,33 @@ impl CurrentMonitor {
     /// Creates all interfaces, panicking on hardware issues.
     pub fn new() -> io::Result<Self> {
         debug!("Creating current monitor instance");
-        let spi = {
-            let mut spi = Spidev::open(option_env!("CURRENT_MONITOR_SPI").unwrap_or("/dev/null"))?;
-            spi.configure(
-                &SpidevOptions::new()
-                    // Standard bits per word
-                    .bits_per_word(8)
-                    // System runs at 2 MHz max
-                    .max_speed_hz(2_000_000)
-                    .mode(SpiModeFlags::SPI_MODE_0)
-                    .build(),
-            )?;
-            spi
+        let mut this = Self {
+            spi: {
+                let mut spi =
+                    Spidev::open(option_env!("CURRENT_MONITOR_SPI").unwrap_or("/dev/null"))?;
+                spi.configure(
+                    &SpidevOptions::new()
+                        // Standard bits per word
+                        .bits_per_word(8)
+                        // System runs at 2 MHz max
+                        .max_speed_hz(2_000_000)
+                        .mode(SpiModeFlags::SPI_MODE_0)
+                        .build(),
+                )?;
+                spi
+            },
         };
 
-        Ok(Self { spi })
+        #[cfg(debug_assertions)]
+        {
+            // Verify that there are no communication errors on read.
+            for channel in mcp_defs::ALL_CHANNELS {
+                this.read_channel(channel)?;
+            }
+        }
+
+        debug!("Current monitor set up.");
+        Ok(this)
     }
 }
 
@@ -164,8 +179,8 @@ impl CurrentMonitor {
 
     /// Returns the charger input current limit in amps.
     ///
-    /// Requires [`Self::current_limit_energized`] returned true, indicating
-    /// there is a voltage across the ADC pins to measure resistances with.
+    /// Requires the current limit to be energized so there is a voltage across
+    /// the ADC pins to measure resistances with.
     pub fn read_current_limit(&mut self) -> io::Result<Amps> {
         const UPPER_DIV_OHMS: f32 = 10_000.0;
 
@@ -190,9 +205,15 @@ impl CurrentMonitor {
     ///
     /// Requires a voltage across the ADC pins to measure resistances with.
     pub fn current_limit_energized(&mut self) -> io::Result<bool> {
+        /// Based on real measurements.
+        ///
+        /// Equivalent to about 5 mV.
+        /// Real values during operation are closer to 1V.
+        const MIN_ENERGIZED: u16 = 4;
+
         let divh = self.read_channel(CHRG_DIVH)?;
         let divl = self.read_channel(CHRG_DIVL)?;
 
-        Ok((divh != 0) && (divl != 0))
+        Ok((divh > 1) && (divl > 1))
     }
 }

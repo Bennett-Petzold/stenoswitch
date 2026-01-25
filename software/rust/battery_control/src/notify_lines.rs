@@ -23,6 +23,11 @@ const BAT_ON_LINE: &str = if let Some(x) = option_env!("BAT_ON") {
 } else {
     "NaN "
 };
+const STORE_ON_LINE: &str = if let Some(x) = option_env!("STORE_ON") {
+    x
+} else {
+    "NaN "
+};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum NotifySource {
@@ -54,7 +59,7 @@ impl NotifyLines {
             (CHG_ON_LINE, NotifySource::ChgOn),
             (USB_ON_LINE, NotifySource::UsbOn),
             (BAT_ON_LINE, NotifySource::BatOn),
-            (BAT_ON_LINE, NotifySource::StoreOn),
+            (STORE_ON_LINE, NotifySource::StoreOn),
         ]
         .map(|(line, source)| {
             let tx = tx.clone();
@@ -62,9 +67,9 @@ impl NotifyLines {
             std::thread::spawn(move || {
                 let events = line
                     .events(
-                        LineRequestFlags::INPUT,
+                        LineRequestFlags::INPUT.union(LineRequestFlags::BIAS_PULL_UP),
                         EventRequestFlags::BOTH_EDGES,
-                        "battery_control",
+                        &format!("battery_control {:?}", source),
                     )
                     .unwrap();
 
@@ -91,9 +96,9 @@ impl NotifyLines {
             std::thread::spawn(move || {
                 let events = line
                     .events(
-                        LineRequestFlags::INPUT,
-                        EventRequestFlags::RISING_EDGE,
-                        "battery_control",
+                        LineRequestFlags::INPUT.union(LineRequestFlags::BIAS_PULL_UP),
+                        EventRequestFlags::FALLING_EDGE,
+                        "battery_control BATMON",
                     )
                     .unwrap();
 
@@ -105,10 +110,10 @@ impl NotifyLines {
                 .unwrap();
 
                 for _event in events {
-                    debug!("Line event: {:#?} -> {}", NotifySource::Batmon, true);
+                    debug!("Line event: {:#?} -> {}", NotifySource::Batmon, false);
                     tx.send(LineNotification {
                         source: NotifySource::Batmon,
-                        value: true,
+                        value: false,
                     })
                     .unwrap();
                 }

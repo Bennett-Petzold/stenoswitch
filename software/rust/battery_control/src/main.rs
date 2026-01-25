@@ -10,7 +10,7 @@ use std::{
     mem,
     process::exit,
     sync::{
-        Arc, LazyLock, Mutex,
+        LazyLock, Mutex,
         atomic::{AtomicBool, Ordering},
     },
     thread::{self, sleep},
@@ -31,6 +31,12 @@ use crate::{
 };
 
 const STORAGE_CHARGE_LIMIT_MILLIVOLTS: u16 = 3700;
+// TODO: find the highest consistent frequency.
+// Is it just the 400K?
+//const I2C_HERTZ: u32 = 400_000;
+// Hopefully slow enough to get rid of bus issues.
+const I2C_HERTZ: u32 = 100_000;
+//const I2C_HERTZ: u32 = 100;
 
 #[track_caller]
 pub fn bare_err_unwrap<T, E>(res: Result<T, E>) -> T
@@ -64,19 +70,16 @@ fn set_rheostat_from_cc(cur_rheostat: &mut CurrentRheostat, cur_mon: &mut Curren
         sleep(Duration::from_secs(1));
     }
 
-    let cc_limit = std_unwrap(cur_mon.read_cc()).to_amps();
+    let cc_limit = |cur_mon: &mut CurrentMonitor| std_unwrap(cur_mon.read_cc()).to_amps();
+    let current_limit = |cur_mon: &mut CurrentMonitor| std_unwrap(cur_mon.read_current_limit());
 
-    while !std_unwrap(cur_mon.current_limit_energized()) {
-        debug!("Waiting for current limit to be energized...");
-    }
-
-    while std_unwrap(cur_mon.read_current_limit()) < cc_limit {
+    while current_limit(cur_mon) < cc_limit(cur_mon) {
         // Prevent infinite loops if the rheostat can't raise far enough.
         if cur_rheostat.setting() >= current_rheostat::CUR_LIMIT_MAX {
             warn!(
                 "Rheostat topped out below target limit: {:?} < {}",
                 cur_mon.read_current_limit(),
-                cc_limit
+                cc_limit(cur_mon)
             );
             break;
         }
@@ -84,13 +87,13 @@ fn set_rheostat_from_cc(cur_rheostat: &mut CurrentRheostat, cur_mon: &mut Curren
         sleep(current_rheostat::WIPER_SET_WAIT);
     }
 
-    while std_unwrap(cur_mon.read_current_limit()) > cc_limit {
+    while current_limit(cur_mon) > cc_limit(cur_mon) {
         // Prevent infinite loops if the rheostat can't lower far enough.
         if cur_rheostat.setting() == 0 {
             error!(
                 "Rheostat bottomed out above target limit: {:?} < {}",
                 cur_mon.read_current_limit(),
-                cc_limit
+                cc_limit(cur_mon)
             );
             break;
         }
@@ -108,7 +111,10 @@ fn set_rheostat_from_cc(cur_rheostat: &mut CurrentRheostat, cur_mon: &mut Curren
 /// Probably also have files in mass storage filesystem with
 /// some of this info.
 /// And/or capture in special log fake device.
-fn update_battery_stats(bat_mon: &mut BatteryMonitor, is_discharging: bool) -> u16 {
+fn update_battery_stats(
+    bat_mon: &mut BatteryMonitor,
+    is_discharging: bool,
+) -> battery_monitor::Percent {
     let raw_soc = bare_err_unwrap(bat_mon.raw_state_of_charge());
     debug!(
         "Battery stats: {}% charge, {}% raw charge, {}% of design, {} mV, {} mA, {} mW",
@@ -125,10 +131,19 @@ fn update_battery_stats(bat_mon: &mut BatteryMonitor, is_discharging: bool) -> u
 }
 
 fn main() {
+    static CHG_EN: LazyLock<ChgEn> = LazyLock::new(|| std_unwrap(ChgEn::new()));
+
+    static I2C_BUS: LazyLock<Mutex<I2C>> = LazyLock::new(|| {
+        info!("Intializing I2C bus...");
+        let sda_pin = std_unwrap(str::parse(option_env!("SDA_PIN").unwrap_or("/dev/null")));
+        let scl_pin = std_unwrap(str::parse(option_env!("SCL_PIN").unwrap_or("/dev/null")));
+        Mutex::new(bare_err_unwrap(I2C::new(I2C_HERTZ, sda_pin, scl_pin)))
+    });
+
     // ---------------------------------- //
     // Establish safe state on the En pin //
     // ---------------------------------- //
-    static CHG_EN: LazyLock<ChgEn> = LazyLock::new(|| std_unwrap(ChgEn::new()));
+    std_unwrap(CHG_EN.disable());
 
     // Disable charging on panic
     let default_panic = std::panic::take_hook();
@@ -158,22 +173,32 @@ fn main() {
         log::LevelFilter::Info
     });
 
+    // This repeats the earlier initialization set.
     info!("Set charging to pre-setup disable");
-
-    info!("Intializing I2C bus...");
-    let sda_pin = std_unwrap(str::parse(option_env!("SDA_PIN").unwrap_or("/dev/null")));
-    let scl_pin = std_unwrap(str::parse(option_env!("SCL_PIN").unwrap_or("/dev/null")));
-    let i2c = Mutex::new(bare_err_unwrap(I2C::new(400_000, sda_pin, scl_pin)));
+    CHG_EN.disable().unwrap();
 
     info!("Intializing SPI and I2C devices...");
     let (cur_rheostat, bat_mon, mut cur_mon) = thread::scope(|s| {
-        let rheostat_thread = s.spawn(|| bare_err_unwrap(CurrentRheostat::new(&i2c)));
-        let battery_thread = s.spawn(|| bare_err_unwrap(BatteryMonitor::new(&i2c)));
+        // SPI can occur at the same time as I2C communications.
         let current_thread = s.spawn(|| std_unwrap(CurrentMonitor::new()));
 
         (
-            Mutex::new(rheostat_thread.join().unwrap()),
-            Mutex::new(battery_thread.join().unwrap()),
+            Mutex::new(
+                std::iter::from_fn(|| {
+                    Some(match CurrentRheostat::new(&I2C_BUS) {
+                        Ok(rheo) => Some(rheo),
+                        Err(e) => {
+                            error!("Rheostat init failure: {e:#?}");
+                            std::thread::sleep(Duration::from_secs(1));
+                            None
+                        }
+                    })
+                })
+                .flatten()
+                .next()
+                .unwrap(),
+            ),
+            Mutex::new(bare_err_unwrap(BatteryMonitor::new(&I2C_BUS))),
             current_thread.join().unwrap(),
         )
     });
@@ -282,11 +307,13 @@ fn main() {
                                 {
                                     let mut cur_rheostat = cur_rheostat.lock().unwrap();
                                     let mut cur_mon = cur_mon.lock().unwrap();
+                                    /*
                                     set_rheostat_from_cc(&mut cur_rheostat, &mut cur_mon);
                                     info!(
                                         "Configured rheostat with {} mA limit",
                                         std_unwrap(cur_mon.read_cc()).to_milliamps()
                                     );
+                                    */
                                 }
 
                                 let skip_charging = skip_charging.join().unwrap();

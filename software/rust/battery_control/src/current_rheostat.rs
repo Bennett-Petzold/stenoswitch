@@ -2,7 +2,7 @@ use std::{cmp::min, sync::Mutex, time::Duration};
 
 use log::{debug, warn};
 
-use crate::i2c::{I2C, I2CErrorS};
+use crate::i2c::{I2C, I2CDevice, I2CErrorS};
 
 /// Maximum code for the current limiter rheostat.
 pub const CUR_LIMIT_MAX: u8 = 0x7F;
@@ -13,8 +13,13 @@ pub const WIPER_RES_VARIANCE: u8 = 100;
 /// Worst settling time on datasheet is 817 microseconds.
 pub const WIPER_SET_WAIT: Duration = Duration::from_millis(1);
 
-/// 0101110 -> 0x2E.
-const RHEO_ADDR: u8 = 0x2E;
+/// Address from table 5-2 on page 36 of MCP40D17 datasheet.
+/// Free time from table 1-2 on page 10.
+/// Confirmed by i2cdetect and i2cdump.
+const RHEO_DEVICE: I2CDevice = I2CDevice {
+    address: 0b0101110,
+    bus_free_time: Duration::from_nanos(4_700),
+};
 
 pub struct CurrentRheostat<'a> {
     i2c: &'a Mutex<I2C>,
@@ -48,10 +53,10 @@ impl<'a> CurrentRheostat<'a> {
         // Put the minimum current to hardware
         this.apply()?;
 
+        debug!("Rheostat set up.");
         Ok(this)
     }
 }
-
 impl CurrentRheostat<'_> {
     pub fn setting(&self) -> u8 {
         self.setting
@@ -62,16 +67,19 @@ impl CurrentRheostat<'_> {
         self.i2c
             .lock()
             .unwrap()
-            .write(RHEO_ADDR, [0, self.setting])?;
+            .write(RHEO_DEVICE, &[0, self.setting])?;
         debug!("Set rheostat to {}", self.setting);
         Ok(())
     }
 
     /// Returns the current rheostat value.
     fn read(&mut self) -> Result<u8, I2CErrorS> {
-        // See MCP4017 datasheet pages 38 and 40.
+        // See MCP40D17 datasheet pages 38 and 40.
         let mut response = [0];
-        self.i2c.lock().unwrap().read(RHEO_ADDR, 0, &mut response)?;
+        self.i2c
+            .lock()
+            .unwrap()
+            .read(RHEO_DEVICE, 0, &mut response)?;
         Ok(response[0])
     }
 

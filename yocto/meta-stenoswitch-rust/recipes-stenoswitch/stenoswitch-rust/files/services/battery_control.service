@@ -5,7 +5,8 @@ After=multi-user.target
 [Service]
 Type=notify
 ExecStart=/usr/bin/battery_control
-Restart=always
+#Restart=always
+Restart=never
 
 #[Install]
 #WantedBy=multi-user.target

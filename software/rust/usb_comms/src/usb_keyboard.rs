@@ -10,7 +10,7 @@ use std::{
     time::Duration,
 };
 
-use log::trace;
+use log::{debug, trace, warn};
 use nix::poll::{PollFd, PollFlags, PollTimeout, poll};
 use sd_notify::NotifyState;
 use systemd_journal_logger::JournalLog;
@@ -567,11 +567,33 @@ fn main() {
     let hid = shared::init(Some((keyboard, "Keyboard Translation Mode"))).unwrap();
 
     let mut keyboard_out_file = {
-        let (major, minor) = hid.device().unwrap();
+        let (major, minor) = (0..10)
+            .flat_map(|_| {
+                debug!("Delay before attempting USB device open");
+                sleep(Duration::from_millis(10));
+                hid.device()
+            })
+            .next()
+            .unwrap();
+        let file_path = format!("/dev/char/{major}:{minor}");
+        debug!("Attempt to open {file_path:?}");
 
-        File::options()
-            .append(true)
-            .open(format!("/dev/char/{major}:{minor}"))
+        let open_file = || match File::options().append(true).open(&file_path) {
+            Ok(opened) => Some(opened),
+            Err(e) => {
+                warn!("Error opening keyboard file: {e}");
+                None
+            }
+        };
+
+        // Ten tries to open the file with a delay before each
+        (0..10)
+            .flat_map(|_| {
+                debug!("Delay before attempting keyboard file open");
+                sleep(Duration::from_millis(10));
+                open_file()
+            })
+            .next()
             .unwrap()
     };
 

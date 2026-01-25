@@ -2,13 +2,13 @@ use std::{
     io,
     ops::{Deref, DerefMut},
     simd::{self, Simd, num::SimdUint, simd_swizzle},
-    sync::{Condvar, Mutex, mpsc},
+    sync::{Arc, Condvar, Mutex, MutexGuard, mpsc},
     thread,
-    time::{Duration, Instant},
+    time::{Duration, Instant, SystemTime},
 };
 
 use gpio_cdev::{Chip, EventRequestFlags, LineEventHandle, LineHandle, LineRequestFlags};
-use log::{debug, trace};
+use log::{debug, trace, warn};
 use nix::{
     sys::time::TimeValLike,
     time::{ClockId, clock_gettime},
@@ -202,10 +202,46 @@ impl Default for RawScan {
 }
 
 #[derive(Debug)]
+pub enum MaybeLine<'a> {
+    Locked(&'a Mutex<LineEventHandle>),
+    Unlocked(MutexGuard<'a, LineEventHandle>),
+}
+
+impl<'a> From<&'a Mutex<LineEventHandle>> for MaybeLine<'a> {
+    fn from(value: &'a Mutex<LineEventHandle>) -> Self {
+        Self::Locked(value)
+    }
+}
+
+impl MaybeLine<'_> {
+    /// Returns the actual value if the guard is available.
+    ///
+    /// Returns 0 if the mutex is being held (no rising event triggered means
+    /// the key must be unpressed).
+    ///
+    /// There is a timing penalty whenever a mutex is newly claimed. Failing
+    /// the mutex lock should have a consistent atomic penalty. Once a handle
+    /// is held, that will have a consistent timing (no atomic check necessary).
+    fn get_value(&mut self) -> Result<u8, gpio_cdev::Error> {
+        match self {
+            Self::Locked(handle) => {
+                if let Ok(guard) = handle.try_lock() {
+                    *self = Self::Unlocked(guard);
+                    self.get_value()
+                } else {
+                    Ok(0)
+                }
+            }
+            Self::Unlocked(guard) => guard.get_value(),
+        }
+    }
+}
+
+#[derive(Debug)]
 pub struct KeyScanner {
     rows: [LineHandle; 3],
     // Right hand columns first
-    columns: [LineHandle; 10],
+    columns: [Arc<Mutex<LineEventHandle>>; 10],
     // Captures the event times of all rising edges
     line_events: mpsc::Receiver<u64>,
 }
@@ -230,42 +266,59 @@ impl KeyScanner {
         let raw_columns = [
             chip.get_line(str::parse(option_env!("RCOL0").unwrap_or("/dev/null")).unwrap())?,
             chip.get_line(str::parse(option_env!("RCOL1").unwrap_or("/dev/null")).unwrap())?,
+            // PROBLEM LINE
             chip.get_line(str::parse(option_env!("RCOL2").unwrap_or("/dev/null")).unwrap())?,
+            //
+            // PROBLEM LINE
             chip.get_line(str::parse(option_env!("RCOL3").unwrap_or("/dev/null")).unwrap())?,
+            //
             chip.get_line(str::parse(option_env!("RCOL4").unwrap_or("/dev/null")).unwrap())?,
+            // PROBLEM LINE
             chip.get_line(str::parse(option_env!("LCOL0").unwrap_or("/dev/null")).unwrap())?,
+            //
             chip.get_line(str::parse(option_env!("LCOL1").unwrap_or("/dev/null")).unwrap())?,
             chip.get_line(str::parse(option_env!("LCOL2").unwrap_or("/dev/null")).unwrap())?,
             chip.get_line(str::parse(option_env!("LCOL3").unwrap_or("/dev/null")).unwrap())?,
             chip.get_line(str::parse(option_env!("LCOL4").unwrap_or("/dev/null")).unwrap())?,
         ];
 
+        let columns = raw_columns.map(|col| {
+            Arc::new(Mutex::new(
+                col.events(
+                    LineRequestFlags::INPUT | LineRequestFlags::BIAS_PULL_DOWN,
+                    EventRequestFlags::RISING_EDGE,
+                    "keyboard_scan",
+                )
+                .unwrap(),
+            ))
+        });
+
+        // Only accept one event at a time and block all event threads when no
+        // events are occuring.
         let (line_events_tx, line_events) = mpsc::sync_channel(0);
 
         // Wait for any key to be pressed.
         // Since the events are blocking, each column needs its own thread.
         // These will be cleaned up on struct drop due to receiver drop.
-        for column in &raw_columns {
-            let mut column = column.events(
-                LineRequestFlags::INPUT,
-                EventRequestFlags::RISING_EDGE,
-                "keyboard_scan",
-            )?;
-
+        for column in &columns {
             let tx = line_events_tx.clone();
+            let column = column.clone();
             let _monitor_column_thread = thread::spawn(move || {
                 loop {
-                    if let Ok(event) = column.get_event() {
+                    // Only hold the mutex while waiting on an event.
+                    // Otherwise the mutex would be held over `send`.
+                    // If other threads can't claim the mutex, the column is
+                    // presumed to be off.
+                    let maybe_event = { column.lock().unwrap().get_event() };
+
+                    if let Ok(event) = maybe_event {
+                        // Events will block here while the keyboard is being
+                        // actively scanned for a new packet.
                         tx.send(event.timestamp()).unwrap();
                     }
                 }
             });
         }
-
-        let columns = raw_columns.map(|col| {
-            col.request(LineRequestFlags::INPUT, 0, "keyboard_scan")
-                .unwrap()
-        });
 
         Ok(Self {
             rows,
@@ -301,21 +354,53 @@ impl KeyScanner {
         }
     }
 
+    pub fn verify_scan(&self) {
+        for row in &self.rows {
+            row.set_value(1).unwrap();
+        }
+
+        let mut columns = self
+            .columns
+            .each_ref()
+            .map(|col| MaybeLine::from(col.as_ref()));
+
+        let mut existing_detect = false;
+        loop {
+            let detect = columns
+                .iter_mut()
+                .map(|col| col.get_value().unwrap())
+                .any(|val| val == 1);
+
+            if detect != existing_detect {
+                existing_detect = detect;
+                if detect {
+                    let values = columns.each_mut().map(|col| col.get_value().unwrap());
+                    warn!("KEY PRESS: {:?}, {:#?}", values, SystemTime::now());
+                }
+            }
+        }
+    }
+
     /// Scans at an effective 133 KHz.
     pub fn scan(&self) -> Result<GeminiPr, gpio_cdev::Error> {
-        // Assuming the lines can handle 400 KHz.
+        /// Assuming the lines can handle 400 KHz.
         const LINE_DELAY: Duration = Duration::from_nanos(2500);
-        // Ten rounds of zero scans
+        /// Number of consecutive zero scans to end packet collection.
         const EMPTY_TO_END: u8 = 10;
 
         let mut empty_count = 0;
         let mut data = RawScan::new();
 
-        // Skip turning the first row off, that's redundant.
-        for row in &self.rows[1..] {
+        for row in &self.rows {
             row.set_value(0)?;
         }
+        // Turn the first line off and give the levels time to fall.
+        spin_sleep::sleep(LINE_DELAY);
 
+        let mut columns = self
+            .columns
+            .each_ref()
+            .map(|col| MaybeLine::from(col.as_ref()));
         debug!("Starting keyboard scan...");
 
         while empty_count < EMPTY_TO_END {
@@ -325,7 +410,10 @@ impl KeyScanner {
                 spin_sleep::sleep(LINE_DELAY);
 
                 let base_idx = row_num * 10;
-                for (dest, column) in new_data[base_idx..10].iter_mut().zip(&self.columns) {
+                for (dest, column) in new_data[base_idx..(base_idx + 10)]
+                    .iter_mut()
+                    .zip(&mut columns)
+                {
                     *dest = column.get_value()?;
                 }
                 row.set_value(0)?;

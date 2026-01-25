@@ -4,23 +4,23 @@ use std::{
     fs::{self, read_to_string},
     io,
     process::Command,
-    sync::Mutex,
+    sync::{Mutex, MutexGuard},
     thread::sleep,
     time::{Duration, Instant},
 };
 
-use log::{debug, trace};
+use log::{debug, info, trace, warn};
 
-use crate::i2c::{I2C, I2CErrorS};
+use crate::i2c::{I2C, I2CDevice, I2CError, I2CErrorS};
 
 /// Chemical ID for charging at 4.2V is 0x1202 (CHEM_B).
 /// BQ27427 Technical Reference Manual, page 20.
-const CHEM_ID: u16 = 0x32;
+const CHEM_ID: u16 = 0x0032;
 /// From the EVE 35V datasheet.
 pub const BATTERY_DESIGN_CAPACITY: u16 = 3500;
 
 /// Puts the battery monitor in sleep mode during battery operation.
-/// This will be exceeded during constant current charging.
+/// This may be exceeded during constant current charging.
 const SLEEP_CURRENT: u16 = 300;
 
 const STATE_SUBCLASS: u8 = 0x52;
@@ -28,10 +28,10 @@ const STATE_SUBCLASS: u8 = 0x52;
 const REGISTERS_SUBCLASS: u8 = 64;
 const OPCONFIG_OFFSET: u8 = 0;
 
-type MilliAmpHours = u16;
-type MilliAmps = u16;
-type MilliWatts = u16;
-type Percent = u16;
+pub type MilliAmpHours = u16;
+pub type MilliAmps = u16;
+pub type MilliWatts = u16;
+pub type Percent = u8;
 
 /// All registers are two bytes wide.
 ///
@@ -77,6 +77,8 @@ const WRITE_READ_COMMAND_SPACING: Duration = Duration::from_secs(2);
 ///
 /// This must be inserted between every two commands.
 const TWO_COMMAND_SPACING: Duration = Duration::from_secs(1);
+/// From BQ27427 Technical Reference Manual, page 18
+const SOFT_RESET_DELAY: Duration = Duration::from_secs(1);
 
 pub struct CommandSpacing {
     last_command_time: Instant,
@@ -111,10 +113,13 @@ impl CommandSpacing {
         let time_passed = self.last_command_time.duration_since(last_command_time);
 
         let command_spacing = if self.last_command_write && !is_write {
+            trace!("Write command spacing");
             WRITE_READ_COMMAND_SPACING
         } else if time_passed < Duration::from_secs(1) {
+            trace!("All command spacing");
             ALL_COMMAND_SPACING
         } else {
+            trace!("Two command spacing");
             TWO_COMMAND_SPACING
         };
 
@@ -126,8 +131,11 @@ impl CommandSpacing {
     }
 }
 
-/// 1010101 -> 0x2E.
-const MONITOR_ADDR: u8 = 0x55;
+/// From BQ27427 manual pages 7 and 10.
+const MONITOR_DEVICE: I2CDevice = I2CDevice {
+    address: 0b1010101,
+    bus_free_time: ALL_COMMAND_SPACING,
+};
 
 /// BQ27427 Battery Monitor communications.
 ///
@@ -164,6 +172,7 @@ impl<'a> BatteryMonitor<'a> {
         };
         this.init()?;
 
+        debug!("Battery monitor set up.");
         Ok(this)
     }
 }
@@ -171,54 +180,79 @@ impl<'a> BatteryMonitor<'a> {
 impl BatteryMonitor<'_> {
     /// Write out the data, blocking for the necessary time to space commands.
     ///
-    /// All writes must be 1-byte at 100kHz, see BQ27427 manual page 7.
-    fn write(&mut self, command: u8, data: u8) -> Result<(), I2CErrorS> {
-        sleep(self.spacing.next_spacing(true));
-        trace!("Writing {command} to battery monitor with {data}");
-        self.i2c
-            .lock()
-            .unwrap()
-            .write(MONITOR_ADDR, [command, data])
+    /// All writes must be 1-byte at 400kHz, see BQ27427 manual page 7.
+    fn write(
+        spacing: &mut CommandSpacing,
+        held_i2c: &mut MutexGuard<I2C>,
+        command: u8,
+        data: u8,
+    ) -> Result<(), I2CErrorS> {
+        sleep(spacing.next_spacing(true));
+        trace!("Writing {command:02x} to battery monitor with {data:02x}");
+
+        held_i2c.write(MONITOR_DEVICE, &[command, data])
     }
 
     /// Write out the two-byte data, blocking for the necessary time to space commands.
-    fn write_u16(&mut self, command: u8, data: u16) -> Result<(), I2CErrorS> {
-        trace!("Writing {command} to battery monitor with u16 {data}");
+    fn write_u16(
+        spacing: &mut CommandSpacing,
+        held_i2c: &mut MutexGuard<I2C>,
+        command: u8,
+        data: u16,
+    ) -> Result<(), I2CErrorS> {
+        trace!("Writing {command:02x} to battery monitor with u16 {data:04x}");
         let [lsb, msb] = data.to_le_bytes();
-        self.write(command, lsb)?;
-        self.write(command + 1, msb)
+
+        //Self::write(spacing, held_i2c, command, msb)?;
+        //Self::write(spacing, held_i2c, command + 1, lsb)
+        Self::write(spacing, held_i2c, command, lsb)?;
+        Self::write(spacing, held_i2c, command + 1, msb)
     }
 
     /// Read the data to a buffer, blocking for the necessary time to space commands.
-    fn read(&mut self, data: &mut [u8], register: u8) -> Result<(), I2CErrorS> {
+    fn read(
+        spacing: &mut CommandSpacing,
+        held_i2c: &mut MutexGuard<I2C>,
+        data: &mut [u8],
+        register: u8,
+    ) -> Result<(), I2CErrorS> {
         trace!(
-            "Reading {}-bytes of {register} from battery monitor",
+            "Reading {}-byte(s) of {register:02x} from battery monitor",
             data.len()
         );
-        sleep(self.spacing.next_spacing(false));
-        self.i2c.lock().unwrap().read(MONITOR_ADDR, register, data)
+        sleep(spacing.next_spacing(false));
+
+        held_i2c.read(MONITOR_DEVICE, register, data)
     }
 
     /// Read a single byte, blocking for the necessary time to space commands.
-    fn read_byte(&mut self, register: u8) -> Result<u8, I2CErrorS> {
-        let mut buffer = [0];
-        self.read(&mut buffer, register)?;
-        Ok(buffer[0])
+    fn read_byte(
+        spacing: &mut CommandSpacing,
+        held_i2c: &mut MutexGuard<I2C>,
+        register: u8,
+    ) -> Result<u8, I2CErrorS> {
+        let mut data = [0];
+        Self::read(spacing, held_i2c, &mut data, register)?;
+        Ok(data[0])
     }
 
     /// Read a two-wide value, blocking for the necessary time to space commands.
-    fn read_u16(&mut self, register: u8) -> Result<u16, I2CErrorS> {
-        let msb = self.read_byte(register)?;
-        let lsb = self.read_byte(register + 1)?;
-        Ok(u16::from_be_bytes([msb, lsb]))
+    fn read_u16(
+        spacing: &mut CommandSpacing,
+        held_i2c: &mut MutexGuard<I2C>,
+        register: u8,
+    ) -> Result<u16, I2CErrorS> {
+        let lsb = Self::read_byte(spacing, held_i2c, register)?;
+        let msb = Self::read_byte(spacing, held_i2c, register + 1)?;
+        Ok(u16::from_le_bytes([lsb, msb]))
     }
 
     /// Config modifications start with this and end with [`Self::seal`].
     ///
     /// Makes config read/write.
-    fn unseal(&mut self) -> Result<(), I2CErrorS> {
+    fn unseal(spacing: &mut CommandSpacing, i2c: &mut MutexGuard<I2C>) -> Result<(), I2CErrorS> {
         for _ in 0..2 {
-            self.write_u16(standard_commands::CONTROL, 0x8000)?;
+            Self::write_u16(spacing, i2c, standard_commands::CONTROL, 0x8000)?;
         }
         Ok(())
     }
@@ -227,206 +261,390 @@ impl BatteryMonitor<'_> {
     ///
     /// Makes config read-only.
     #[inline]
-    fn seal(&mut self) -> Result<(), I2CErrorS> {
-        self.write_u16(standard_commands::CONTROL, 0x0020)
+    fn seal(spacing: &mut CommandSpacing, i2c: &mut MutexGuard<I2C>) -> Result<(), I2CErrorS> {
+        Self::write_u16(spacing, i2c, standard_commands::CONTROL, 0x0020)
     }
 
     /// Enables configuration updates on the monitor.
     ///
     /// Must be followed by the config change and a soft reset.
     #[inline]
-    fn set_cfgupdate(&mut self) -> Result<(), I2CErrorS> {
-        self.write_u16(standard_commands::CONTROL, 0x0013)?;
+    fn set_cfgupdate(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+    ) -> Result<(), I2CErrorS> {
+        trace!("Setting cfgupdate mode");
+        Self::write_u16(spacing, i2c, standard_commands::CONTROL, 0x0013)?;
+        // Complete mandatory sleep period before any parameters can be modified.
+        // From BQ27427 Reference Manual Page 21: SET_CFGUPDATE
+        std::thread::sleep(Duration::from_millis(1_200));
+        Self::wait_for_cfgupdate(spacing, i2c, true)
+    }
 
-        // Assert Flags() bit 4 is set.
-        #[cfg(debug_assertions)]
-        {
-            let lower_flag = self.read_byte(standard_commands::FLAGS);
-            assert_ne!(lower_flag? | 0x10, 0);
+    fn write_blockupdate(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+        subclass: u8,
+        offset: u8,
+        value: &[u8],
+    ) -> Result<(), I2CErrorS> {
+        // Can't go beyond the 32 byte block
+        if ((offset % 32) as usize + value.len()) >= 32 {
+            return Err(I2CError::OversizedBlockWrite.into());
         }
-        Ok(())
-    }
 
-    fn write_blockupdate(&mut self, subclass: u8, offset: u8, value: u16) -> Result<(), I2CErrorS> {
         // Enable block data memory control
-        self.write(extended_commands::BLOCK_DATA_CONTROL, 0)?;
+        Self::write(spacing, i2c, extended_commands::BLOCK_DATA_CONTROL, 0)?;
         // Access subclass
-        self.write(extended_commands::DATA_CLASS, subclass)?;
+        Self::write(spacing, i2c, extended_commands::DATA_CLASS, subclass)?;
         // Set block offset
-        self.write(extended_commands::DATA_BLOCK, offset / 32)?;
+        Self::write(spacing, i2c, extended_commands::DATA_BLOCK, offset / 32)?;
 
         let inner_register = extended_commands::BLOCK_DATA_START + (offset % 32);
 
-        let old_checksum = self.read_byte(extended_commands::BLOCK_DATA_CHECKSUM)?;
-        let old_msb = self.read_byte(inner_register)?;
-        let old_lsb = self.read_byte(inner_register + 1)?;
+        // Magic formula from manual page 17
+        let checksum = {
+            let old_checksum =
+                Self::read_byte(spacing, i2c, extended_commands::BLOCK_DATA_CHECKSUM)?;
 
-        let value_bytes = value.to_be_bytes();
-        debug!(
-            "Writing blockupdate of {value}, MSB bytes {:?}",
-            value_bytes
-        );
-        self.write_u16(inner_register, value)?;
+            let mut checksum_temp = 255_u8.wrapping_sub(old_checksum);
 
-        // Magic formula
-        let checksum = ((255 - old_checksum - old_msb - old_lsb) as u16) % 256;
+            for i in 0..value.len() {
+                let remove_byte = Self::read_byte(spacing, i2c, inner_register + (i as u8))?;
+                checksum_temp = checksum_temp.wrapping_sub(remove_byte);
+            }
 
-        self.write(extended_commands::BLOCK_DATA_CHECKSUM, checksum as u8)
+            for byte in value {
+                checksum_temp = checksum_temp.wrapping_add(*byte);
+            }
+
+            255 - checksum_temp
+        };
+
+        debug!("Writing blockupdate of {value:02x?} to {subclass:02x} at {offset:02x}");
+        for (write_offset, byte) in value.iter().enumerate() {
+            Self::write(spacing, i2c, inner_register + write_offset as u8, *byte)?;
+        }
+
+        trace!("Writing blockupdate checksum of {checksum:02x}");
+        Self::write(
+            spacing,
+            i2c,
+            extended_commands::BLOCK_DATA_CHECKSUM,
+            checksum,
+        )
     }
 
-    fn read_block(&mut self, subclass: u8, offset: u8) -> Result<u16, I2CErrorS> {
+    fn write_blockupdate_u16(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+        subclass: u8,
+        offset: u8,
+        value: u16,
+    ) -> Result<(), I2CErrorS> {
+        Self::write_blockupdate(spacing, i2c, subclass, offset, &value.to_le_bytes())
+    }
+
+    fn read_block(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+        subclass: u8,
+        offset: u8,
+        data: &mut [u8],
+    ) -> Result<(), I2CErrorS> {
         // Enable block data memory control
-        self.write(extended_commands::BLOCK_DATA_CONTROL, 0)?;
+        Self::write(spacing, i2c, extended_commands::BLOCK_DATA_CONTROL, 0)?;
         // Access subclass
-        self.write(extended_commands::DATA_CLASS, subclass)?;
+        Self::write(spacing, i2c, extended_commands::DATA_CLASS, subclass)?;
         // Set block offset
-        self.write(extended_commands::DATA_BLOCK, offset / 32)?;
+        Self::write(spacing, i2c, extended_commands::DATA_BLOCK, offset / 32)?;
 
         let inner_register = extended_commands::BLOCK_DATA_START + (offset % 32);
-        self.read_u16(inner_register)
+
+        Self::read(spacing, i2c, data, inner_register)
     }
 
     /// Reboots the monitor; critical after any configuration changes.
     #[inline]
-    fn soft_reset(&mut self) -> Result<(), I2CErrorS> {
+    fn soft_reset(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+    ) -> Result<(), I2CErrorS> {
         trace!("Soft resetting battery monitor");
-        self.write_u16(standard_commands::CONTROL, 0x0042)
+        Self::write_u16(spacing, i2c, standard_commands::CONTROL, 0x0042)?;
+        Self::wait_for_cfgupdate(spacing, i2c, false)
     }
 
-    /// Assert Flags() bit 4 is not set.
-    #[cfg(debug_assertions)]
-    fn assert_no_cfgupdate(&mut self) -> Result<(), I2CErrorS> {
-        let lower_flag = self.read_byte(standard_commands::FLAGS)?;
-        assert_eq!(lower_flag | 0x10, 0);
-        Ok(())
+    /// Wait until Flags() bit 4 is at `set`.
+    fn wait_for_cfgupdate(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+        set: bool,
+    ) -> Result<(), I2CErrorS> {
+        use crate::i2c::I2CError;
+
+        const DEADLINE_MULTIPLIER: u32 = 5;
+
+        let deadline = Instant::now() + (SOFT_RESET_DELAY * DEADLINE_MULTIPLIER);
+
+        #[cfg(debug_assertions)]
+        let mut try_count = 0_u64;
+
+        while Instant::now() < deadline {
+            let lower_flag = Self::read_byte(spacing, i2c, standard_commands::FLAGS)?;
+            trace!("Cfgupdate lower flag value: {lower_flag:08b}");
+            let lower_flag_true = (lower_flag & 0x10) != 0;
+            trace!(
+                "Cfgupdate Mask: {} -> {} -> {lower_flag_true}",
+                0x10,
+                (lower_flag & 0x10)
+            );
+
+            if lower_flag_true == set {
+                #[cfg(debug_assertions)]
+                trace!("Cfgupdate after {try_count} failed checks.");
+
+                return Ok(());
+            }
+
+            #[cfg(debug_assertions)]
+            {
+                try_count += 1;
+            }
+
+            // Sleeping half the remaining period will speed up polling as the
+            // deadline approaches.
+            sleep((deadline.saturating_duration_since(Instant::now())) / 2);
+        }
+
+        #[cfg(debug_assertions)]
+        trace!("Cfgupdate failure after {try_count} failed checks.");
+        Err(I2CError::CfgupdateTimeout.into())
     }
 
     /// Full configuration update routine for block values.
-    fn update_block_cfg(&mut self, subclass: u8, offset: u8, value: u16) -> Result<(), I2CErrorS> {
-        self.set_cfgupdate()?;
-        self.write_blockupdate(subclass, offset, value)?;
-        self.soft_reset()?;
-        #[cfg(debug_assertions)]
-        self.assert_no_cfgupdate()?;
-
-        Ok(())
+    fn update_block_cfg(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+        subclass: u8,
+        offset: u8,
+        value: u16,
+    ) -> Result<(), I2CErrorS> {
+        Self::write_blockupdate_u16(spacing, i2c, subclass, offset, value)
     }
 
     /// Programs the design capacity.
     ///
     /// From BQ27427 Technical Reference Manual, page 17-18
     #[inline]
-    fn set_design_capacity(&mut self) -> Result<(), I2CErrorS> {
-        self.update_block_cfg(STATE_SUBCLASS, 0, BATTERY_DESIGN_CAPACITY)
+    fn set_design_capacity(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+    ) -> Result<(), I2CErrorS> {
+        Self::update_block_cfg(spacing, i2c, STATE_SUBCLASS, 0, BATTERY_DESIGN_CAPACITY)
     }
 
     /// Programs the chemistry.
     ///
     /// From BQ27427 Technical Reference Manual, page 18
-    fn set_chemistry_profile(&mut self) -> Result<(), I2CErrorS> {
-        self.set_cfgupdate()?;
-        self.write_u16(standard_commands::CONTROL, CHEM_ID)?;
-        self.soft_reset()?;
-        #[cfg(debug_assertions)]
-        self.assert_no_cfgupdate()?;
-
-        // Assert the chemical ID is set correctly.
-        debug_assert_eq!(
-            CHEM_ID as u8,
-            self.read_byte(standard_commands::NOMINAL_AVAILABLE_CAPACITY)?
-        );
-
-        Ok(())
+    fn set_chemistry_profile(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+    ) -> Result<(), I2CErrorS> {
+        Self::write_u16(spacing, i2c, standard_commands::CONTROL, CHEM_ID)
     }
 
     /// Programs the sleep current.
     ///
     /// From BQ27427 Technical Reference Manual, page 46
     #[inline]
-    fn set_sleep_current(&mut self) -> Result<(), I2CErrorS> {
-        self.update_block_cfg(STATE_SUBCLASS, 23, SLEEP_CURRENT)
+    fn set_sleep_current(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+    ) -> Result<(), I2CErrorS> {
+        Self::update_block_cfg(spacing, i2c, STATE_SUBCLASS, 23, SLEEP_CURRENT)
     }
 
     /// Programs the notification delta to single percents.
     ///
     /// From BQ27427 Technical Reference Manual, page 46
     #[inline]
-    fn set_soci_delta(&mut self) -> Result<(), I2CErrorS> {
-        self.update_block_cfg(STATE_SUBCLASS, 20, 1)
+    fn set_soci_delta(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+    ) -> Result<(), I2CErrorS> {
+        Self::update_block_cfg(spacing, i2c, STATE_SUBCLASS, 20, 1)
     }
 
-    fn set_default_opconfig(&mut self) -> Result<(), I2CErrorS> {
+    fn set_default_opconfig(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+    ) -> Result<(), I2CErrorS> {
         /// From on BQ27427 Technical Reference Manual, page 34.
         ///
         /// The defaults are unmodified, but being explicit doesn't hurt.
         const DEFAULT_OPCONFIG: u16 = u16::from_be_bytes([0x64, 0x78]);
 
-        self.unseal()?;
-        self.update_block_cfg(REGISTERS_SUBCLASS, OPCONFIG_OFFSET, DEFAULT_OPCONFIG)?;
-        self.seal()
+        Self::unseal(spacing, i2c)?;
+        Self::update_block_cfg(
+            spacing,
+            i2c,
+            REGISTERS_SUBCLASS,
+            OPCONFIG_OFFSET,
+            DEFAULT_OPCONFIG,
+        )?;
+        Self::seal(spacing, i2c)
     }
 
-    pub fn sleep(&mut self, enable: bool) -> Result<(), I2CErrorS> {
-        self.set_cfgupdate()?;
+    fn inner_sleep(
+        spacing: &mut CommandSpacing,
+        i2c: &mut MutexGuard<I2C>,
+        enable: bool,
+    ) -> Result<(), I2CErrorS> {
+        let opconfig = {
+            let mut opconfig_arr = [0];
+            Self::read_block(
+                spacing,
+                i2c,
+                REGISTERS_SUBCLASS,
+                OPCONFIG_OFFSET + 1,
+                &mut opconfig_arr,
+            )?;
+            opconfig_arr[0]
+        };
 
-        let opconfig = self.read_block(REGISTERS_SUBCLASS, OPCONFIG_OFFSET)?;
+        info!("Existing opconfig: {opconfig:08b}");
 
         // Mask in a 1 to enable, 0 to disable.
         let new_opconfig = if enable {
-            opconfig | 0x00_20
+            opconfig | 0x20
         } else {
-            opconfig & 0xFF_DF
+            opconfig & 0xDF
         };
 
-        self.write_blockupdate(REGISTERS_SUBCLASS, OPCONFIG_OFFSET, new_opconfig)?;
-        self.soft_reset()?;
-        #[cfg(debug_assertions)]
-        self.assert_no_cfgupdate()?;
+        info!("New opconfig: {new_opconfig:08b}");
 
-        Ok(())
+        Self::write_blockupdate(
+            spacing,
+            i2c,
+            REGISTERS_SUBCLASS,
+            OPCONFIG_OFFSET + 1,
+            &[new_opconfig],
+        )
+    }
+
+    pub fn sleep(&mut self, enable: bool) -> Result<(), I2CErrorS> {
+        let mut held_i2c = self.i2c.lock().unwrap();
+
+        Self::unseal(&mut self.spacing, &mut held_i2c)?;
+        Self::set_cfgupdate(&mut self.spacing, &mut held_i2c)?;
+
+        Self::inner_sleep(&mut self.spacing, &mut held_i2c, enable)?;
+
+        Self::soft_reset(&mut self.spacing, &mut held_i2c)?;
+        Self::seal(&mut self.spacing, &mut held_i2c)
     }
 
     /// Performs the full initialization sequence, blocking as necessary.
     fn init(&mut self) -> Result<(), I2CErrorS> {
-        self.unseal()?;
+        // Trigger a time out as per manual page 15.
+        info!("Battery monitor force timeout");
+        self.i2c
+            .lock()
+            .unwrap()
+            .hold_bus_low(Duration::from_secs(3))?;
 
-        self.set_design_capacity()?;
-        self.set_chemistry_profile()?;
-        self.set_sleep_current()?;
-        self.set_soci_delta()?;
-        self.set_default_opconfig()?;
+        let mut held_i2c = self.i2c.lock().unwrap();
 
-        self.seal()
+        info!("Battery monitor unseal");
+        Self::unseal(&mut self.spacing, &mut held_i2c)?;
+        info!("Battery monitor enter cfgupdate");
+        Self::set_cfgupdate(&mut self.spacing, &mut held_i2c)?;
+
+        // Disabling sleep gives other devices unstreched I2C clocks.
+        info!("Battery monitor disable sleep");
+        Self::inner_sleep(&mut self.spacing, &mut held_i2c, false)?;
+
+        info!("Battery monitor design capacity");
+        Self::set_design_capacity(&mut self.spacing, &mut held_i2c)?;
+        info!("Battery monitor chem profile");
+        Self::set_chemistry_profile(&mut self.spacing, &mut held_i2c)?;
+        info!("Battery monitor sleep current");
+        Self::set_sleep_current(&mut self.spacing, &mut held_i2c)?;
+        info!("Battery monitor SOCI Delta");
+        Self::set_soci_delta(&mut self.spacing, &mut held_i2c)?;
+
+        info!("Battery monitor soft reset");
+        Self::soft_reset(&mut self.spacing, &mut held_i2c)?;
+
+        // Assert the chemical ID is set correctly.
+        debug_assert_eq!(
+            CHEM_ID as u8,
+            Self::read_byte(
+                &mut self.spacing,
+                &mut held_i2c,
+                standard_commands::NOMINAL_AVAILABLE_CAPACITY
+            )?
+        );
+
+        info!("Battery monitor seal");
+        Self::seal(&mut self.spacing, &mut held_i2c)
     }
 
     #[inline]
     pub fn millivolts(&mut self) -> Result<u16, I2CErrorS> {
-        self.read_u16(standard_commands::VOLTAGE)
+        let mut held_i2c = self.i2c.lock().unwrap();
+        Self::read_u16(&mut self.spacing, &mut held_i2c, standard_commands::VOLTAGE)
     }
 
     #[inline]
     pub fn full_available_capacity(&mut self) -> Result<MilliAmpHours, I2CErrorS> {
-        self.read_u16(standard_commands::FULL_AVAILABLE_CAPACITY)
+        let mut held_i2c = self.i2c.lock().unwrap();
+        Self::read_u16(
+            &mut self.spacing,
+            &mut held_i2c,
+            standard_commands::FULL_AVAILABLE_CAPACITY,
+        )
     }
 
     #[inline]
     pub fn remaining_capacity(&mut self) -> Result<MilliAmpHours, I2CErrorS> {
-        self.read_u16(standard_commands::REMAINING_CAPACITY)
+        let mut held_i2c = self.i2c.lock().unwrap();
+        Self::read_u16(
+            &mut self.spacing,
+            &mut held_i2c,
+            standard_commands::REMAINING_CAPACITY,
+        )
     }
 
     #[inline]
     pub fn full_charge_capacity(&mut self) -> Result<MilliAmpHours, I2CErrorS> {
-        self.read_u16(standard_commands::FULL_CHARGE_CAPACITY)
+        let mut held_i2c = self.i2c.lock().unwrap();
+        Self::read_u16(
+            &mut self.spacing,
+            &mut held_i2c,
+            standard_commands::FULL_CHARGE_CAPACITY,
+        )
     }
 
     #[inline]
     pub fn average_current(&mut self) -> Result<MilliAmps, I2CErrorS> {
-        self.read_u16(standard_commands::AVERAGE_CURRENT)
+        let mut held_i2c = self.i2c.lock().unwrap();
+        Self::read_u16(
+            &mut self.spacing,
+            &mut held_i2c,
+            standard_commands::AVERAGE_CURRENT,
+        )
     }
 
     #[inline]
     pub fn average_power(&mut self) -> Result<MilliWatts, I2CErrorS> {
-        self.read_u16(standard_commands::AVERAGE_POWER)
+        let mut held_i2c = self.i2c.lock().unwrap();
+        Self::read_u16(
+            &mut self.spacing,
+            &mut held_i2c,
+            standard_commands::AVERAGE_POWER,
+        )
     }
 
     /// Returns a raw state of charge.
@@ -435,7 +653,14 @@ impl BatteryMonitor<'_> {
     /// [`Self::state_of_charge`] for a system percent.
     #[inline]
     pub fn raw_state_of_charge(&mut self) -> Result<Percent, I2CErrorS> {
-        self.read_u16(standard_commands::STATE_OF_CHARGE)
+        let mut held_i2c = self.i2c.lock().unwrap();
+        Self::read_u16(
+            &mut self.spacing,
+            &mut held_i2c,
+            standard_commands::STATE_OF_CHARGE,
+        )
+        .inspect(|x| warn!("State of charge: 0x{x:04x}"))
+        .map(|x| x as Percent)
     }
 
     /// Returns the adjusted state of charge.
@@ -448,10 +673,11 @@ impl BatteryMonitor<'_> {
     ) -> io::Result<Percent> {
         // Usual case
         if raw_charge > self.soc_offset {
-            let num = raw_charge - self.soc_offset;
+            // Extension allows for the following multiplication
+            let extended_num = raw_charge - self.soc_offset;
             // Going to do integer division by max soc, want percent * 100.
-            let adjusted_num = num * 100;
-            Ok(adjusted_num / (self.soc_max - self.soc_offset))
+            let adjusted_num = extended_num * 100;
+            Ok((adjusted_num / (self.soc_max - self.soc_offset)) as Percent)
         } else {
             if is_discharging {
                 // Have to update for the new minimum state of charge.
