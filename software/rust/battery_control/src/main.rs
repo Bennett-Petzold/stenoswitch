@@ -10,7 +10,7 @@ use std::{
     mem,
     process::exit,
     sync::{
-        Mutex,
+        Arc, LazyLock, Mutex,
         atomic::{AtomicBool, Ordering},
     },
     thread::{self, sleep},
@@ -128,13 +128,14 @@ fn main() {
     // ---------------------------------- //
     // Establish safe state on the En pin //
     // ---------------------------------- //
+    static CHG_EN: LazyLock<ChgEn> = LazyLock::new(|| std_unwrap(ChgEn::new()));
 
     // Disable charging on panic
     let default_panic = std::panic::take_hook();
     std::panic::set_hook(Box::new(move |info| {
-        while ChgEn::new().is_err() {
-            error!("Failed to disable charging! {:#?}", ChgEn::new());
-        }
+        if let Err(e) = CHG_EN.disable() {
+            error!("Failed to disable charging on panic! {e:#?}");
+        };
         error!("PANIC! {info:#?}");
         default_panic(info);
         // Child threads also terminate the program.
@@ -143,11 +144,12 @@ fn main() {
 
     // Try disabling charge just once on Ctrl-C
     std_unwrap(ctrlc::set_handler(|| {
-        let _ = ChgEn::new();
+        if let Err(e) = CHG_EN.disable() {
+            error!("Failed to disable charging on ctrl-c! {e:#?}");
+        };
         exit(2);
     }));
 
-    let chg_en = Mutex::new(std_unwrap(ChgEn::new()));
     // ---------------------------------- //
 
     std_unwrap(std_unwrap(JournalLog::new()).install());
@@ -231,10 +233,10 @@ fn main() {
                         // If they match, the charging state flipped.
                         if disable_charging == prev_charge_state {
                             if disable_charging {
-                                std_unwrap(chg_en.lock().unwrap().disable());
+                                std_unwrap(CHG_EN.disable());
                                 info!("Battery beyond limits, turned off charging");
                             } else {
-                                std_unwrap(chg_en.lock().unwrap().enable());
+                                std_unwrap(CHG_EN.enable());
                                 info!("Battery fell below limits, turned on charging");
                             }
                         }
@@ -252,7 +254,7 @@ fn main() {
                     // If USB was connected, this prevents overdrawing.
                     // If USB was disconnected, this is extra protection for the
                     // next connection.
-                    std_unwrap(chg_en.lock().unwrap().disable());
+                    std_unwrap(CHG_EN.lock().unwrap().disable());
 
                     // Tune the charge limit when USB is attached AND there
                     // isn't an existing tuning thread.
@@ -293,7 +295,7 @@ fn main() {
                                 if skip_charging {
                                     info!("Battery beyond limits, keeping charging disabled");
                                 } else {
-                                    std_unwrap(chg_en.lock().unwrap().enable());
+                                    std_unwrap(CHG_EN.lock().unwrap().enable());
                                     info!("Enabled charging");
                                 }
                             }),

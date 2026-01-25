@@ -1,4 +1,5 @@
 use gpio_cdev::{Chip, LineHandle, LineRequestFlags};
+use log::{debug, error};
 
 use crate::std_unwrap;
 
@@ -8,7 +9,9 @@ pub struct ChgEn(LineHandle);
 impl ChgEn {
     /// Defaults to disabled.
     pub fn new() -> Result<Self, gpio_cdev::Error> {
+        debug!("Opening GPIO chip {:?}", option_env!("GPIO_CHIP"));
         let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null"))?;
+        debug!("Opening GPIO line {:?}", option_env!("CHG_EN"));
         let this = Self(
             chip.get_line(std_unwrap(str::parse(
                 option_env!("CHG_EN").unwrap_or("/dev/null"),
@@ -33,6 +36,8 @@ impl ChgEn {
 impl Drop for ChgEn {
     fn drop(&mut self) {
         // Attempt to disable on drop
-        let _ = self.disable();
+        if let Err(e) = self.disable() {
+            error!("Failure to disable ChgEn on drop: {e:#?}");
+        };
     }
 }
