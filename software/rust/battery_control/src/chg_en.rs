@@ -25,10 +25,12 @@ impl ChgEn {
 
 impl ChgEn {
     pub fn enable(&self) -> Result<(), gpio_cdev::Error> {
+        trace!("Enabling charging");
         self.0.set_value(1)
     }
 
     pub fn disable(&self) -> Result<(), gpio_cdev::Error> {
+        trace!("Disabling charging");
         self.0.set_value(0)
     }
 }

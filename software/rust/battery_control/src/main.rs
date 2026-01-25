@@ -254,7 +254,7 @@ fn main() {
                     // If USB was connected, this prevents overdrawing.
                     // If USB was disconnected, this is extra protection for the
                     // next connection.
-                    std_unwrap(CHG_EN.lock().unwrap().disable());
+                    std_unwrap(CHG_EN.disable());
 
                     // Tune the charge limit when USB is attached AND there
                     // isn't an existing tuning thread.
@@ -295,7 +295,7 @@ fn main() {
                                 if skip_charging {
                                     info!("Battery beyond limits, keeping charging disabled");
                                 } else {
-                                    std_unwrap(CHG_EN.lock().unwrap().enable());
+                                    std_unwrap(CHG_EN.enable());
                                     info!("Enabled charging");
                                 }
                             }),

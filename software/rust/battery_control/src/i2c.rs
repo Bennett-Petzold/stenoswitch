@@ -51,8 +51,6 @@ impl I2C {
     pub fn new(frequency: u32, sda_pin: u32, scl_pin: u32) -> Result<Self, I2CErrorS> {
         // Frequency is doubled to get the duration for a single edge.
         let line_hold_time = Duration::from_secs(1) / (frequency * 2);
-        debug!("Debug enabled!");
-        trace!("Trace enabled!");
         info!("I2C frequency, line hold time: {frequency} Hz, {line_hold_time:?}");
 
         // Both lines sit in the default high state.
