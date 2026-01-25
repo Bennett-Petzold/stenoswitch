@@ -9,9 +9,9 @@ pub struct ChgEn(LineHandle);
 impl ChgEn {
     /// Defaults to disabled.
     pub fn new() -> Result<Self, gpio_cdev::Error> {
-        debug!("Opening GPIO chip {:?}", option_env!("GPIO_CHIP"));
+        trace!("Opening GPIO chip {:?}", option_env!("GPIO_CHIP"));
         let mut chip = Chip::new(option_env!("GPIO_CHIP").unwrap_or("/dev/null"))?;
-        debug!("Opening GPIO line {:?}", option_env!("CHG_EN"));
+        trace!("Opening GPIO line {:?}", option_env!("CHG_EN"));
         let this = Self(
             chip.get_line(std_unwrap(str::parse(
                 option_env!("CHG_EN").unwrap_or("/dev/null"),
