@@ -8,7 +8,7 @@ description = "Stenoswitch Rust programs"
 edition = "2024"
 
 [workspace.dependencies]
-bare_err_tree = "1"
+bare_err_tree = { version = "1", features = ["tracing", "source_line"] }
 ctrlc = "3"
 gpio-cdev = "0.6"
 i2cdev = "0.6"
