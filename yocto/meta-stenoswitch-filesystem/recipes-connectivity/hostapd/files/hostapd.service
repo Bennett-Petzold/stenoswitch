@@ -1,0 +1,14 @@
+[Unit]
+Description=Hostapd IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator
+After=network.target
+
+[Service]
+Type=forking
+PIDFile=/run/hostapd.pid
+ExecStart=@SBINDIR@/hostapd @SYSCONFDIR@/hostapd.conf -P /run/hostapd.pid -B
+Restart=always
+RestartSteps=10
+RestartMaxDelaySec=5min
+
+[Install]
+WantedBy=multi-user.target

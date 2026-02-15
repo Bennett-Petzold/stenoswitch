@@ -1,0 +1,12 @@
+[Unit]
+Description=usb charging only
+After=multi-user.target
+
+[Service]
+Type=notify
+TimeoutStartSec=infinity
+ExecStart=/usr/bin/usb_keyboard
+#Restart=always
+
+#[Install]
+#WantedBy=multi-user.target

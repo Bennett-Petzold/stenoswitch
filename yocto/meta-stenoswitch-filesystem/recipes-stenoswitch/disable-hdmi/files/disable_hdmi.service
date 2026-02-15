@@ -1,0 +1,9 @@
+[Unit]
+Description=disable HDMI
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/vcgencmd display_power 0
+
+[Install]
+RequiredBy=default.target

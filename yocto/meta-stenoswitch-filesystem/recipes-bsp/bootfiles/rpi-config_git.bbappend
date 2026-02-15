@@ -2,6 +2,7 @@ ETH_LED_OFF ??= "14"
 
 do_deploy:append () {
     # TODO add dtoverlay=disable-wifi on non-debug builds
+    # 'dtoverlay=i2c-gpio,i2c_gpio_sda=2,i2c_gpio_scl=3,bus=1' \
 
     printf '%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n' \
         'dtparam=act_led_trigger=timer' \
