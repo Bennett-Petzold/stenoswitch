@@ -203,8 +203,6 @@ impl BatteryMonitor<'_> {
         trace!("Writing {command:02x} to battery monitor with u16 {data:04x}");
         let [lsb, msb] = data.to_le_bytes();
 
-        //Self::write(spacing, held_i2c, command, msb)?;
-        //Self::write(spacing, held_i2c, command + 1, lsb)
         Self::write(spacing, held_i2c, command, lsb)?;
         Self::write(spacing, held_i2c, command + 1, msb)
     }
@@ -579,12 +577,8 @@ impl BatteryMonitor<'_> {
 
         // Assert the chemical ID is set correctly.
         debug_assert_eq!(
-            CHEM_ID as u8,
-            Self::read_byte(
-                &mut self.spacing,
-                &mut held_i2c,
-                standard_commands::NOMINAL_AVAILABLE_CAPACITY
-            )?
+            CHEM_ID,
+            Self::read_u16(&mut self.spacing, &mut held_i2c, 0x0008)?
         );
 
         info!("Battery monitor seal");
