@@ -55,12 +55,22 @@ where
 /// Will block to for the necessary spacing.
 ///
 /// Even stepping to the rheostat max, this should execute in under a second.
-fn set_rheostat_from_cc(cur_rheostat: &mut CurrentRheostat, cur_mon: &mut CurrentMonitor) {
+fn set_rheostat_from_cc(
+    chg_en: &ChgEn,
+    cur_rheostat: &mut CurrentRheostat,
+    cur_mon: &mut CurrentMonitor,
+) {
     // Always start by setting to a safe maximum
     bare_err_unwrap(cur_rheostat.set_max());
 
     // Sleep until the current limit can actually be read.
     while !std_unwrap(cur_mon.current_limit_energized()) {
+        // Current limit will never energize if charging is disabled.
+        // Prevent infinite looping.
+        if !std_unwrap(chg_en.is_enabled()) {
+            return;
+        }
+
         debug!("Waiting for current limit to energize...");
         sleep(Duration::from_secs(1));
     }
@@ -72,8 +82,8 @@ fn set_rheostat_from_cc(cur_rheostat: &mut CurrentRheostat, cur_mon: &mut Curren
         // Prevent infinite loops if the rheostat can't raise far enough.
         if cur_rheostat.setting() >= current_rheostat::CUR_LIMIT_MAX {
             warn!(
-                "Rheostat topped out below target limit: {:?} < {}",
-                cur_mon.read_current_limit(),
+                "Rheostat topped out below target limit: {} < {}",
+                std_unwrap(cur_mon.read_current_limit()),
                 cc_limit(cur_mon)
             );
             break;
@@ -86,8 +96,8 @@ fn set_rheostat_from_cc(cur_rheostat: &mut CurrentRheostat, cur_mon: &mut Curren
         // Prevent infinite loops if the rheostat can't lower far enough.
         if cur_rheostat.setting() == 0 {
             error!(
-                "Rheostat bottomed out above target limit: {:?} < {}",
-                cur_mon.read_current_limit(),
+                "Rheostat bottomed out above target limit: {} < {}",
+                std_unwrap(cur_mon.read_current_limit()),
                 cc_limit(cur_mon)
             );
             break;
@@ -204,10 +214,7 @@ fn main() {
 
     // Initial states
     info!("CC Lines: {:?}", cur_mon.read_cc());
-    info!(
-        "Current limit = {} amps",
-        std_unwrap(cur_mon.read_current_limit())
-    );
+    info!("Current limit = {:?} amps", cur_mon.read_current_limit());
 
     let cur_mon = Mutex::new(cur_mon);
     let notify_lines = NotifyLines::new();
@@ -221,17 +228,14 @@ fn main() {
             update_battery_stats(&mut bat_mon, !charging.load(Ordering::Relaxed))
         });
 
-        // Initial states
-        if log::max_level() >= log::LevelFilter::Debug {
-            let mut cur_mon = cur_mon.lock().unwrap();
-            debug!("CC Lines: {:?}", cur_mon.read_cc());
-            debug!(
-                "Current limit = {} amps",
-                std_unwrap(cur_mon.read_current_limit())
-            );
-        }
-
         loop {
+            // Initial states
+            if log::max_level() >= log::LevelFilter::Debug {
+                let mut cur_mon = cur_mon.lock().unwrap();
+                debug!("CC Lines: {:?}", cur_mon.read_cc());
+                debug!("Current limit = {:?} amps", cur_mon.read_current_limit());
+            }
+
             let notification = notify_lines.next_notification();
             match notification.source {
                 NotifySource::Batmon => {
@@ -301,25 +305,35 @@ fn main() {
                                     storage_stop || soc_stop
                                 });
 
-                                {
-                                    let mut cur_rheostat = cur_rheostat.lock().unwrap();
-                                    let mut cur_mon = cur_mon.lock().unwrap();
-                                    /*
-                                    set_rheostat_from_cc(&mut cur_rheostat, &mut cur_mon);
-                                    info!(
-                                        "Configured rheostat with {} mA limit",
-                                        std_unwrap(cur_mon.read_cc()).to_milliamps()
-                                    );
-                                    */
-                                }
-
                                 let skip_charging = skip_charging.join().unwrap();
                                 charging.store(!skip_charging, Ordering::Relaxed);
                                 if skip_charging {
                                     info!("Battery beyond limits, keeping charging disabled");
                                 } else {
-                                    std_unwrap(CHG_EN.enable());
-                                    info!("Enabled charging");
+                                    {
+                                        let mut cur_rheostat = std_unwrap(cur_rheostat.lock());
+                                        let mut cur_mon = std_unwrap(cur_mon.lock());
+
+                                        std_unwrap(cur_rheostat.set_max());
+
+                                        std_unwrap(CHG_EN.enable());
+                                        info!("Enabled charging");
+
+                                        let cc_limit = std_unwrap(cur_mon.read_cc());
+
+                                        set_rheostat_from_cc(
+                                            &CHG_EN,
+                                            &mut cur_rheostat,
+                                            &mut cur_mon,
+                                        );
+                                        info!(
+                                            "Configured rheostat with {} mA limit",
+                                            cc_limit.to_milliamps()
+                                        );
+
+                                        // TODO: spawn background thread that watches for a cc
+                                        // change and reruns rheostat set.
+                                    }
                                 }
                             }),
                         );

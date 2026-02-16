@@ -33,6 +33,10 @@ impl ChgEn {
         trace!("Disabling charging");
         self.0.set_value(0)
     }
+
+    pub fn is_enabled(&self) -> Result<bool, gpio_cdev::Error> {
+        self.0.get_value().map(|x| x == 1)
+    }
 }
 
 impl Drop for ChgEn {

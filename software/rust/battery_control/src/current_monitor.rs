@@ -193,6 +193,12 @@ impl CurrentMonitor {
             )));
         }
 
+        if divh < divl {
+            return Err(io::Error::other(format!(
+                "High div less than low div on current limit circuit (high, low): {divh}, {divl}",
+            )));
+        }
+
         let volt_diff = adc_to_voltage(divh - divl);
         let divider_current = volt_diff / UPPER_DIV_OHMS;
         let variable_resistor = adc_to_voltage(divl) / divider_current;
@@ -214,6 +220,9 @@ impl CurrentMonitor {
         let divh = self.read_channel(CHRG_DIVH)?;
         let divl = self.read_channel(CHRG_DIVL)?;
 
-        Ok((divh > 1) && (divl > 1))
+        let divh_higher = divh >= divl;
+        let greater_than_zero = divl > MIN_ENERGIZED;
+
+        Ok(divh_higher && greater_than_zero)
     }
 }
