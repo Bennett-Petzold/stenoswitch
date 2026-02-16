@@ -31,12 +31,7 @@ use crate::{
 };
 
 const STORAGE_CHARGE_LIMIT_MILLIVOLTS: u16 = 3700;
-// TODO: find the highest consistent frequency.
-// Is it just the 400K?
-//const I2C_HERTZ: u32 = 400_000;
-// Hopefully slow enough to get rid of bus issues.
-const I2C_HERTZ: u32 = 100_000;
-//const I2C_HERTZ: u32 = 100;
+const I2C_HERTZ: u32 = 400_000;
 
 #[track_caller]
 pub fn bare_err_unwrap<T, E>(res: Result<T, E>) -> T
