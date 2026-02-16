@@ -122,8 +122,8 @@ fn update_battery_stats(
 ) -> battery_monitor::Percent {
     let raw_soc = bare_err_unwrap(bat_mon.raw_state_of_charge());
     debug!(
-        "Battery stats: {}% charge, {}% raw charge, {}% of design, {} mV, {} mA, {} mW",
-        std_unwrap(bat_mon.state_of_charge(raw_soc, is_discharging)),
+        "Battery stats: {:?}% charge, {}% raw charge, {}% of design, {} mV, {} mA, {} mW",
+        bat_mon.state_of_charge(raw_soc, is_discharging),
         raw_soc,
         (bare_err_unwrap(bat_mon.full_available_capacity()) as f32)
             / (battery_monitor::BATTERY_DESIGN_CAPACITY as f32),
@@ -212,10 +212,6 @@ fn main() {
     info!("Initialized SPI and I2C devices");
     sd_notify::notify(true, &[sd_notify::NotifyState::Ready]).unwrap();
 
-    // Initial states
-    info!("CC Lines: {:?}", cur_mon.read_cc());
-    info!("Current limit = {:?} amps", cur_mon.read_current_limit());
-
     let cur_mon = Mutex::new(cur_mon);
     let notify_lines = NotifyLines::new();
     let storage_voltage = AtomicBool::new(false);
@@ -229,7 +225,7 @@ fn main() {
         });
 
         loop {
-            // Initial states
+            // Ongoing states
             if log::max_level() >= log::LevelFilter::Debug {
                 let mut cur_mon = cur_mon.lock().unwrap();
                 debug!("CC Lines: {:?}", cur_mon.read_cc());
@@ -268,7 +264,7 @@ fn main() {
                     });
                 }
                 NotifySource::ChgOn => {
-                    if notification.value {
+                    if !notification.value {
                         info!("Started charging battery from USB")
                     } else {
                         info!("Stopped charging battery from USB")
@@ -285,7 +281,7 @@ fn main() {
                     // isn't an existing tuning thread.
                     // Skipping the tuning thread check could cause
                     // uncontrolled thread spawning.
-                    if notification.value && charge_enabled_thread.is_finished() {
+                    if (!notification.value) && charge_enabled_thread.is_finished() {
                         let old_thread = mem::replace(
                             &mut charge_enabled_thread,
                             s.spawn(|| {
@@ -293,8 +289,8 @@ fn main() {
 
                                 let skip_charging = s.spawn(|| {
                                     let mut bat_mon = bat_mon.lock().unwrap();
-                                    bare_err_unwrap(bat_mon.sleep(false));
-                                    info!("Turned off battery monitor sleep");
+                                    //bare_err_unwrap(bat_mon.sleep(false));
+                                    //info!("Turned off battery monitor sleep");
 
                                     let storage_stop = storage_voltage.load(Ordering::Relaxed)
                                         && (bare_err_unwrap(bat_mon.millivolts())
@@ -343,11 +339,11 @@ fn main() {
                     }
                 }
                 NotifySource::BatOn => {
-                    if notification.value {
+                    if !notification.value {
                         info!("Switched to battery power");
                         let _ = s.spawn(|| {
-                            bare_err_unwrap(bat_mon.lock().unwrap().sleep(true));
-                            info!("Turned on battery monitor sleep");
+                            //bare_err_unwrap(bat_mon.lock().unwrap().sleep(true));
+                            //info!("Turned on battery monitor sleep");
                         });
                     }
                 }

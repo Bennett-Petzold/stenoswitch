@@ -546,11 +546,13 @@ impl BatteryMonitor<'_> {
     /// Performs the full initialization sequence, blocking as necessary.
     fn init(&mut self) -> Result<(), I2CErrorS> {
         // Trigger a time out as per manual page 15.
+        /*
         info!("Battery monitor force timeout");
         self.i2c
             .lock()
             .unwrap()
             .hold_bus_low(Duration::from_secs(3))?;
+        */
 
         let mut held_i2c = self.i2c.lock().unwrap();
 
