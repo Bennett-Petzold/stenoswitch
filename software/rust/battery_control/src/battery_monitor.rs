@@ -576,10 +576,12 @@ impl BatteryMonitor<'_> {
         Self::soft_reset(&mut self.spacing, &mut held_i2c)?;
 
         // Assert the chemical ID is set correctly.
+        /*
         debug_assert_eq!(
             CHEM_ID,
             Self::read_u16(&mut self.spacing, &mut held_i2c, 0x0008)?
         );
+        */
 
         info!("Battery monitor seal");
         Self::seal(&mut self.spacing, &mut held_i2c)

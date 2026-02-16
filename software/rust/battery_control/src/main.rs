@@ -184,7 +184,9 @@ fn main() {
                         Ok(rheo) => Some(rheo),
                         Err(e) => {
                             error!("Rheostat init failure: {e:#?}");
-                            std::thread::sleep(Duration::from_secs(1));
+                            std::thread::sleep(Duration::from_millis(500));
+                            std_unwrap(std_unwrap(I2C_BUS.lock()).reset());
+                            std::thread::sleep(Duration::from_millis(500));
                             None
                         }
                     })

@@ -333,6 +333,14 @@ impl I2C {
 
             this.sda.set_value(1)?;
             this.scl_high()?;
+
+            while this.sda.get_value()? != 1 {
+                for _empty_pulse in 0..8 {
+                    this.scl_low()?;
+                    this.scl_high()?;
+                }
+            }
+
             this.start()?;
 
             // Nine pulses of highs.
