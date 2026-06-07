@@ -6,3 +6,4 @@ _autosave*
 *.zip
 */production
 fabrication-toolkit-options.json
+.history

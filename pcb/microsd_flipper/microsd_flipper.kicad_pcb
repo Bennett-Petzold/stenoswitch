@@ -1222,6 +1222,17 @@
 			(uuid "b21aa95b-82bd-4f54-ace3-7eee7caf499b")
 		)
 		(embedded_fonts no)
+		(model "/home/base/projects/physical/stenoswitch/pcb/resources/snap_magic/MSD-10-C.step"
+			(offset
+				(xyz 0 0 9)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -0)
+			)
+		)
 	)
 	(footprint ""
 		(layer "F.Cu")
